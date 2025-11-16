@@ -1,18 +1,16 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { Button } from "@/components/ui/button";
-import { Navigation } from "@/components/navigation";
-import { Filter } from "lucide-react";
+import { Footer } from "@/components/footer";
 import { FormulationGuideCard } from "@/components/formulation-card";
 import { FormulationFilters } from "@/components/formulation-filters";
-import { formulations } from "@/data/formulations";
-
-import { Footer } from "@/components/footer";
-
-
+import { Navigation } from "@/components/navigation";
+import { Button } from "@/components/ui/button";
+import { Formulations } from "@/data/formulations";
+import { Filter } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 
 export default function FormulationGuidesPage() {
+  const [formulations, setFormulations] = useState<Formulations[]>([])
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [filters, setFilters] = useState<Record<string, string[]>>({});
@@ -32,7 +30,7 @@ export default function FormulationGuidesPage() {
         return true;
       });
     });
-  }, [filters]);
+  }, [filters, formulations]);
 
   // Paginate formulations
   const paginatedFormulations = useMemo(() => {
@@ -46,6 +44,20 @@ export default function FormulationGuidesPage() {
     setFilters(newFilters);
     setCurrentPage(1); // Reset to first page when filters change
   };
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch('/api/formulations');
+        const data = await res.json()
+        setFormulations(data);
+      } catch (e: any) {
+        console.error(e);
+      }
+    }
+    load();
+    return () => { };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
