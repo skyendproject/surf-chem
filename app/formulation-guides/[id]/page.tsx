@@ -1,10 +1,8 @@
-import { SignInForm } from "@/components/sign-in-form";
-import { formulations } from "@/data/formulations";
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
+import { SignInForm } from "@/components/sign-in-form";
+import { getFormulation } from "@/lib/backend";
+import { notFound } from "next/navigation";
 
 interface ProductPageProps {
   params: Promise<{
@@ -14,11 +12,10 @@ interface ProductPageProps {
 
 export default async function FormulationGuideDetail({ params }: ProductPageProps) {
   const { id } = await params;
-  //   const product = products.find((p) => p.id === id);
-  const product = formulations.find((p) => p.id === id);
+  const product = await getFormulation(id)
 
-  if (!product) {
-    notFound();
+  if (!id || !product || product == null) {
+    return notFound();
   }
 
   return (

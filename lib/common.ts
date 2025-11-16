@@ -1,7 +1,9 @@
 import { db } from '@/lib/firebase';
 import {
     collection,
+    doc,
     DocumentData,
+    getDoc,
     getDocs,
     query as makeQuery,
     QueryConstraint
@@ -10,8 +12,8 @@ import {
 type FireDocData = DocumentData & { id: string };
 
 export async function readCollection(path: string, constraints?: QueryConstraint[]) {
-    const colRef = collection(db, path);
-    const query = constraints?.length ? makeQuery(colRef, ...constraints) : colRef;
+    const ref = collection(db, path);
+    const query = constraints?.length ? makeQuery(ref, ...constraints) : ref;
     const snap = await getDocs(query);
     return snap.docs.map(doc => {
         return {
@@ -19,4 +21,13 @@ export async function readCollection(path: string, constraints?: QueryConstraint
             ...doc.data(),
         } as FireDocData;
     });
+}
+
+export async function readDocument(id: string, col: string) {
+    const ref = doc(db, col, id);
+    const snap = await getDoc(ref);
+    return {
+        id: snap.id,
+        ...snap.data(),
+    } as FireDocData;
 }
