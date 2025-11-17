@@ -15,11 +15,12 @@ export async function GET(
     const stream = await renderToStream(
         <FormulationGuidePDF formulation={formulation} />,
     );
+    const filename = formulation.title || formulation.documentTitle
     return new NextResponse(stream as unknown as ReadableStream, {
         status: 200,
         headers: {
             'Content-Type': 'application/pdf',
-            'Content-Disposition': `inline; filename="product-${id}.pdf"`,
+            'Content-Disposition': `inline; filename="${filename}.pdf"`,
         },
     });
 }
