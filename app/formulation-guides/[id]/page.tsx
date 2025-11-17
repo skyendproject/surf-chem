@@ -4,13 +4,13 @@ import { SignInForm } from "@/components/sign-in-form";
 import { getFormulation } from "@/lib/backend";
 import { notFound } from "next/navigation";
 
-interface ProductPageProps {
+interface FormulationPageProps {
   params: Promise<{
     id: string;
   }>;
 }
 
-export default async function FormulationGuideDetail({ params }: ProductPageProps) {
+export default async function FormulationGuideDetail({ params }: FormulationPageProps) {
   const { id } = await params;
   if (!id) return notFound();
 
