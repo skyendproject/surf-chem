@@ -1,12 +1,11 @@
-import { Navigation } from "@/components/navigation";
-import { Button } from "@/components/ui/button";
-import { TechnicalBriefCard } from "@/components/technical-brief-card";
-import { technicalBriefsData } from "@/data/technical-briefs";
-import { Search, Filter } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
+import { TechnicalBriefCard } from "@/components/technical-brief-card";
+import { getTechnicalBriefs } from "@/lib/backend";
 
-export default function TechnicalBriefsPage() {
+export default async function TechnicalBriefsPage() {
+  const technicalBriefsData = await getTechnicalBriefs();
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
