@@ -2,6 +2,15 @@ import { Formulation } from '@/types/formulation';
 import { Document, Image, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
 
 export default function FormulationGuidePDF({ formulation }: { formulation: Formulation }) {
+    // return (
+    //     <Document>
+    //         <Page size="A4" style={styles.page}>
+    //             <Text>Sign in to see the pdf</Text>
+    //         </Page>
+    //     </Document>
+    // )
+
+
     const logoUrl = 'https://www.surfchem.co.uk/assets/image/logo/logo.png'
 
     return (

@@ -15,7 +15,7 @@ export async function GET(
     const stream = await renderToStream(
         <FormulationGuidePDF formulation={formulation} />,
     );
-    const filename = formulation.title || formulation.documentTitle
+    const filename = (formulation.title || formulation.documentTitle).replace(/[^\x00-\x7F]/g, "");
     return new NextResponse(stream as unknown as ReadableStream, {
         status: 200,
         headers: {

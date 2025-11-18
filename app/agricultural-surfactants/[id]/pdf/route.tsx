@@ -15,7 +15,7 @@ export async function GET(
     const stream = await renderToStream(
         <ProductPDF product={product} />,
     );
-    const filename = product.name || product.chemical_name
+    const filename = (product.name || product.chemical_name).replace(/[^\x00-\x7F]/g, "");
     return new NextResponse(stream as unknown as ReadableStream, {
         status: 200,
         headers: {

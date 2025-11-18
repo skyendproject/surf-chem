@@ -2,6 +2,14 @@ import { Product } from '@/data/technologies/agriculturalSurfactants';
 import { Document, Image, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
 
 export default function ProductPDF({ product }: { product: Product }) {
+    // return (
+    //     <Document>
+    //         <Page size="A4" style={styles.page}>
+    //             <Text>Sign in to see the pdf</Text>
+    //         </Page>
+    //     </Document>
+    // )
+
     const logoUrl = 'https://www.surfchem.co.uk/assets/image/logo/logo.png'
 
     return (
