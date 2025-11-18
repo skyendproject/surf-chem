@@ -1,10 +1,12 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Navigation } from "@/components/navigation";
-import { ChevronRight } from "lucide-react";
 import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
+import { getCompanyHistory } from "@/lib/backend";
+import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 
-export default function CompanyHistoryPage() {
+export default async function CompanyHistoryPage() {
+  const data = await getCompanyHistory()
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -26,20 +28,9 @@ export default function CompanyHistoryPage() {
               About Surfactant Chemicals Company
             </h1>
             <h1 className="text-[77px] md:text-[115px] font-bold leading-[70px] md:leading-[130px] mb-6">
-              Our Journey
+              {data.title}
             </h1>
-
-            <p className="text-[18px] md:text-[22px] mb-8 leading-[28px] mr-2">
-              At Surfactant Chemicals Company, we're not just another chemical
-              manufacturer - we're pioneers in modern surface chemistry. Our
-              journey began with a vision to revolutionize industries through
-              innovation and excellence. Guided by this vision, we have
-              relentlessly pursued scientific breakthroughs, honed our
-              expertise, and cultivated a culture of creativity and
-              collaboration. Today, we stand at the forefront of the surfactant
-              industry, driven by our passion for pushing boundaries and shaping
-              the future of surface chemistry..
-            </p>
+            <ReactMarkdown>{data.description}</ReactMarkdown>
           </div>
 
           {/* Image Section */}
@@ -74,20 +65,7 @@ export default function CompanyHistoryPage() {
             <h2 className="text-[48px] lg:text-[66px] md:leading-[70px] text-black2 font-bold mb-4 lg:mb-16">
               Our Global Presence
             </h2>
-            <p className="text-[clamp(18px,2vw,22px)] text-black leading-[28px] md:leading-[30px] mb-0 lg:mb-4">
-              Surfactant Chemicals Company, with a European/British footprint,
-              has Singapore as the regional office in the Asia Pacific which
-              also serves as the headquarters for Agricultural/Crop Care
-              Strategic Business Unit (SBU), while the business in China leads
-              the SBUs for Paints Surfactants SBU, Trading Chemicals & Machinery
-              and services exports through United Arab Emirates.
-            </p>
-            <p className="text-[clamp(18px,2vw,22px)] text-black leading-[28px] md:leading-[30px]">
-              Over the years, the Company has evolved itself to be a significant
-              research-oriented organization competing against the world’s
-              largest agricultural specialty companies with a focus portfolio of
-              novel research products.
-            </p>
+            <ReactMarkdown>{data.global_presence}</ReactMarkdown>
           </div>
         </div>
       </section>
@@ -101,26 +79,7 @@ export default function CompanyHistoryPage() {
               <h2 className="text-[48px] lg:text-[66px] md:leading-[60px] text-black2 font-bold mb-4 lg:mb-16">
                 Our Core Focus and Vision
               </h2>
-              <p className="text-[18px] md:text-[22px] text-black leading-[28px] md:leading-[30px] mb-8">
-                The core focus area of business is on intricately grafted
-                polymeric surfactants, synergistic blends, silicone-based
-                surfactants, and adjuvants in general, biopesticides and
-                bio-formulants along with AI based drone technology for
-                agricultural applications.
-              </p>
-              <p className="text-[18px] md:text-[22px] text-black leading-[28px] md:leading-[30px] mb-4">
-                Surfactant Chemicals Company's vision is to be recognized as the
-                foremost provider of innovative surfactant solutions, surpassing
-                customer expectations through superior quality and unparalleled
-                service. We aspire to foster sustainable growth and prosperity
-                in the regions we serve by investing in cutting-edge
-                technologies and fostering strategic partnerships that drive
-                economic advancement and job creation. Additionally, our
-                unwavering commitment to environmental stewardship guides our
-                efforts to minimize our ecological footprint and promote
-                eco-friendly practices throughout our operations, ensuring a
-                brighter, greener future for generations to come.
-              </p>
+              <ReactMarkdown>{data.vision}</ReactMarkdown>
             </div>
 
             {/* Image section */}
@@ -214,21 +173,7 @@ export default function CompanyHistoryPage() {
                     </h2>
                     <div className="flex-1 h-1 bg-red mt-8"></div>
                   </div>
-                  <p className="text-white text-base text-[18px] md:text-[22px] leading-[30px]">
-                    Our mission is to provide extraordinary customer service and
-                    manufacture products that make life better for its customers
-                    to achieve commercial excellence. We are dedicated to
-                    continuously innovating and improving our products to meet
-                    the evolving needs and expectations of our customers,
-                    ensuring their utmost satisfaction. Additionally, we strive
-                    to cultivate long-lasting relationships with our customers,
-                    built on trust, integrity, and reliability, to become their
-                    preferred partner in success. Furthermore, our commitment to
-                    operational excellence drives us to optimize efficiency,
-                    reduce costs, and maximize value creation, empowering us to
-                    deliver exceptional results and maintain our position as a
-                    leader in the industries we serve.
-                  </p>
+                  <ReactMarkdown>{data.mission}</ReactMarkdown>
                 </div>
 
                 {/* Values section */}
@@ -239,19 +184,7 @@ export default function CompanyHistoryPage() {
                     </h2>
                     <div className="flex-1 h-1 bg-red mt-8"></div>
                   </div>
-                  <p className="text-white text-base text-[18px] md:text-[22px] leading-[30px]">
-                    Our core value is to strive for excellence and improvement.
-                    We believe in fostering a culture of continuous learning and
-                    growth, where every team member is encouraged to innovate,
-                    challenge the status quo, and pursue excellence in
-                    everything they do. We are committed to transparency,
-                    accountability, and ethical conduct in all our interactions,
-                    ensuring integrity and trustworthiness are upheld in every
-                    aspect of our operations. Additionally, we recognize the
-                    importance of diversity, inclusivity, and respect for all
-                    individuals, valuing the unique perspectives and
-                    contributions of each member of our team.
-                  </p>
+                  <ReactMarkdown>{data.values}</ReactMarkdown>
                 </div>
               </div>
             </div>
