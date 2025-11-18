@@ -1,8 +1,10 @@
+import { DirectorDetail } from "@/components/director-detail";
+import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { directors } from "@/data/directors";
-import { DirectorDetail } from "@/components/director-detail";
+import { getBoardOfDirector } from "@/lib/backend";
+import { Director } from "@/types/director";
 import { notFound } from "next/navigation";
-import { Footer } from "@/components/footer";
 
 interface DirectorPageProps {
   params: Promise<{
@@ -19,7 +21,7 @@ export function generateStaticParams() {
 export default async function DirectorPage({ params }: DirectorPageProps) {
   const { id } = await params;
 
-  const director = directors.find((d) => d.id === id);
+  const director = await getBoardOfDirector(id);
 
   if (!director) {
     notFound();
@@ -40,7 +42,7 @@ export default async function DirectorPage({ params }: DirectorPageProps) {
         <div className="absolute top-0 left-0 w-full h-full bg-white z-0"></div>
 
         <div className="container mx-auto px-4 sm:px-12 z-30 relative py-12">
-          <DirectorDetail director={director} />
+          <DirectorDetail director={director as Director} />
         </div>
       </div>
 

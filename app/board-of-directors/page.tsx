@@ -1,9 +1,12 @@
-import { Navigation } from "@/components/navigation";
-import { directors } from "@/data/directors";
 import { DirectorCard } from "@/components/director-card";
 import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
+import { getBoardOfDirectors } from "@/lib/backend";
+import { Director } from "@/types/director";
 
-export default function BoardOfDirectorsPage() {
+export default async function BoardOfDirectorsPage() {
+  const directors = await getBoardOfDirectors()
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -31,14 +34,8 @@ export default function BoardOfDirectorsPage() {
           <div className="container mx-auto px-4">
             <div className="bg-gray-100 rounded-[3rem] p-12 shadow-lg z-30 mb-10">
               <div className="grid lg:grid-cols-3 gap-12 mb-16">
-                {directors.slice(0, 3).map((director) => (
-                  <DirectorCard key={director.id} director={director} />
-                ))}
-              </div>
-
-              <div className="grid lg:grid-cols-2 gap-12 max-w-4xl mx-auto">
-                {directors.slice(3).map((director) => (
-                  <DirectorCard key={director.id} director={director} />
+                {directors.map((director) => (
+                  <DirectorCard key={director.id} director={director as Director} />
                 ))}
               </div>
             </div>
