@@ -4,6 +4,7 @@ import DownloadButton from "@/components/download-button";
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { SignInForm } from "@/components/sign-in-form";
+import { Product } from "@/data/technologies/agriculturalSurfactants";
 import { getProduct } from "@/lib/backend";
 import { notFound } from "next/navigation";
 
@@ -17,7 +18,7 @@ export default async function ProductDetail({ params }: ProductPageProps) {
   const { id } = await params;
   if (!id) return notFound();
 
-  const product = await getProduct(id)
+  const product = await getProduct(id) as Product
   if (!product || product == null) {
     return notFound();
   }
@@ -127,7 +128,7 @@ export default async function ProductDetail({ params }: ProductPageProps) {
                       <td className="text-xl py-5 font-semibold">EPA 40 CFR Listing (Status)</td>
                       <td className="text-xl py-5">{product.cfr_listing}</td>
                     </tr>
-                    {product.physical_properties.map((p: ProductProperty) => (
+                    {product.physical_properties.map((p) => (
                       <tr className={'border-t border-gray-200'}>
                         <td className="text-xl py-5 font-semibold">
                           {p.title + ' - ' + p.unit + ' (' + p.method + ')'}
@@ -151,12 +152,4 @@ export default async function ProductDetail({ params }: ProductPageProps) {
       <Footer />
     </>
   );
-}
-
-export interface ProductProperty {
-  title: string;
-  instrument: string;
-  method: string;
-  unit: string;
-  result: string;
 }

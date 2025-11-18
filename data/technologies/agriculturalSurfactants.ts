@@ -1,4 +1,46 @@
-import { formulationTypes } from "./alkoxylatedAlcohol";
+export interface Product {
+  id: string,
+  active: string,
+  alternate_name: string,
+  application_md: string,
+  biodegradability: string,
+  case_no: string,
+  cfr_listing: string,
+  chemical_category: string,
+  chemical_name: string,
+  container_type: string,
+  created_at: string,
+  disclaimer_md: string,
+  dot_class: string,
+  formulation_types: string,
+  function: string,
+  in_stock: string,
+  introduction_md: string,
+  ionicity: string,
+  is_new_product: string,
+  manufactured_at: string,
+  name: string,
+  pack_size: string,
+  physical_properties: ProductProperty[],
+  reach: string,
+  rev_no: string,
+  safety_md: string,
+  sbu: string,
+  series: string,
+  shelf_life: string,
+  storage_1_md: string,
+  storage_2_md: string,
+  usage: string,
+}
+
+export interface ProductProperty {
+  title: string;
+  instrument: string;
+  method: string;
+  unit: string;
+  result: string;
+}
+
 
 export const agriculturalSurfactantsData = {
   title: "Agricultural Surfactants",
