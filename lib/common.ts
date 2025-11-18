@@ -7,7 +7,9 @@ import {
     getDoc,
     getDocs,
     query as makeQuery,
-    QueryConstraint
+    QueryConstraint,
+    serverTimestamp,
+    setDoc
 } from 'firebase/firestore';
 
 
@@ -33,7 +35,7 @@ export async function readDocument(id: string, col: string) {
 }
 
 
-export async function createDocument(col: string, data: DocumentData) {
-    const ref = await addDoc(collection(db, col), data)
-    console.log(`new doc ${ref.id}`)
+export async function createDocument(col: string, data: DocumentData, id?: string) {
+    data.created_at = serverTimestamp()
+    id ? await setDoc(doc(db, col, id), data) : await addDoc(collection(db, col), data)
 }

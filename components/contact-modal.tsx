@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { createDocument } from "@/lib/common";
 import { ReactNode, useState } from "react";
 
 export function ContactModal({
@@ -21,23 +22,19 @@ export function ContactModal({
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleSubmit = (data: FormData) => {
+  const handleSubmit = async (data: FormData) => {
     if (data.get("check") != "SURFCHEM") {
       alert("Enter SURFCHEM for security")
       return
     }
 
-    fetch('/forms', {
-      method: 'POST',
-      body: JSON.stringify({
-        type: 'LetsTalk',
-        first_name: data.get("first_name"),
-        last_name: data.get("last_name"),
-        email: data.get("email"),
-        description: data.get("description"),
-      })
-    });
-
+    await createDocument('LetsTalkInquiry', {
+      first_name: data.get("first_name"),
+      last_name: data.get("last_name"),
+      email: data.get("email"),
+      description: data.get("description"),
+    })
+    setIsOpen(false)
   };
 
   return (

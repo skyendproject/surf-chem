@@ -1,14 +1,25 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { auth } from "@/lib/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 import { Button } from "./ui/button";
 
 export function LoginCard() {
   const [remember, setRemember] = useState(false);
+
+  const handleSubmit = async (data: FormData) => {
+    await signInWithEmailAndPassword(auth,
+      data.get('email')!.toString(),
+      data.get('password')!.toString(),
+    );
+    redirect('/');
+  };
 
   return (
     <Card className="rounded-2xl bg-card p-8 shadow-xl md:p-10">
@@ -21,7 +32,10 @@ export function LoginCard() {
           content.
         </p>
 
-        <form onSubmit={(e) => e.preventDefault()} className="mt-6 space-y-12">
+        <form className="mt-6 space-y-12" onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit(new FormData(e.currentTarget))
+        }}>
           <div>
             <Label htmlFor="login-email" className="sr-only">
               Email
@@ -29,6 +43,7 @@ export function LoginCard() {
             <Input
               id="login-email"
               type="email"
+              name='email'
               placeholder="Email*"
               className="h-11 rounded-xl border border-black2"
             />
@@ -42,6 +57,7 @@ export function LoginCard() {
               id="login-password"
               type="password"
               placeholder="Password*"
+              name='password'
               className="h-11 rounded-xl border border-black2"
             />
           </div>
@@ -60,7 +76,7 @@ export function LoginCard() {
           {/* CTA with red vertical bars */}
           <div className="mt-10 flex flex-col items-center gap-3">
             <div>
-              <Button className="text-[25px] md:text-[27px] font-bold bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red h-12 rounded-none">
+              <Button type="submit" className="text-[25px] md:text-[27px] font-bold bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red h-12 rounded-none">
                 Login
               </Button>
             </div>
