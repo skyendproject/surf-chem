@@ -47,15 +47,7 @@ export default function FormulationGuidesPage() {
   };
 
   useEffect(() => {
-    async function load() {
-      try {
-        setFormulations(
-          await getFormulations()
-        );
-      } catch (e: any) {
-        console.error(e);
-      }
-    }
+    const load = async () => setFormulations(await getFormulations())
     load();
     return () => { };
   }, []);

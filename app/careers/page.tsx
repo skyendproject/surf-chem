@@ -1,13 +1,14 @@
-"use client";
-
 export const dynamic = 'force-dynamic';
 
 import { Footer } from "@/components/footer";
 import JobCard from "@/components/job-card";
 import { Navigation } from "@/components/navigation";
-import { jobPositions } from "@/data/careers";
+import { JobPosition } from "@/data/careers";
+import { getCareers } from "@/lib/backend";
 
-export default function CareersPage() {
+export default async function CareersPage() {
+  const careers = await getCareers()
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -25,8 +26,8 @@ export default function CareersPage() {
       {/* Job Listings */}
       <section className="py-12 bg-gray-50 px-4 sm:px-16">
         <div className="space-y-12">
-          {jobPositions.map((job) => (
-            <JobCard key={job.id} job={job} />
+          {careers.map((job) => (
+            <JobCard key={job.id} job={job as JobPosition} />
           ))}
         </div>
       </section>

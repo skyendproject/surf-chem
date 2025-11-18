@@ -5,10 +5,9 @@ export const dynamic = 'force-dynamic';
 import { Footer } from "@/components/footer";
 import ApplicationForm from "@/components/job-application-form";
 import { Navigation } from "@/components/navigation";
-import RoleOverview from "@/components/role-overview";
-import { jobPositions } from "@/data/careers";
-import { notFound } from "next/navigation";
-import { use, useState } from "react";
+import { JobPosition } from "@/data/careers";
+import { getCareer } from "@/lib/backend";
+import { use, useEffect, useState } from "react";
 
 interface JobDetailsPageProps {
   params: Promise<{
@@ -18,16 +17,15 @@ interface JobDetailsPageProps {
 
 export default function JobDetailsPage({ params }: JobDetailsPageProps) {
   const { id } = use(params); // <-- Correctly unwrap the Promise here
+  const [job, setJob] = useState<JobPosition>()
+  const [activeTab, setActiveTab] = useState<"overview" | "application">("overview");
 
-  const [activeTab, setActiveTab] = useState<"overview" | "application">(
-    "overview"
-  );
+  useEffect(() => {
+    const load = async () => setJob(await getCareer(id) as JobPosition)
+    load();
+    return () => { };
+  }, []);
 
-  const job = jobPositions.find((job) => job.id === id);
-
-  if (!job) {
-    notFound();
-  }
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -37,10 +35,10 @@ export default function JobDetailsPage({ params }: JobDetailsPageProps) {
         <div className="mb-8">
           <h2 className="text-[48px] md:text-[66px] leading-[60px] md:leading-[70px] text-black2 font-bold mb-6">
             {" "}
-            {job.title}
+            {job?.title}
           </h2>
           <p className="text-[clamp(17px,2vw,21px)] text-black">
-            <span className="font-bold">Location:</span> {job.location}
+            <span className="font-bold">Location:</span> {job?.location}
           </p>
         </div>
 
@@ -50,8 +48,8 @@ export default function JobDetailsPage({ params }: JobDetailsPageProps) {
             <button
               onClick={() => setActiveTab("overview")}
               className={`pb-2 px-1 border-b-2 text-[26px] uppercase tracking-wide transition-colors duration-200 ${activeTab === "overview"
-                  ? "border-red text-red font-bold "
-                  : "border-transparent text-gray-500 hover:text-gray-500"
+                ? "border-red text-red font-bold "
+                : "border-transparent text-gray-500 hover:text-gray-500"
                 }`}
             >
               ROLE OVERVIEW
@@ -59,8 +57,8 @@ export default function JobDetailsPage({ params }: JobDetailsPageProps) {
             <button
               onClick={() => setActiveTab("application")}
               className={`pb-2 px-1 border-b-2 text-[26px] uppercase tracking-wide transition-colors duration-200 ${activeTab === "application"
-                  ? "border-red text-red font-bold "
-                  : "border-transparent text-gray-500 hover:text-gray-500"
+                ? "border-red text-red font-bold "
+                : "border-transparent text-gray-500 hover:text-gray-500"
                 }`}
             >
               APPLICATION
@@ -70,11 +68,9 @@ export default function JobDetailsPage({ params }: JobDetailsPageProps) {
 
         {/* Tab Content */}
         <div className="pb-8">
-          {activeTab === "overview" ? (
-            <RoleOverview job={job} />
-          ) : (
-            <ApplicationForm />
-          )}
+          {activeTab === "overview" ?
+            <div dangerouslySetInnerHTML={{ __html: job?.jobSummary || '' }} /> :
+            <ApplicationForm />}
         </div>
       </div>
 

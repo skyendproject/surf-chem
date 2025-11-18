@@ -12,7 +12,7 @@ export default function RoleOverview({ job }: RoleOverviewProps) {
           Job Summary:
         </h3>
         <p className="text-black leading-relaxed text-[18px]">
-          {job.jobSummary}
+          {job?.jobSummary}
         </p>
       </div>
 
@@ -21,7 +21,7 @@ export default function RoleOverview({ job }: RoleOverviewProps) {
           Responsibilities:
         </h3>
         <ul className="list-disc list-inside space-y-2">
-          {job.responsibilities.map((responsibility, index) => (
+          {job?.responsibilities.map((responsibility, index) => (
             <li
               key={index}
               className="text-black leading-relaxed text-[18px] pl-2"
@@ -38,7 +38,7 @@ export default function RoleOverview({ job }: RoleOverviewProps) {
           Requirements:
         </h3>
         <ul className="list-disc list-inside space-y-2">
-          {job.requirements.map((requirement, index) => (
+          {job?.requirements.map((requirement, index) => (
             <li
               key={index}
               className="text-black leading-relaxed text-[18px] pl-2"
@@ -55,7 +55,7 @@ export default function RoleOverview({ job }: RoleOverviewProps) {
           What We Offer:
         </h3>
         <p className="text-black leading-relaxed text-[18px]">
-          {job.whatWeOffer}
+          {job?.whatWeOffer}
         </p>
       </div>
 
@@ -65,7 +65,7 @@ export default function RoleOverview({ job }: RoleOverviewProps) {
           How to Apply:
         </h3>
         <p className="text-black leading-relaxed text-[18px]">
-          {job.howToApply}
+          {job?.howToApply}
         </p>
       </div>
 
@@ -75,7 +75,7 @@ export default function RoleOverview({ job }: RoleOverviewProps) {
           Equal Opportunity Employer:
         </h3>
         <p className="text-black leading-relaxed text-[18px]">
-          {job.equalOpportunity}
+          {job?.equalOpportunity}
         </p>
       </div>
 
