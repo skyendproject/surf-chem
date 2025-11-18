@@ -1,5 +1,6 @@
 export const dynamic = 'force-dynamic';
 
+import DownloadButton from "@/components/download-button";
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { SignInForm } from "@/components/sign-in-form";
@@ -140,7 +141,8 @@ export default async function ProductDetail({ params }: ProductPageProps) {
             </div>
 
             {/* Sign In Form */}
-            <div className="flex justify-center lg:justify-end">
+            <div className="flex flex-col w-full max-w-full items-end">
+              <DownloadButton href={`/agricultural-surfactants/${id}/pdf`} />
               <SignInForm />
             </div>
           </div>
