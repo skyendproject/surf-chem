@@ -6,6 +6,7 @@ import { FormulationFilters } from "@/components/formulation-filters";
 import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Formulations } from "@/data/formulations";
+import { getFormulations } from "@/lib/backend";
 import { Filter } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -48,9 +49,9 @@ export default function FormulationGuidesPage() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch('/formulation-guides/data');
-        const data = await res.json()
-        setFormulations(data);
+        setFormulations(
+          await getFormulations()
+        );
       } catch (e: any) {
         console.error(e);
       }
