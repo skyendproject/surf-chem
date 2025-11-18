@@ -1,8 +1,10 @@
-import { notFound } from "next/navigation";
-import { whitePapers } from "@/data/generalWhitePaper";
-import { SignInForm } from "@/components/sign-in-form";
-import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
+import { SignInForm } from "@/components/sign-in-form";
+import { Button } from "@/components/ui/button";
+import { getWhitePaper } from "@/lib/backend";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface WhitePaperDetailPageProps {
   params: Promise<{
@@ -14,7 +16,7 @@ export default async function WhitePaperDetailPage({
   params,
 }: WhitePaperDetailPageProps) {
   const { id } = await params;
-  const whitePaper = whitePapers.find((paper) => paper.id === id);
+  const whitePaper = await getWhitePaper(id)
 
   if (!whitePaper) {
     notFound();
@@ -37,7 +39,15 @@ export default async function WhitePaperDetailPage({
             </div>
 
             {/* Right side - Sign In Form */}
-            <div className="flex justify-center md:justify-end">
+            <div className="flex flex-col w-full max-w-full items-end">
+              {whitePaper.pdf && <Button
+                type="submit"
+                className="px-10 mb-20 bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red rounded-none font-bold text-4xl"
+              >
+                <Link href={whitePaper.pdf} target="_blank" rel="noopener noreferrer">
+                  DOWNLOAD PDF
+                </Link>
+              </Button>}
               <SignInForm />
             </div>
           </div>

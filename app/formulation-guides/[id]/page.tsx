@@ -40,12 +40,12 @@ export default async function FormulationGuideDetail({ params }: FormulationPage
             </div>
 
             {/* Sign In Form */}
-            <div className="flex flex-col w-full max-w-full items-center">
+            <div className="flex flex-col w-full max-w-full items-end">
               <Button
                 type="submit"
                 className="px-10 mb-20 bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red rounded-none font-bold text-4xl"
               >
-                <Link href={`/formulation-guides/${id}/pdf`}>
+                <Link href={`/formulation-guides/${id}/pdf`} target="_blank" rel="noopener noreferrer">
                   DOWNLOAD PDF
                 </Link>
               </Button>

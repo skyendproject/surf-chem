@@ -31,6 +31,7 @@ export interface WhitePaper {
   title: string;
   description: string;
   image: string;
+  pdf?: string;
 }
 
 export const whitePapers: WhitePaper[] = [
