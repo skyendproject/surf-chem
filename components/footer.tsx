@@ -50,10 +50,10 @@ export function Footer() {
     <>
       {/* Top CTA Section */}
       <section className="py-16 bg-customBlue text-white">
-        <div className="container px-4 sm:px-14">
+        <div className="container px-4 sm:px-14 mx-auto max-w-[1600px]">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between md:text-left gap-6">
-            <div>
-              <h2 className="text-[52px] md:text-[66px] font-bold mb-2">
+            <div className="">
+              <h2 className="text-[48px] md:text-[66px] font-bold mb-2">
                 HAVE A QUESTION ?
               </h2>
               <p className="text-white text-[27px] sm:text-[32px]">
@@ -71,7 +71,7 @@ export function Footer() {
       </section>
 
       {/* footer */}
-      <footer className="bg-white py-16 md:py-16 px-4 lg:px-[60px] md:px-[30px] border-t">
+      <footer className="bg-white py-16 md:py-16 px-4 lg:px-[60px] md:px-[30px] border-t  mx-auto max-w-[1600px]">
         <div className="mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
           {/* Logo and tagline */}
           <div className="flex flex-col items-start md:items-center text-left md:text-center">

@@ -102,23 +102,25 @@ export function FormulationGuideCard({ formulation }: FormulationCardProps) {
     // </Card>
     <Card className="overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
       <CardContent className="p-6 lg:p-8">
-        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 leading-tight">
-          {formulation.title}{" "}
-        </h3>
-        <p className="text-black text-sm sm:text-base leading-relaxed mb-6">
-          {formulation.description}
-        </p>
-
-        <div className="flex justify-center items-center h-full">
-          <Link href={`/formulation-guides/${formulation.id}`}>
-            <Button
-              variant="outline"
-              className="bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red h-12 rounded-none font-bold text-2xl"
-            >
-              Learn More
-            </Button>
+        <Link href={`/formulation-guides/${formulation.id}`}>
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 leading-tight hover:text-red">
+            {formulation.title}{" "}
+          </h3>
           </Link>
-        </div>
+          <p className="text-black text-sm sm:text-base md:text-[22px] leading-relaxed mb-6">
+            {formulation.description}
+          </p>
+
+          <div className="flex justify-center items-center h-full">
+            <Link href={`/formulation-guides/${formulation.id}`}>
+              <Button
+                variant="outline"
+                className="bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red h-12 rounded-none font-bold text-2xl"
+              >
+                Learn More
+              </Button>
+            </Link>
+          </div>
       </CardContent>
     </Card>
   );

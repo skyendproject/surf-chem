@@ -16,7 +16,7 @@ export default async function AgriculturalSurfactantsPage() {
 
       {/* Hero Section */}
       <section className="py-16 bg-gray-50">
-        <div className="container px-4 sm:px-14">
+        <div className="container px-4 sm:px-14 max-w-[1600px] mx-auto">
           <h1 className="text-[48px] md:text-[66px] leading-[60px] md:leading-[70px] font-bold mb-20 text-black2">
             Agricultural Surfactants And Adjuvants
           </h1>
@@ -56,15 +56,18 @@ export default async function AgriculturalSurfactantsPage() {
                   <table className="w-full border-collapse border-2 border-[#CCCCCC]">
                     <thead className="border-2 border-[#CCCCCC]">
                       <tr className="bg-tableColor border-2 border-[#CCCCCC] text-black2 text-[18px]">
-                        <th className="border-2 border-[#CCCCCC] px-0 py-2 text-left font-bold w-0 whitespace-nowrap">
+                        <th className="border-2 border-[#CCCCCC] px-2 py-2 text-left font-bold max-w-[180px] whitespace-normal break-words">
                           PRODUCT NAME
                         </th>
-                        <th className="border-2 border-[#CCCCCC] px-0 py-2 text-left font-bold w-0 whitespace-nowrap">
+
+                        <th className="border-2 border-[#CCCCCC] px-2 py-2 text-left font-bold max-w-[150px] whitespace-normal break-words">
                           SURFACTANT SERIES
                         </th>
-                        <th className="border-2 border-[#CCCCCC] px-0 py-2 text-left font-bold w-0 whitespace-nowrap">
+
+                        <th className="border-2 border-[#CCCCCC] px-2 py-2 text-left font-bold max-w-[160px] whitespace-normal break-words">
                           CHEMICAL CATEGORY
                         </th>
+
                         <th
                           className="border-2 border-[#CCCCCC] px-2 py-2 text-center font-bold"
                           colSpan={formulationTypes.length}
@@ -96,21 +99,20 @@ export default async function AgriculturalSurfactantsPage() {
                             key={index}
                             className="odd:bg-[#F6F7F7] even:bg-white text-[16px]"
                           >
-                            <td className="border-2 border-[#CCCCCC] px-0 py-2 text-greenCustom font-medium w-0 whitespace-nowrap">
+                            <td className="border-2 border-[#CCCCCC] px-1 py-1 text-greenCustom font-medium max-w-[120px] whitespace-normal break-words">
                               <Link className="underline" href={`/agricultural-surfactants/${product.id}`}>
                                 {product.name}
                               </Link>
                             </td>
-
-                            <td className="border-2 border-[#CCCCCC] px-0 py-2 text-greenCustom font-medium w-0 whitespace-nowrap">
+                            <td className="border-2 border-[#CCCCCC] px-1 py-1 text-greenCustom font-medium max-w-[120px] whitespace-normal break-words">
                               <Link className="underline" href={`/agricultural-surfactants/${product.id}`}>
                                 {product.series}
                               </Link>
                             </td>
-
-                            <td className="border-2 border-[#CCCCCC] px-0 py-2 text-black font-medium w-0 whitespace-nowrap">
+                            <td className="border-2 border-[#CCCCCC] px-1 py-1 text-black font-semibold max-w-[100px] whitespace-normal break-words">
                               {product.category}
                             </td>
+
 
                             {formulationTypes.map((type) => (
                               <td

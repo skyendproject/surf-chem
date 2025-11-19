@@ -25,26 +25,27 @@ export default function LandingPage() {
           <div className="flex flex-col lg:flex-row items-start gap-2 lg:gap-4">
 
             {/* Image */}
-            <div className="order-1 lg:order-2">
+            <div className="order-1 lg:order-2 flex justify-center">
               <Image
                 src="/assets/hero-img.png"
                 alt="Drone spraying crops"
                 width={394}
                 height={382}
                 className="
-    rounded-[30px]
-    shadow-lg
-    w-full h-full
-    md:w-[382px]
-    md:h-[394px]
-    object-cover
-    transform
-    md:translate-x-2
-    lg:translate-x-4
-  "
+      rounded-[30px]
+      shadow-lg
+      object-cover
+      w-[390px]
+      h-[320px]
+      md:w-[382px]
+      md:h-[394px]
+      transform
+      md:translate-x-2
+      lg:translate-x-4
+    "
               />
-
             </div>
+
 
             {/* Text */}
             <div className="order-2 lg:order-1 flex-1 space-y-6 md:py-[10px]">
@@ -68,7 +69,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
 
       {/* WHO WE HELP Section */}
       <section className="bg-black2 pt-16 pb-28">

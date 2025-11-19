@@ -145,7 +145,7 @@ export default function SustainabilityPage() {
       </section>
 
       {/* UN SDG Goals */}
-      <section className="py-12 sm:py-16 bg-white overflow-x-hidden overflow-y-hidden">
+      <section className="py-12 sm:py-16 bg-white overflow-x-hidden overflow-y-hidden max-w-[1600px] mx-auto">
         <div className="container px-4 sm:px-14">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start">
             <div>

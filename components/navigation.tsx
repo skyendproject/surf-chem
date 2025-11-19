@@ -159,8 +159,8 @@ export function Navigation() {
       </div>
 
       {/* Below */}
-      <div className="container px-1 py-8 flex items-center">
-        <div className="flex items-center justify-between mx-auto">
+      <div className="container px-1 py-8 flex items-center justify-between max-w-[1600px] mx-auto">
+        <div className="flex items-center justify-between w-full">
           <Link href="/" className="flex items-center space-x-6">
             <Image
               src="/assets/logo.png"
@@ -172,7 +172,7 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center justify-center sm:space-x-2 md:space-x-1 lg:space-x-4 text-[15px] ml-12">
+          <nav className="hidden lg:flex items-center justify-center space-x-2 md:space-x-1 lg:space-x-4 text-[15px] ml-12">
             <Link
               href="/"
               className="text-black2 font-bold hover:text-greenCustom"
@@ -185,9 +185,11 @@ export function Navigation() {
               onMouseEnter={() => setIsAboutDropdownOpen(true)}
               onMouseLeave={() => setIsAboutDropdownOpen(false)}
             >
-              <div className="block text-black2 font-bold hover:text-greenCustom cursor-pointer">
-                About Us
-              </div>
+              <Link href='/company-history'>
+                <div className="block text-black2 font-bold hover:text-greenCustom cursor-pointer">
+                  About Us
+                </div>
+              </Link>
 
               {isAboutDropdownOpen && (
                 <div className="absolute top-full left-0 mt-1 w-48 text-sm text-white bg-greenCustom shadow-lg z-50">
@@ -347,7 +349,7 @@ export function Navigation() {
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <button className="lg:hidden text-black2 font-bold hover:text-greenCustom">
-                <Menu className="h-6 w-6 text-greenCustom" />
+                <Menu className="h-8 w-8 text-greenCustom mr-3" />
               </button>
             </SheetTrigger>
             <SheetContent

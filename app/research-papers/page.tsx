@@ -13,14 +13,14 @@ export default async function ResearchPapersPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white  max-w-[1600px] mx-auto">
         <div className="container mx-auto px-4 sm:px-14">
           <h2 className="text-[48px] md:text-[66px] leading-[60px] md:leading-[70px] text-black2 font-bold mb-24">
             Research Papers
           </h2>
         </div>
       </section>
-      <div className="container px-4 sm:px-16">
+      <div className="container px-4 sm:px-16  max-w-[1600px] mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-2">
           {researchPapers.map((paper) => (
             <div className="px-4" key={paper.id}>

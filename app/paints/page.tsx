@@ -9,9 +9,9 @@ export default function PaintsPage() {
       <Navigation />
 
       {/* Main Content */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 max-w-[1600px] mx-auto">
         <div className="container px-4 sm:px-12">
-          <div className="grid lg:grid-cols-2 gap-4 items-start">
+          <div className="grid lg:grid-cols-2 gap-4 items-start lg:gap-12">
             <div>
               <h1 className="text-5xl sm:text-6xl font-bold mb-8 text-black2">
                 Paints

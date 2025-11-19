@@ -57,7 +57,7 @@ export default function FormulationGuidesPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="py-8 sm:py-12 bg-white">
+      <section className="py-8 sm:py-12 bg-white max-w-[1600px] mx-auto">
         <div className="container">
           <div className="max-w-8xl px-4 sm:px-16">
             <h1 className="text-5xl sm:text-6xl md:text-[66px] font-bold mb-6 text-black2 mt-8">

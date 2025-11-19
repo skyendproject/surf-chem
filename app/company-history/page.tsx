@@ -10,7 +10,7 @@ export default async function CompanyHistoryPage() {
   const data = await getCompanyHistory()
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white w-full">
       <Navigation />
 
       {/* Hero Section */}
@@ -52,12 +52,12 @@ export default async function CompanyHistoryPage() {
       </section>
 
       {/* Our Global Presence */}
-      <section className="mx-auto px-6 lg:px-16 py-8 md:py-12 lg:py-16 bg-white">
-        <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-16">
+      <section className="mx-auto px-6 lg:px-16 py-8 md:py-12 lg:py-16 bg-white max-w-[1600px]">
+        <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-16 lg:gap-44">
 
           {/* Left side - Industrial port image (wider) */}
           <div className="flex-[4] flex-shrink-0">
-            <div className="w-full h-[320px] md:h-[440px] rounded-3xl overflow-hidden">
+            <div className="w-full h-[320px] md:h-[440px] lg:h-[400px] lg:w-[90%] rounded-3xl overflow-hidden">
               <img
                 src="/assets/masano_Surfactant_Chemicals_Company_boasts_a_EuropeanBritish_f_0a77d744-b30c-4d26-a91b-8917a0c96cc7.png"
                 alt="Industrial port facility at dusk"
@@ -80,82 +80,75 @@ export default async function CompanyHistoryPage() {
       </section>
 
       {/* Our Core Focus and Vision */}
-      <section className="bg-white overflow-x-hidden overflow-y-hidden pb-[300px] md:pb-[180px] mt-20">
-        <div>
-          <div className="grid lg:grid-cols-[2.5fr_1.5fr] gap-0 items-start">
-            {/* Text column */}
-            <div className="px-6 lg:px-16 pt-0 mr-2">
-              <h2 className="text-[66px] md:leading-[70px] text-black2 font-bold mb-4 lg:mb-16">
-                Our Core Focus and Vision
-              </h2>
-              <div className="text-[21px] leading-[32px]">
-                <ReactMarkdown>{data.vision}</ReactMarkdown>
-              </div>
-            </div>
-
-            {/* Image section */}
-            <div
-              className="hidden lg:block relative"
-              style={{
-                position: "relative",
-                width: "550px", // keep same as original
-                height: "570px",
-                backgroundColor: "green", // keeps the green background
-                borderRadius: "327px 0 0 347px",
-                overflow: "visible",
-              }}
-            >
-              {/* White curve background */}
-              <Image
-                src="/assets/Union4White.png"
-                alt="Background curve"
-                width={827}
-                height={837}
-                style={{
-                  position: "absolute",
-                  left: "170px",
-                  top: "96px",
-                  zIndex: 1,
-                }}
-              />
-
-              {/* Big drone image */}
-              <img
-                src="/assets/hero-img.png"
-                alt="Drone spraying field"
-                style={{
-                  position: "absolute",
-                  top: "36px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  borderRadius: "50%",
-                  border: "25px solid white",
-                  width: "480px", // slightly smaller than original 560
-                  height: "480px",
-                  zIndex: 2,
-                }}
-              />
-
-              {/* Small tank image */}
-              <img
-                src="/assets/scc.jpg"
-                alt="Tank image"
-                style={{
-                  position: "absolute",
-                  bottom: "-120px",
-                  left: "120px",
-                  borderRadius: "50%",
-                  border: "15px solid white",
-                  width: "340px", // slightly smaller than original 370
-                  height: "340px",
-                  zIndex: 3,
-                }}
-              />
+      <section className="bg-white overflow-x-hidden overflow-y-hidden pb-[300px] md:pb-[180px] mt-20 relative mb-0 lg:mb-16">
+        <div className="container mx-auto lg:px-12 relative z-10">
+          {/* Text column */}
+          <div className=" pt-0 lg:max-w-[calc(100%-550px)]">
+            <h2 className="text-[48px] lg:text-[66px] md:leading-[70px] text-black2 font-bold mb-4 lg:mb-12">
+              Our Core Focus and Vision
+            </h2>
+            <div className="text-[21px] leading-[32px]">
+              <ReactMarkdown>{data.vision}</ReactMarkdown>
             </div>
           </div>
         </div>
-      </section>
 
+        {/* Image section: stick to the right edge */}
+        <div
+          className="hidden lg:block absolute top-0 right-0 w-[550px] h-[570px] overflow-visible"
+          style={{
+            backgroundColor: "green",
+            borderRadius: "327px 0 0 347px",
+          }}
+        >
+          {/* White curve background */}
+          <Image
+            src="/assets/Union4White.png"
+            alt="Background curve"
+            width={827}
+            height={837}
+            style={{
+              position: "absolute",
+              left: "170px",
+              top: "96px",
+              zIndex: 1,
+            }}
+          />
+
+          {/* Big drone image */}
+          <img
+            src="/assets/hero-img.png"
+            alt="Drone spraying field"
+            style={{
+              position: "absolute",
+              top: "36px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              borderRadius: "50%",
+              border: "25px solid white",
+              width: "480px",
+              height: "480px",
+              zIndex: 2,
+            }}
+          />
+
+          {/* Small tank image */}
+          <img
+            src="/assets/scc.jpg"
+            alt="Tank image"
+            style={{
+              position: "absolute",
+              bottom: "-120px",
+              left: "120px",
+              borderRadius: "50%",
+              border: "15px solid white",
+              width: "340px",
+              height: "340px",
+              zIndex: 3,
+            }}
+          />
+        </div>
+      </section>
 
       {/* Our Mission & Values */}
       <section className="bg-greenCustom text-white pb-8">
@@ -185,7 +178,7 @@ export default async function CompanyHistoryPage() {
                     </h2>
                     <div className="flex-1 h-1 bg-red mt-8"></div>
                   </div>
-                  <div className="text-[22px] leading-snug">
+                  <div className="text-[17px] md:text-[22px] leading-snug">
                     <ReactMarkdown>{data.mission}</ReactMarkdown>
                   </div>
                 </div>
@@ -198,7 +191,7 @@ export default async function CompanyHistoryPage() {
                     </h2>
                     <div className="flex-1 h-1 bg-red mt-8"></div>
                   </div>
-                  <div className="text-[22px] leading-snug">
+                  <div className="text-[17px] md:text-[22px] leading-snug">
                     <ReactMarkdown>{data.values}</ReactMarkdown>
                   </div>
                 </div>
@@ -232,7 +225,7 @@ export default async function CompanyHistoryPage() {
 
               {/* Text Content Section */}
               <div className="lg:col-span-3 space-y-6">
-                <h2 className="text-5xl sm:text-6xl text-black2 font-bold mb-6">
+                <h2 className="text-4xl md:text-6xl text-black2 font-bold mb-6">
                   1. Innovation
                 </h2>
                 <span className="text-md sm:text-xl text-black leading-snug mb-6">
@@ -263,7 +256,7 @@ export default async function CompanyHistoryPage() {
 
               {/* Text Content Section */}
               <div className="lg:col-span-3 space-y-6">
-                <h2 className="text-5xl sm:text-6xl text-black2 font-bold mb-6">
+                <h2 className="text-4xl md:text-6xl text-black2 font-bold mb-6">
                   2. Quality & Integrity
                 </h2>
                 <span className="text-md sm:text-xl text-black leading-relaxed mb-6">
@@ -293,7 +286,7 @@ export default async function CompanyHistoryPage() {
 
               {/* Text Content Section */}
               <div className="lg:col-span-3 space-y-6">
-                <h2 className="text-5xl sm:text-6xl text-black2 font-bold mb-6">
+                <h2 className="text-4xl md:text-6xl text-black2 font-bold mb-6">
                   3. Teamwork
                 </h2>
                 <span className="text-md sm:text-xl text-black leading-relaxed mb-6">
@@ -322,7 +315,7 @@ export default async function CompanyHistoryPage() {
 
               {/* Text Content Section */}
               <div className="lg:col-span-3 space-y-6">
-                <h2 className="text-5xl sm:text-6xl text-black2 font-bold mb-6">
+                <h2 className="text-4xl md:text-6xl text-black2 font-bold mb-6">
                   4. Safety
                 </h2>
                 <span className="text-md sm:text-xl text-black leading-relaxed mb-6">
@@ -352,7 +345,7 @@ export default async function CompanyHistoryPage() {
 
               {/* Text Content Section */}
               <div className="lg:col-span-3 space-y-6">
-                <h2 className="text-5xl sm:text-6xl text-black2 font-bold mb-6">
+                <h2 className="text-4xl md:text-6xl text-black2 font-bold mb-6">
                   5. Sustainability
                 </h2>
                 <span className="text-md sm:text-xl text-black leading-relaxed mb-6">
@@ -382,7 +375,7 @@ export default async function CompanyHistoryPage() {
 
               {/* Text Content Section */}
               <div className="lg:col-span-3 space-y-6">
-                <h2 className="text-5xl sm:text-6xl text-black2 font-bold mb-6">
+                <h2 className="text-4xl md:text-6xl text-black2 font-bold mb-6">
                   6. Customer Centric
                 </h2>
                 <span className="text-md sm:text-xl text-black leading-relaxed mb-6">
@@ -414,7 +407,7 @@ export default async function CompanyHistoryPage() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 w-full max-w-8xl px-6 sm:px-12">
+        <div className="relative z-10 w-full max-w-8xl px-6 sm:px-12 mx-auto max-w-[1600px]">
           <div className="flex">
             {/* Red accent line */}
             <div className="w-1 bg-red mr-6 sm:mr-8 lg:mr-12 flex-shrink-0" />

@@ -14,7 +14,7 @@ export default async function GeneralWhitePapersPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white  max-w-[1600px] mx-auto">
         <div className="container px-4 sm:px-16">
           <div className="max-w-6xl">
             <h2 className="text-[48px] md:text-[66px] leading-[60px] md:leading-[70px] text-black2 font-bold">
@@ -25,7 +25,7 @@ export default async function GeneralWhitePapersPage() {
       </section>
 
       {/* Main Content */}
-      <section className="py-4">
+      <section className="py-4  max-w-[1600px] mx-auto">
         <div className="container px-4 sm:px-16">
           <div className="flex flex-col lg:flex-row gap-6 md:gap-2">
             {/* Product Grid */}

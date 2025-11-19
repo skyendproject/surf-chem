@@ -66,7 +66,7 @@ export default function InnovationCenterPage() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <section className="py-16 bg-white px-2 sm:px-12">
+      <section className="py-16 bg-white px-2 sm:px-12 max-w-[1600px] mx-auto">
         <div className="container px-4">
           <div>
             <h1 className="ext-[48px] md:text-[66px] leading-[60px] md:leading-[70px] font-bold mb-8 text-black2">

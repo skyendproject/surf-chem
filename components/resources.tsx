@@ -14,14 +14,14 @@ export default function Resources() {
     <div>
       <section className="py-16 bg-white">
         {/* Title */}
-        <div className="container">
+        <div className="w-full flex justify-center">
           <h1 className="text-5xl md:text-6xl text-center text-black2 font-bold mb-6">
             Resources
           </h1>
         </div>
 
         {/* Slider */}
-        <div className="container relative px-8 sm:px-16">
+        <div className="container relative px-8 sm:px-16 lg:max-w-[1400px] lg:mx-auto">
           {/* Custom Navigation Buttons */}
           <button
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 rounded-full p-3"

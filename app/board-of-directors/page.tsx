@@ -24,9 +24,9 @@ export default async function BoardOfDirectorsPage() {
         {/* Content Container */}
         <div className="relative z-20 px-4 sm:px-12">
           {/* Header Section */}
-          <div className="py-12 px-4">
-            <div className="max-w-7xl mx-auto">
-              <h1 className="text-5xl sm:text-6xl font-bold text-white text-center">
+          <div className="py-12 px-0 md:px-4">
+            <div className="max-w-7xl">
+              <h1 className="text-5xl md:text-6xl font-bold text-white text-center">
                 Board of Directors
               </h1>
             </div>

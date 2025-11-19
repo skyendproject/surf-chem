@@ -13,7 +13,7 @@ export default async function TechnicalBriefsPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white  max-w-[1600px] mx-auto">
         <div className="container px-4 sm:px-16">
           <h2 className="text-[48px] md:text-[66px] leading-[60px] md:leading-[70px] text-black2 font-bold">
             Technical Briefs
@@ -22,7 +22,7 @@ export default async function TechnicalBriefsPage() {
       </section>
 
       {/* All Technical Briefs */}
-      <section className="py-4 bg-white">
+      <section className="py-4 bg-white  max-w-[1600px] mx-auto">
         <div className="container px-4 sm:px-16">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-2">
             {technicalBriefsData.map((brief) => (
