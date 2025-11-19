@@ -21,7 +21,7 @@ export default function Resources() {
         </div>
 
         {/* Slider */}
-        <div className="container relative px-8 sm:px-24">
+        <div className="container relative px-8 sm:px-16">
           {/* Custom Navigation Buttons */}
           <button
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 rounded-full p-3"
@@ -52,7 +52,7 @@ export default function Resources() {
             {newsData.map((article) => (
               <SwiperSlide key={article.id}>
                 {/* Wrap card with padding */}
-                <div className="px-4">
+                <div className="">
                   <NewsCard article={article} />
                 </div>
               </SwiperSlide>

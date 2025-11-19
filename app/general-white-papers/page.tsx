@@ -27,7 +27,7 @@ export default async function GeneralWhitePapersPage() {
       {/* Main Content */}
       <section className="py-4">
         <div className="container px-4 sm:px-16">
-          <div className="flex flex-col lg:flex-row gap-6">
+          <div className="flex flex-col lg:flex-row gap-6 md:gap-2">
             {/* Product Grid */}
             <div className="flex-1">
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-6">

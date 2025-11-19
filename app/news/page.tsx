@@ -25,7 +25,7 @@ export default async function NewsPage() {
       {/* News Grid */}
       <section className="py-4">
         <div className="container px-4 sm:px-16">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-2">
             {newsData.map((article) => (
               <div className="px-4" key={article.id}>
                 <NewsCard article={article} />

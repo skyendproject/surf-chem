@@ -17,7 +17,7 @@ export default function TradingChemicalsPage() {
                 Trading Chemicals
               </h1>
 
-              <p className="text-md sm:text-xl text-black leading-relaxed mb-8">
+              <p className="text-[22px] sm:text-xl text-black leading-relaxed mb-8">
                 In an ever-changing world, the chemical industry is a foundation
                 of progress and innovation. Our trading chemicals business unit,
                 operated through our unit in China, located in Suzhou – Jiangsu

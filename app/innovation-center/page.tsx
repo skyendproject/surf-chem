@@ -111,7 +111,7 @@ export default function InnovationCenterPage() {
                   <h2 className="text-[36px] sm:text-[38px] md:text-[40px] font-bold text-black2 mb-4 md:mb-6">
                     {equipment.title}
                   </h2>
-                  <p className="text-black1 text-[clamp(17px,2vw,22px)] leading-[30px]">
+                  <p className="text-black1 text-[clamp(17px,2vw,22px)] leading-[30px] md:text-[22px]">
                     {equipment.description}
                   </p>
                 </div>

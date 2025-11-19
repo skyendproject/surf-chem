@@ -11,13 +11,13 @@ export default function PaintsPage() {
       {/* Main Content */}
       <section className="py-16 bg-gray-50">
         <div className="container px-4 sm:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-4 items-start">
             <div>
               <h1 className="text-5xl sm:text-6xl font-bold mb-8 text-black2">
                 Paints
               </h1>
 
-              <p className="text-md sm:text-xl text-black leading-relaxed mb-8">
+              <p className="text-[22px] sm:text-xl text-black leading-relaxed mb-8">
                 At Surfactant Chemicals Company, we understand that the art of
                 paint formulation is a delicate balance of science and
                 creativity. Our advanced surfactants are meticulously engineered

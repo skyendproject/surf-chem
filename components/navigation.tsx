@@ -80,7 +80,7 @@ export function Navigation() {
               <div className="relative w-32 focus-within:w-72 transition-[width] duration-300 ease-in-out origin-right">
                 <input
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Search"
                   className="w-full bg-greenCustom border border-white4 text-white py-1 pl-10 pr-4 rounded-full focus:outline-none focus:ring-2 focus:ring-white4 placeholder-white"
                 />
                 <div className="absolute left-3 top-2 text-white">
@@ -104,7 +104,7 @@ export function Navigation() {
           </div>
 
           {/* Navigation links */}
-          <nav className="flex flex-wrap justify-end items-center space-x-6 md:space-x-8">
+          <nav className="flex flex-wrap justify-end items-center space-x-6 md:space-x-4">
             <Link
               href="/careers"
               className="text-white font-semibold transition-colors duration-200"
@@ -159,8 +159,8 @@ export function Navigation() {
       </div>
 
       {/* Below */}
-      <div className="container px-6 md:px-16 py-8 flex items-center mx-auto">
-        <div className="flex items-center justify-between w-full">
+      <div className="container px-1 py-8 flex items-center">
+        <div className="flex items-center justify-between mx-auto">
           <Link href="/" className="flex items-center space-x-6">
             <Image
               src="/assets/logo.png"
@@ -172,7 +172,7 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center sm:space-x-2 md:space-x-2 lg:space-x-8 text-[16px]">
+          <nav className="hidden lg:flex items-center justify-center sm:space-x-2 md:space-x-1 lg:space-x-4 text-[15px] ml-12">
             <Link
               href="/"
               className="text-black2 font-bold hover:text-greenCustom"
@@ -226,9 +226,11 @@ export function Navigation() {
                     onMouseEnter={() => setIsAgroChemicalDropdownOpen(true)}
                     onMouseLeave={() => setIsAgroChemicalDropdownOpen(false)}
                   >
-                    <div className="block px-4 py-2 text-sm font-bold hover:bg-greenCustomHover cursor-pointer">
-                      Agrochemical
-                    </div>
+                    <Link href='/agrochemicals'>
+                      <div className="block px-4 py-2 text-sm font-bold hover:bg-greenCustomHover cursor-pointer">
+                        Agrochemical
+                      </div>
+                    </Link>
 
                     {isAgroChemicalDropdownOpen && (
                       <div className="absolute top-0 left-full w-64 bg-greenCustomHover text-white shadow-lg z-50">

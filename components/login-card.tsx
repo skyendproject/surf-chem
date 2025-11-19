@@ -99,7 +99,7 @@ export function LoginCard() {
               <div>
                 <button
                   type="button"
-                  className="mt-4 text-left text-md text-muted-foreground underline-offset-4 hover:underline"
+                  className="mt-4 text-left text-[22px] text-muted-foreground underline-offset-4 hover:underline"
                 >
                   Forgot Password
                 </button>

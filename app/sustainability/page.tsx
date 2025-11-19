@@ -99,7 +99,7 @@ export default function SustainabilityPage() {
               <h1 className="ext-[48px] md:text-[66px] leading-[60px] md:leading-[70px] font-bold mb-8 text-black2">
                 Our Commitment to Sustainability
               </h1>
-              <p className="max-w-6xl text-black1 text-[clamp(18px,2vw,22px)] leading-[30px]">
+              <p className="max-w-6xl text-black1 text-[clamp(18px,2vw,22px)] leading-[30px] md:text-[22px]">
                 At Surfactant Chemicals Company, sustainability is at the core
                 of our operations. In alignment with the United Nations' 17
                 Sustainable Development Goals (SDGs) established in 2015, we
@@ -108,7 +108,7 @@ export default function SustainabilityPage() {
                 leveraging our innovative approaches to create a positive
                 impact.
               </p>
-              <p className="text-md sm:text-xl text-black leading-relaxed">
+              <p className="text-[22px] sm:text-xl text-black leading-relaxed md:text-[22px]">
                 Our commitment to sustainable practices stems from our
                 consistent focus on innovative chemistry. We aim to be one of
                 the most sustainable manufacturers of advanced surfactants,

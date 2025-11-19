@@ -56,13 +56,13 @@ export default async function AgriculturalSurfactantsPage() {
                   <table className="w-full border-collapse border-2 border-[#CCCCCC]">
                     <thead className="border-2 border-[#CCCCCC]">
                       <tr className="bg-tableColor border-2 border-[#CCCCCC] text-black2 text-[18px]">
-                        <th className="border-2 border-[#CCCCCC] px-2 py-2 text-left font-bold">
+                        <th className="border-2 border-[#CCCCCC] px-0 py-2 text-left font-bold w-0 whitespace-nowrap">
                           PRODUCT NAME
                         </th>
-                        <th className="border-2 border-[#CCCCCC] px-2 py-2 text-left font-bold">
+                        <th className="border-2 border-[#CCCCCC] px-0 py-2 text-left font-bold w-0 whitespace-nowrap">
                           SURFACTANT SERIES
                         </th>
-                        <th className="border-2 border-[#CCCCCC] px-2 py-2 text-left font-bold">
+                        <th className="border-2 border-[#CCCCCC] px-0 py-2 text-left font-bold w-0 whitespace-nowrap">
                           CHEMICAL CATEGORY
                         </th>
                         <th
@@ -72,10 +72,11 @@ export default async function AgriculturalSurfactantsPage() {
                           APPLICABLE FORMULATION TYPES
                         </th>
                       </tr>
+
                       <tr className="bg-white text-[18px]">
-                        <th className="border-2 border-[#CCCCCC]"></th>
-                        <th className="border-2 border-[#CCSSCC]"></th>
-                        <th className="border-2 border-[#CCCCCC]"></th>
+                        <th className="border-2 border-[#CCCCCC] px-0 w-0 whitespace-nowrap"></th>
+                        <th className="border-2 border-[#CCCCCC] px-0 w-0 whitespace-nowrap"></th>
+                        <th className="border-2 border-[#CCCCCC] px-0 w-0 whitespace-nowrap"></th>
                         {formulationTypes.map((type) => (
                           <th
                             key={type}
@@ -85,6 +86,8 @@ export default async function AgriculturalSurfactantsPage() {
                           </th>
                         ))}
                       </tr>
+
+
                     </thead>
                     <tbody className="border-2 border-[#CCCCCC]">
                       {agriculturalSurfactantsData.map(
@@ -93,18 +96,22 @@ export default async function AgriculturalSurfactantsPage() {
                             key={index}
                             className="odd:bg-[#F6F7F7] even:bg-white text-[16px]"
                           >
-                            <td className="border-2 border-[#CCCCCC] px-2 py-2 text-greenCustom font-medium">
+                            <td className="border-2 border-[#CCCCCC] px-0 py-2 text-greenCustom font-medium w-0 whitespace-nowrap">
                               <Link className="underline" href={`/agricultural-surfactants/${product.id}`}>
                                 {product.name}
                               </Link>
                             </td>
-                            <td className="border-2 border-[#CCCCCC] px-2 py-2 text-greenCustom font-medium">
+
+                            <td className="border-2 border-[#CCCCCC] px-0 py-2 text-greenCustom font-medium w-0 whitespace-nowrap">
                               <Link className="underline" href={`/agricultural-surfactants/${product.id}`}>
                                 {product.series}
-                              </Link>                            </td>
-                            <td className="border-2 border-[#CCCCCC] px-2 py-2 text-black font-medium">
+                              </Link>
+                            </td>
+
+                            <td className="border-2 border-[#CCCCCC] px-0 py-2 text-black font-medium w-0 whitespace-nowrap">
                               {product.category}
                             </td>
+
                             {formulationTypes.map((type) => (
                               <td
                                 key={type}

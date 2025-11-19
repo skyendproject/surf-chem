@@ -49,11 +49,11 @@ export default function AgrochemicalsPage() {
       {/* Hero Section */}
       <section className="py-16 bg-white px-2 sm:px-6 lg:px-8">
         <div className="container px-4 sm:px-10">
-          <div className="max-w-5xl">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
+          <div className="max-w-6xl">
+            <h1 className="text-6xl font-bold text-gray-900 mb-6">
               AGRO CHEMICALS
             </h1>
-            <p className="text-xl text-gray-700 leading-relaxed">
+            <p className="text-2xl text-gray-700 leading-snug">
               At Surfactant Chemicals Company, we are committed to advancing
               agricultural practices through our diverse range of specialized
               products and technologies. Our Agrochemicals division is
@@ -97,7 +97,7 @@ export default function AgrochemicalsPage() {
                       {equipment.title}
                     </h2>
                   </Link>
-                  <p className="text-black text-md sm:text-lg leading-relaxed">
+                  <p className="text-black text-md sm:text-lg md:text-xl leading-relaxed">
                     {equipment.description}
                   </p>
                 </div>

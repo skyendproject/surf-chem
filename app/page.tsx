@@ -22,21 +22,32 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section className="bg-white py-16 md:py-16 px-4 lg:px-[60px] md:px-[30px]">
         <div className="container mx-auto">
-          {/* <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-6 items-center"> */}
-          <div className="flex flex-col lg:flex-row items-center gap-4">
-            {/* Image: 1st on mobile/md, 2nd on desktop; spans 4.5/12 = 1.5 cols out of 4 */}
-            <div className="order-1 lg:order-2 w-full lg:w-[39%]">
+          <div className="flex flex-col lg:flex-row items-start gap-2 lg:gap-4">
+
+            {/* Image */}
+            <div className="order-1 lg:order-2">
               <Image
                 src="/assets/hero-img.png"
                 alt="Drone spraying crops"
-                width={450}
-                height={450}
-                className="rounded-[30px] shadow-lg w-full h-full m:h-[400px] object-cover"
+                width={394}
+                height={382}
+                className="
+    rounded-[30px]
+    shadow-lg
+    w-full h-full
+    md:w-[382px]
+    md:h-[394px]
+    object-cover
+    transform
+    md:translate-x-2
+    lg:translate-x-4
+  "
               />
+
             </div>
 
-            {/* Text: 2nd on mobile/md, 1st on desktop; spans 7/12 = 2.5 cols out of 4 */}
-            <div className="order-2 lg:order-1 w-full lg:w-[61%] space-y-6 md:py-[10px]">
+            {/* Text */}
+            <div className="order-2 lg:order-1 flex-1 space-y-6 md:py-[10px]">
               <h1 className="text-[53px] font-bold text-black2 leading-[59px]">
                 Advanced, eco-friendly surfactants that enhance agrochemical
                 efficacy and reduce costs.
@@ -53,9 +64,11 @@ export default function LandingPage() {
                 promoting sustainable farming practices.
               </p>
             </div>
+
           </div>
         </div>
       </section>
+
 
       {/* WHO WE HELP Section */}
       <section className="bg-black2 pt-16 pb-28">
@@ -91,21 +104,21 @@ export default function LandingPage() {
 
       {/* Video Section */}
       <section
-        className="relative sm:h-[900px] h-[300px] bg-contain bg-center bg-no-repeat"
+        className="relative sm:h-[900px] h-[300px] bg-no-repeat"
         style={{
           backgroundImage:
             "url('/assets/2336d79754f340fe0f0ad691b8c773b284a01668.webp?height=500&width=1200')",
+          backgroundPosition: "top right", // keep logo visible
+          backgroundSize: "cover",          // image takes full width
         }}
       >
         {/* Green Bar */}
-        <div className="h-8 bg-greenCustom w-full absolute top-0 left-0"></div>
+        <div className="h-8 bg-greenCustom w-full absolute top-0 left-0 z-10"></div>
 
         {/* Floating Search Box */}
-        <div className="absolute inset-x-0 -top-6 flex justify-center">
-          <div
-            className="bg-white rounded-xl shadow-lg py-4 px-4 sm:py-7 sm:px-10 
-                  flex gap-2 w-full max-w-[730px] h-[80px] md:h-[115px] relative z-20"
-          >
+        <div className="absolute inset-x-0 -top-8 flex justify-center z-20">
+          <div className="bg-white rounded-xl shadow-lg py-4 px-4 sm:py-7 sm:px-10 
+        flex gap-2 w-full max-w-[730px] h-[80px] md:h-[115px] relative">
             <div className="flex gap-2 border border-black2 rounded-lg w-full justify-center items-center pl-4">
               <Input
                 type="text"
@@ -114,9 +127,9 @@ export default function LandingPage() {
               />
               <Button
                 className="text-[20px] font-semibold bg-greenCustom text-white 
-                   border-2 border-green-600 
-                   hover:!bg-white hover:!text-green-600
-                   px-14 py-5 md:py-7 rounded-lg transition-colors duration-300"
+             border-2 border-green-600 
+             hover:!bg-white hover:!text-green-600
+             px-14 py-5 md:py-7 rounded-lg transition-colors duration-300"
               >
                 Search
               </Button>
@@ -286,10 +299,10 @@ export default function LandingPage() {
             </div>
 
             {/* Image column - 1.5fr */}
-            <div className="relative md:mt-[-150px] mt-20">
+            <div className="relative md:mt-[-280px] mt-20">
               <div className="relative flex justify-center">
                 {/* Foreground Ellipse */}
-                <div className="relative z-10 right-[40px] md:right-[0px] top-[40px] md:top-[0px] w-[350px] sm:w-[400px] md:w-[557px] aspect-square rounded-full border border-greenCustom p-4 md:p-[25px] bg-white">
+                <div className="relative z-10 right-[40px] md:right-[-80px] top-[40px] md:top-[0px] w-[350px] sm:w-[400px] md:w-[557px] aspect-square rounded-full border border-greenCustom p-4 md:p-[25px] bg-white">
                   <img
                     src="/assets/Ellipse-1.png"
                     alt="Ellipse"
@@ -298,7 +311,7 @@ export default function LandingPage() {
                 </div>
 
                 {/* Background Union Image */}
-                <div className="absolute z-0 top-20 sm:top-24 md:top-[80px] left-[90px] sm:left-16 md:left-[126px] w-[500px] sm:w-[500px] md:w-[837.55px]">
+                <div className="absolute z-0 top-20 sm:top-24 md:top-[20px] left-[90px] sm:left-16 md:left-[126px] w-[500px] sm:w-[500px] md:w-[837.55px]">
                   <img
                     src="/assets/Union 4.png"
                     alt="Union background"
@@ -320,7 +333,7 @@ export default function LandingPage() {
             "url('/assets/shutterstock_334921961.png?height=600&width=1200')",
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
         <div className="relative container mx-auto  px-4 sm:px-14 h-full flex items-center justify-between">
           <div className="max-w-3xl text-white">
             <h1 className="text-[48px] md:text-[66px] font-bold mb-2 md:leading-[70px]">

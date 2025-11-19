@@ -60,7 +60,7 @@ export default function ProductsPage() {
               className="bg-white rounded-[40px] py-14 px-4 sm:px-14 mb-8 border-2 border-gray-300"
               key={index}
             >
-              <div className="flex flex-col md:grid md:grid-cols-8">
+              <div className="flex flex-col md:grid md:grid-cols-8 gap-2 md:gap-16">
                 {/* Image Section - 1.5fr equivalent (col-span-1.5 approximated with custom sizing) */}
                 <div className="md:col-span-3 md:flex md:justify-center md:items-center">
                   <div className="w-full max-w-sm mx-auto md:max-w-none">

@@ -24,7 +24,7 @@ export default async function TechnicalBriefsPage() {
       {/* All Technical Briefs */}
       <section className="py-4 bg-white">
         <div className="container px-4 sm:px-16">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-2">
             {technicalBriefsData.map((brief) => (
               <div className="px-4" key={brief.id}>
                 <TechnicalBriefCard brief={brief} />

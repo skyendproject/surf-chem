@@ -21,7 +21,7 @@ export default async function ResearchPapersPage() {
         </div>
       </section>
       <div className="container px-4 sm:px-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-2">
           {researchPapers.map((paper) => (
             <div className="px-4" key={paper.id}>
               <TechnicalBriefCard brief={paper} />

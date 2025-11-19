@@ -60,11 +60,11 @@ export default function FormulationGuidesPage() {
       <section className="py-8 sm:py-12 bg-white">
         <div className="container">
           <div className="max-w-8xl px-4 sm:px-16">
-            <h1 className="text-5xl sm:text-6xl font-bold mb-6 text-black2 mt-8 mb-8">
+            <h1 className="text-5xl sm:text-6xl md:text-[66px] font-bold mb-6 text-black2 mt-8">
               Guide Formulations
             </h1>
             <div className="space-y-8">
-              <p className="text-md sm:text-xl text-black leading-relaxed mt-8">
+              <p className="text-md sm:text-xl md:text-[22px] text-black leading-relaxed mt-8">
                 At Surfactant Chemicals Company, we understand that successful
                 crop protection starts with effective formulation. Agrochemical
                 formulations are far more than just active ingredients—they are
@@ -75,7 +75,7 @@ export default function FormulationGuidesPage() {
                 improving bioavailability and enabling the combination of
                 multiple active ingredients in one solution.
               </p>
-              <p className="text-md sm:text-xl text-black leading-relaxed">
+              <p className="text-md sm:text-xl md:text-[22px] text-black leading-relaxed">
                 Our Formulation Guides are designed to simplify this complex
                 process by offering a wealth of expertise, proven techniques,
                 and optimized formulations. From Suspension Concentrates (SC) to
@@ -84,7 +84,7 @@ export default function FormulationGuidesPage() {
                 been rigorously developed and field-tested over the years,
                 ensuring exceptional performance and reliability.
               </p>
-              <p className="text-md sm:text-xl text-black leading-relaxed">
+              <p className="text-md sm:text-xl md:text-[22px] text-black leading-relaxed">
                 Leveraging our advanced surfactants and adjuvants, we provide
                 tools to help formulators achieve superior results. Our
                 innovative technologies empower you to improve active ingredient
@@ -93,7 +93,7 @@ export default function FormulationGuidesPage() {
                 yields. These solutions are grounded in science and backed by
                 decades of expertise.
               </p>
-              <p className="text-md sm:text-xl text-black leading-relaxed">
+              <p className="text-md sm:text-xl md:text-[22px] text-black leading-relaxed">
                 Explore our comprehensive database of model formulations,
                 including step-by-step guidance on techniques such as direct
                 compression, wet granulation, dry granulation, and more. Whether
@@ -102,7 +102,7 @@ export default function FormulationGuidesPage() {
                 offer detailed insights and recommendations to support your
                 formulation journey.
               </p>
-              <p className="text-md sm:text-xl text-black leading-relaxed">
+              <p className="text-md sm:text-xl md:text-[22px] text-black leading-relaxed">
                 With our dedication to innovation and your success, Surfactant
                 Chemicals Company is here to help you create agrochemical
                 products that meet the highest industry standards. Let our

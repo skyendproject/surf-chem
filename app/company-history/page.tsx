@@ -14,7 +14,6 @@ export default async function CompanyHistoryPage() {
       <Navigation />
 
       {/* Hero Section */}
-      {/* <div className="container mx-auto py-16 md:py-16 px-4 lg:px-[60px] md:px-[30px] bg-white"></div> */}
       <section
         className="relative h-[850px] sm:h-[600px] bg-cover bg-center"
         style={{
@@ -23,37 +22,42 @@ export default async function CompanyHistoryPage() {
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-80"></div>
-        <div className="relative container mx-auto px-4 lg:px-[60px] md:px-[30px] h-full flex items-center justify-between gap-32">
-          {/* Text Section */}
-          <div className="max-w-3xl text-white pt-[70px]">
-            <h1 className="text-[45px] font-bold mb-2 md:leading-[50px] mr-6">
+        <div className="relative container mx-auto px-4 lg:px-[60px] md:px-[30px] h-full flex items-center justify-between gap-8">
+
+          {/* Text Section - 2/3 width */}
+          <div className="flex-[2] text-white">
+            <h1 className="text-[45px] font-bold mb-2 md:leading-[50px]">
               About Surfactant Chemicals Company
             </h1>
-            <h1 className="text-[77px] md:text-[115px] font-bold leading-[70px] md:leading-[130px] mb-6">
+            <h1 className="text-[77px] md:text-[117px] font-bold leading-[70px] md:leading-[125px] mb-6">
               {data.title}
             </h1>
-            <ReactMarkdown>{data.description}</ReactMarkdown>
+            <div className="text-[22px] leading-snug">
+              <ReactMarkdown>{data.description}</ReactMarkdown>
+            </div>
           </div>
 
-          {/* Image Section */}
-          <div className="hidden sm:block pt-[70px]">
+          {/* Image Section - 1/3 width */}
+          <div className="hidden sm:flex flex-[1] justify-center">
             <Image
               src={data.image || '/assets/SCC-Logo.png'}
               alt="Resource 3"
-              width={500}
-              height={500}
-              className="object-contain"
+              width={424}   // maintain aspect ratio
+              height={359}
+              className="w-full h-auto object-contain"
             />
           </div>
+
         </div>
       </section>
 
       {/* Our Global Presence */}
       <section className="mx-auto px-6 lg:px-16 py-8 md:py-12 lg:py-16 bg-white">
         <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-16">
-          {/* Left side - Industrial port image */}
-          <div className="flex-shrink-0">
-            <div className="w-[350px] md:w-[650px] h-[320px] md:h-[440px] rounded-3xl overflow-hidden">
+
+          {/* Left side - Industrial port image (wider) */}
+          <div className="flex-[4] flex-shrink-0">
+            <div className="w-full h-[320px] md:h-[440px] rounded-3xl overflow-hidden">
               <img
                 src="/assets/masano_Surfactant_Chemicals_Company_boasts_a_EuropeanBritish_f_0a77d744-b30c-4d26-a91b-8917a0c96cc7.png"
                 alt="Industrial port facility at dusk"
@@ -62,13 +66,16 @@ export default async function CompanyHistoryPage() {
             </div>
           </div>
 
-          {/* Right side - Text content */}
-          <div className="flex-1 mt-6 md:mt-0 mr-2">
-            <h2 className="text-[48px] lg:text-[66px] md:leading-[70px] text-black2 font-bold mb-4 lg:mb-16">
+          {/* Right side - Text content (smaller) */}
+          <div className="flex-[5] mt-6 md:0">
+            <h2 className="text-[48px] lg:text-[66px] md:leading-[70px] text-black2 font-bold mb-4 lg:mb-12">
               Our Global Presence
             </h2>
-            <ReactMarkdown>{data.global_presence}</ReactMarkdown>
+            <div className="text-[21px] leading-snug">
+              <ReactMarkdown>{data.global_presence}</ReactMarkdown>
+            </div>
           </div>
+
         </div>
       </section>
 
@@ -78,25 +85,27 @@ export default async function CompanyHistoryPage() {
           <div className="grid lg:grid-cols-[2.5fr_1.5fr] gap-0 items-start">
             {/* Text column */}
             <div className="px-6 lg:px-16 pt-0 mr-2">
-              <h2 className="text-[48px] lg:text-[66px] md:leading-[60px] text-black2 font-bold mb-4 lg:mb-16">
+              <h2 className="text-[66px] md:leading-[70px] text-black2 font-bold mb-4 lg:mb-16">
                 Our Core Focus and Vision
               </h2>
-              <ReactMarkdown>{data.vision}</ReactMarkdown>
+              <div className="text-[21px] leading-[32px]">
+                <ReactMarkdown>{data.vision}</ReactMarkdown>
+              </div>
             </div>
 
             {/* Image section */}
             <div
-              className="hidden lg:block"
+              className="hidden lg:block relative"
               style={{
                 position: "relative",
-                width: "660px",
-                height: "642px",
-                backgroundColor: "green",
+                width: "550px", // keep same as original
+                height: "570px",
+                backgroundColor: "green", // keeps the green background
                 borderRadius: "327px 0 0 347px",
                 overflow: "visible",
               }}
             >
-              {/* White curve background behind */}
+              {/* White curve background */}
               <Image
                 src="/assets/Union4White.png"
                 alt="Background curve"
@@ -110,7 +119,7 @@ export default async function CompanyHistoryPage() {
                 }}
               />
 
-              {/* Big drone image on top */}
+              {/* Big drone image */}
               <img
                 src="/assets/hero-img.png"
                 alt="Drone spraying field"
@@ -121,8 +130,8 @@ export default async function CompanyHistoryPage() {
                   transform: "translateX(-50%)",
                   borderRadius: "50%",
                   border: "25px solid white",
-                  width: "560px",
-                  height: "560px",
+                  width: "480px", // slightly smaller than original 560
+                  height: "480px",
                   zIndex: 2,
                 }}
               />
@@ -137,8 +146,8 @@ export default async function CompanyHistoryPage() {
                   left: "120px",
                   borderRadius: "50%",
                   border: "15px solid white",
-                  width: "370px",
-                  height: "370px",
+                  width: "340px", // slightly smaller than original 370
+                  height: "340px",
                   zIndex: 3,
                 }}
               />
@@ -146,6 +155,7 @@ export default async function CompanyHistoryPage() {
           </div>
         </div>
       </section>
+
 
       {/* Our Mission & Values */}
       <section className="bg-greenCustom text-white pb-8">
@@ -175,7 +185,9 @@ export default async function CompanyHistoryPage() {
                     </h2>
                     <div className="flex-1 h-1 bg-red mt-8"></div>
                   </div>
-                  <ReactMarkdown>{data.mission}</ReactMarkdown>
+                  <div className="text-[22px] leading-snug">
+                    <ReactMarkdown>{data.mission}</ReactMarkdown>
+                  </div>
                 </div>
 
                 {/* Values section */}
@@ -186,7 +198,9 @@ export default async function CompanyHistoryPage() {
                     </h2>
                     <div className="flex-1 h-1 bg-red mt-8"></div>
                   </div>
-                  <ReactMarkdown>{data.values}</ReactMarkdown>
+                  <div className="text-[22px] leading-snug">
+                    <ReactMarkdown>{data.values}</ReactMarkdown>
+                  </div>
                 </div>
               </div>
             </div>
@@ -221,7 +235,7 @@ export default async function CompanyHistoryPage() {
                 <h2 className="text-5xl sm:text-6xl text-black2 font-bold mb-6">
                   1. Innovation
                 </h2>
-                <span className="text-md sm:text-xl text-black leading-relaxed mb-6">
+                <span className="text-md sm:text-xl text-black leading-snug mb-6">
                   At the forefront of surfactant technology, we invest heavily
                   in research and development to create breakthrough solutions.
                   Our state-of-the-art laboratories and experienced research
