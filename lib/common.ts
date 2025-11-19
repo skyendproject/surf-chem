@@ -12,6 +12,9 @@ import {
     setDoc
 } from 'firebase/firestore';
 
+export function getDocRef(id: string, col: string) {
+    return doc(db, col, id);
+}
 
 export async function readCollection(path: string, constraints?: QueryConstraint[]) {
     const ref = collection(db, path);
