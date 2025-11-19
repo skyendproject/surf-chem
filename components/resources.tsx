@@ -1,15 +1,22 @@
-import React from 'react'
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation as SwiperNavigation, Pagination } from "swiper/modules";
+import { NewsCard } from "@/components/news-card";
+import { getNews } from '@/lib/backend';
+import { NewsArticle } from '@/types/news';
+import { useEffect, useState } from 'react';
+import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { BiSolidLeftArrow } from "react-icons/bi";
-import { BiSolidRightArrow } from "react-icons/bi";
-import { NewsCard } from "@/components/news-card";
-import { newsData } from "@/data/news";
+import { Pagination, Navigation as SwiperNavigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function Resources() {
+  const [news, setNews] = useState<NewsArticle[]>([])
+  useEffect(() => {
+    const load = async () => setNews(await getNews())
+    load()
+    return () => { }
+  }, [])
+
   return (
     <div>
       <section className="py-16 bg-white">
@@ -49,7 +56,7 @@ export default function Resources() {
               1024: { slidesPerView: 3 },
             }}
           >
-            {newsData.map((article) => (
+            {news.map((article) => (
               <SwiperSlide key={article.id}>
                 {/* Wrap card with padding */}
                 <div className="">

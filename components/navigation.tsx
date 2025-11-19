@@ -52,7 +52,7 @@ export function Navigation() {
         <p className="text-center font-bold text-[18px] py-4 px-4">
           We will be attending
           <a
-            href="/news/discover-next-generation-agrochemical-solutions-cac2025-shanghai"
+            href="/news/10kgmPfYmVMiO9uZX474"
             className="text-greenCustom"
           >
             {" "}
