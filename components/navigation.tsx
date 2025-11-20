@@ -112,7 +112,7 @@ export function Navigation() {
           </div>
 
           {/* Navigation links */}
-          <nav className="flex flex-wrap justify-end items-center space-x-6 md:space-x-4">
+          <nav className="flex flex-wrap justify-end items-center space-x-6 md:space-x-2">
             <Link
               href="/careers"
               className="text-white font-semibold transition-colors duration-200"
@@ -159,7 +159,7 @@ export function Navigation() {
 
       {/* Below */}
       <div className="container px-1 py-8 max-w-[1600px] mx-auto">
-        <div className="flex items-center w-full md:px-16 md:right-0">
+        <div className="flex items-center w-full md:px-12 md:right-0">
           <Link href="/" className="flex items-center space-x-6">
             <Image
               src="/assets/logo.png"
@@ -171,7 +171,7 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center justify-between space-x-2 md:space-x-6 lg:space-x-10 text-[16px] ml-32">
+          <nav className="hidden lg:flex items-center justify-between space-x-2 md:space-x-0 lg:space-x-4 text-[15px] ml-16">
             <Link
               href="/"
               className="text-black2 font-bold hover:text-greenCustom"

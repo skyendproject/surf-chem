@@ -327,7 +327,7 @@ export default function LandingPage() {
       {/* Our Story Section */}
 
       <section
-        className="relative h-[600px] bg-cover bg-center"
+        className="relative h-[700px] bg-cover bg-center"
         style={{
           backgroundImage:
             "url('/assets/shutterstock_334921961.png?height=600&width=1200')",
