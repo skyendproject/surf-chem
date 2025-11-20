@@ -143,6 +143,8 @@ export default function SustainabilityPage() {
           </div>
         </div>
       </section>
+        <div className="bg-greenCustom py-4"></div>
+
 
       {/* UN SDG Goals */}
       <section className="py-12 sm:py-16 bg-white overflow-x-hidden overflow-y-hidden max-w-[1600px] mx-auto">
@@ -179,11 +181,11 @@ export default function SustainabilityPage() {
 
               <div className="space-y-2">
                 {sdgGoals.map((goal) => (
-                  <div key={goal.goalNumber} className="flex items-start gap-4">
-                    <span className="text-black2 text-sm min-w-[80px]">
+                  <div key={goal.goalNumber} className="flex items-start gap-1">
+                    <span className="text-black2 text-sm min-w-[80px] leading-tight md:text-[16px]">
                       Goal {goal.goalNumber}:
                     </span>
-                    <span className="text-black2 text-sm">
+                    <span className="text-black2 text-sm leading-tight md:text-[16px]">
                       {goal.goalTitle}
                     </span>
                   </div>
@@ -203,11 +205,11 @@ export default function SustainabilityPage() {
                       className="w-full border-collapse mb-8 text-left"
                     >
                       <thead>
-                        <tr className="bg-gray-300 hover:bg-gray-300">
-                          <th className="font-bold text-black w-20">
+                        <tr className="bg-[#CCCCCC] hover:bg-gray-300">
+                          <th className="font-bold text-black w-20 leading-tight">
                             Goal {goal.goalNumber}:
                           </th>
-                          <th className="font-bold text-black">
+                          <th className="font-bold text-black leading-tight">
                             {goal.goalTitle}
                           </th>
                         </tr>
@@ -232,26 +234,26 @@ export default function SustainabilityPage() {
                 </div>
               </div>
             </div>
-              <div className="relative mt-10">
-                <div className="relative flex justify-center">
-                  {/* Foreground Ellipse */}
-                  <div className="relative z-10 right-[40px] md:right-[0px] top-[40px] md:top-[0px] w-[350px] sm:w-[400px] md:w-[557px] aspect-square rounded-full border border-greenCustom p-4 md:p-[25px] bg-white">
-                    <img
-                      src="/assets/Ellipse-1.png"
-                      alt="Ellipse"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Background Union Image */}
-                  <div className="absolute z-0 top-20 sm:top-24 md:top-[80px] left-[90px] sm:left-16 md:left-[126px] w-[500px] sm:w-[500px] md:w-[837.55px]">
-                    <img
-                      src="/assets/Union 4.png"
-                      alt="Union background"
-                      className="w-full h-auto max-h-[680px]"
-                    />
-                  </div>
+            <div className="relative mt-10">
+              <div className="relative flex justify-center">
+                {/* Foreground Ellipse */}
+                <div className="relative z-10 right-[40px] md:right-[0px] top-[40px] md:top-[0px] w-[350px] sm:w-[400px] md:w-[557px] aspect-square rounded-full border border-greenCustom p-4 md:p-[25px] bg-white">
+                  <img
+                    src="/assets/Ellipse-1.png"
+                    alt="Ellipse"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
+
+                {/* Background Union Image */}
+                <div className="absolute z-0 top-20 sm:top-24 md:top-[80px] left-[90px] sm:left-16 md:left-[126px] w-[500px] sm:w-[500px] md:w-[837.55px]">
+                  <img
+                    src="/assets/Union 4.png"
+                    alt="Union background"
+                    className="w-full h-auto max-h-[680px]"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

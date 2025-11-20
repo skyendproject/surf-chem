@@ -60,6 +60,7 @@ export default function TechnologyPortfolio() {
       <div className="text-center pb-8 sm:pb-12 lg:pb-16 relative z-10">
         <Link
           href="/technology-port"
+          scroll={true}
           className="hover:bg-white bg-red border hover:border-red text-white hover:text-red px-8 sm:px-16 py-8 text-2xl font-bold rounded-xl"
         >
           View all Technology

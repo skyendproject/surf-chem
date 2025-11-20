@@ -41,7 +41,7 @@ export default async function WhitePaperDetailPage({
 
             {whitePaper.pdf &&
               <div className="flex flex-col w-full max-w-full items-end">
-                <DownloadButton href={whitePaper.pdf} text="White paper" capitalized={true}/>
+                <DownloadButton href={whitePaper.pdf} text="White Paper" capitalized={true}/>
                 <SignInForm />
               </div>
             }

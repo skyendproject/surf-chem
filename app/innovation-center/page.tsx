@@ -89,25 +89,25 @@ export default function InnovationCenterPage() {
         <div className="px-2 sm:px-12 space-y-32">
           {equipmentData.map((equipment, index) => (
             <div
-              className="bg-white rounded-[40px] py-28 px-8 border-2 border-gray-300 mt-32"
+              className="bg-white rounded-[40px] py-12 px-8 border-1 border-gray-300 mt-32"
               key={index}
             >
-              <div className="flex flex-col md:grid md:grid-cols-4 gap-6 md:gap-8">
-                {/* Image Section - 1.5fr equivalent (col-span-1.5 approximated with custom sizing) */}
-                <div className="md:col-span-1 md:flex md:justify-center md:items-center ml-8 mr-8">
-                  <div className="w-full max-w-sm mx-auto md:max-w-none">
+              <div className="md:grid md:grid-cols-12 gap-8 flex flex-col md:flex-row">
+                {/* Image Section - 1.5 cols → span 6/12 */}
+                <div className="md:col-span-5 md:flex md:justify-center md:items-center">
+                  <div className="w-full max-w-sm mx-auto md:max-w-none md:h-[370px] md:w-[370px] relative">
                     <Image
                       src={equipment.image || "/placeholder.svg"}
                       alt={equipment.title}
-                      width={500}
-                      height={400}
-                      className="w-full h-auto object-contain"
+                      fill
+                      className="object-contain"
+                      sizes="(min-width: 768px) 450px, 100vw"
                     />
                   </div>
                 </div>
 
-                {/* Text Section - 2.5fr equivalent */}
-                <div className="md:col-span-3 flex flex-col justify-center">
+                {/* Text Section - 2.5 cols → span 10/12 */}
+                <div className="md:col-span-7 flex flex-col justify-center">
                   <h2 className="text-[36px] sm:text-[38px] md:text-[40px] font-bold text-black2 mb-4 md:mb-6">
                     {equipment.title}
                   </h2>
@@ -116,6 +116,7 @@ export default function InnovationCenterPage() {
                   </p>
                 </div>
               </div>
+
             </div>
           ))}
         </div>

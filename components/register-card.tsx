@@ -9,10 +9,13 @@ import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { serverTimestamp } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import { CountryDropdown } from "react-country-region-selector";
 
 export function RegisterCard() {
 
   const [isAuth, setAuth] = useState<boolean>(false);
+  const [selectedCountry, setSelectedCountry] = useState("");
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(u => setAuth(u != null))
     return () => unsubscribe();
@@ -35,7 +38,7 @@ export function RegisterCard() {
         display_name: data.get("first_name") + ' ' + data.get('last_name'),
         uid: creds.user.uid,
         phone_number: data.get("phone_number"),
-        country: data.get("country"),
+        country: selectedCountry,
         company: data.get("company"),
         company_web: data.get("company_web"),
         password: password,
@@ -102,12 +105,11 @@ export function RegisterCard() {
                 <Label htmlFor="country" className="sr-only">
                   Country
                 </Label>
-                <Input
+                <CountryDropdown
                   id="country"
-                  name='country'
-                  placeholder="United States"
-                  className="h-11 rounded-xl border border-black2"
-                  required
+                  value={selectedCountry}
+                  onChange={(val) => setSelectedCountry(val)}
+                  className="h-11 rounded-xl border border-black2 w-full px-3 text-gray-500"
                 />
               </div>
 

@@ -9,6 +9,7 @@ import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 export function LoginCard() {
   const [remember, setRemember] = useState(false);
@@ -99,12 +100,14 @@ export function LoginCard() {
                 </Button>
               </div>
               <div>
-                <button
-                  type="button"
-                  className="mt-4 text-left text-[22px] text-muted-foreground underline-offset-4 hover:underline"
-                >
-                  Forgot Password
-                </button>
+                <Link href='/forget-password'>
+                  <button
+                    type="button"
+                    className="mt-4 text-left text-[22px] text-muted-foreground underline-offset-4 hover:underline"
+                  >
+                    Forgot Password
+                  </button>
+                </Link>
               </div>
             </div>
           </form>

@@ -51,7 +51,7 @@ export default function AgrochemicalsPage() {
         <div className="container px-4 sm:px-10">
           <div className="max-w-6xl">
             <h1 className="text-6xl font-bold text-gray-900 mb-6">
-              AGRO CHEMICALS
+              AGROCHEMICALS
             </h1>
             <p className="text-2xl text-gray-700 leading-snug">
               At Surfactant Chemicals Company, we are committed to advancing
@@ -79,15 +79,16 @@ export default function AgrochemicalsPage() {
               <div className="flex flex-col md:grid md:grid-cols-8 gap-6 md:gap-8">
                 {/* Image Section - 1.5fr equivalent (col-span-1.5 approximated with custom sizing) */}
                 <div className="md:col-span-3 md:flex md:justify-center md:items-center">
-                  <div className="w-full max-w-sm mx-auto md:max-w-none">
+                  <div className="w-full max-w-sm mx-auto md:!w-[374px] md:!h-[374px]">
                     <Image
                       src={equipment.image || "/placeholder.svg"}
                       alt={equipment.title}
-                      width={400}
-                      height={300}
-                      className="w-full h-auto object-contain"
+                      width={374} // fallback width
+                      height={374} // fallback height
+                      className="w-full h-full object-contain"
                     />
                   </div>
+
                 </div>
 
                 {/* Text Section - 2.5fr equivalent */}

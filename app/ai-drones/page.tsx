@@ -82,13 +82,13 @@ export default function AIDronesPage() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-4">
             {/* Image: 1st on mobile/md, 2nd on desktop; spans 4.5/12 = 1.5 cols out of 4 */}
-            <div className="order-1 lg:order-2 col-span-1 lg:col-span-5">
+            <div className="order-1 lg:order-2 col-span-1 lg:col-span-5 md:h-[394px] md:w-[492px]">
               <Image
-                src="/assets/hero-img.png"
+                src="/assets/ai-drones.jpg"
                 alt="Drone spraying crops"
                 width={450}
-                height={400}
-                className="rounded-[30px] shadow-lg w-full"
+                height={600}
+                className="rounded-[30px] shadow-lg w-full h-full"
               />
             </div>
 

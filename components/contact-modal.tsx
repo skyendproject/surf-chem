@@ -41,12 +41,12 @@ export function ContactModal({
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
-          className={`bg-greenCustom hover:bg-white text-white hover:text-greenCustom border-2 text-[16px] md:py-3 md:px-4 hover:border-1 border-greenCustom ${triggerClassName} rounded-xl font-bold`}
+          className={`bg-greenCustom hover:bg-white text-white hover:text-greenCustom border-2 text-[14px] md:py-3 md:px-4 hover:border-1 border-greenCustom ${triggerClassName} rounded-xl font-bold`}
         >
           {triggerText}
         </Button>
       </DialogTrigger>
-      <DialogContent className="h-screen w-full md:max-w-4xl p-0 bg-white rounded-none overflow-hidden">
+      <DialogContent className="h-screen w-full md:max-w-5xl p-0 bg-white rounded-none overflow-hidden">
         <DialogHeader>
           <DialogTitle className="hidden" />
         </DialogHeader>
@@ -57,7 +57,7 @@ export function ContactModal({
             <h2 className="text-greenCustom font-bold text-[18px] md:text-[22px] mb-4">
               HAVE A QUESTIONS?
             </h2>
-            <p className="text-[16px] md:text-[18px] font-semibold text-black mb-2">
+            <p className="text-[16px] md:text-[18px] font-semibold text-black mb-4">
               Let us know how we can help you!
             </p>
             <p className="text-[16px] md:text-[18px] text-black font-semibold">

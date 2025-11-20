@@ -347,9 +347,11 @@ export default function LandingPage() {
               transformation in the industries we serve.
             </p>
 
-            <Button className="text-[32px] md:text-[41px] font-bold bg-transparent hover:bg-transparent border-y-0 border-x-4 text-white border-red hover:text-red h-12 rounded-none">
-              Learn More
-            </Button>
+            <Link href='/company-history'>
+              <Button className="text-[32px] md:text-[41px] font-bold bg-transparent hover:bg-transparent border-y-0 border-x-4 text-white border-red hover:text-red h-12 rounded-none">
+                Learn More
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

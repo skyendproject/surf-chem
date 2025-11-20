@@ -35,7 +35,7 @@ export default async function BoardOfDirectorsPage() {
           {/* Directors Grid */}
           <div className="container mx-auto px-4">
             <div className="bg-gray-100 rounded-[3rem] p-12 shadow-lg z-30 mb-10">
-              <div className="grid lg:grid-cols-3 gap-12 mb-16">
+              <div className="grid lg:grid-cols-3 gap-12 mb-16 auto-rows-fr">
                 {directors.map((director) => (
                   <DirectorCard key={director.id} director={director as Director} />
                 ))}

@@ -14,13 +14,13 @@ export default function AgriculturalMachineryPage() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-4">
             {/* Image: 1st on mobile/md, 2nd on desktop; spans 4.5/12 = 1.5 cols out of 4 */}
-            <div className="order-1 lg:order-2 col-span-1 lg:col-span-5">
+            <div className="order-1 lg:order-2 col-span-1 lg:col-span-5 md:h-[394px] md:w-[492px]">
               <Image
                 src="/assets/bead-mill-xl.jpg"
                 alt="Drone spraying crops"
                 width={450}
                 height={400}
-                className="rounded-[30px] shadow-lg w-full"
+                className="rounded-[30px] shadow-lg w-full h-full"
               />
             </div>
 
@@ -59,7 +59,7 @@ export default function AgriculturalMachineryPage() {
                   </div>
 
                   <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
+                    <table className="w-full text-sm md:text-[22px]">
                       <tbody className="space-y-2 text-center">
                         <tr className="border-b">
                           <th className="py-2">Model</th>

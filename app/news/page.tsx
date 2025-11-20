@@ -23,17 +23,16 @@ export default async function NewsPage() {
       </section>
 
       {/* News Grid */}
-      <section className="py-4  max-w-[1600px] mx-auto">
+      <section className="py-4 max-w-[1600px] mx-auto">
         <div className="container px-4 sm:px-16">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-2">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
             {newsData.map((article) => (
-              <div className="px-4" key={article.id}>
-                <NewsCard article={article} />
-              </div>
+              <NewsCard key={article.id} article={article} />
             ))}
           </div>
         </div>
       </section>
+
 
       {/* Footer Section */}
       <Footer />

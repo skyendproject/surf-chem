@@ -11,7 +11,7 @@ export default function PaintsPage() {
       {/* Main Content */}
       <section className="py-16 bg-gray-50 max-w-[1600px] mx-auto">
         <div className="container px-4 sm:px-12">
-          <div className="grid lg:grid-cols-2 gap-4 items-start lg:gap-12">
+          <div className="grid lg:grid-cols-2 gap-4 items-start lg:gap-6">
             <div>
               <h1 className="text-5xl sm:text-6xl font-bold mb-8 text-black2">
                 Paints
@@ -91,16 +91,17 @@ export default function PaintsPage() {
               </p>
             </div>
 
-            <div className="flex justify-center">
-              <div className="rounded-2xl overflow-hidden shadow-lg">
+            <div className="flex justify-center"> 
+              <div className="rounded-2xl overflow-hidden shadow-lg md:h-[394px] md:w-[492px]">
                 <Image
                   src="/assets/paint-factory.png"
                   alt="Paint manufacturing equipment"
-                  width={500}
+                  width={400}
                   height={600}
-                  className="h-auto"
+                  className="w-full h-full object-cover"
                 />
               </div>
+
             </div>
           </div>
         </div>

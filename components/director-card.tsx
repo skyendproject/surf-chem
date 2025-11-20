@@ -20,7 +20,7 @@ export function DirectorCard({ director }: DirectorCardProps) {
           {director.experience} years
         </div>
 
-        <div className="mb-4 relative overflow-hidden rounded-lg w-full aspect-square">
+        <div className="mb-4 relative overflow-hidden rounded-lg w-full aspect-square  border-8 border-white">
           <Image
             src={director.image || "/placeholder.svg"}
             alt={director.name}
@@ -30,9 +30,10 @@ export function DirectorCard({ director }: DirectorCardProps) {
           />
         </div>
 
-        <p className="text-gray-600 text-sm mb-6 line-clamp-3">
+        <p className="text-gray-600 text-sm md:text-[16px] mb-6 overflow-hidden text-ellipsis line-clamp-3">
           {director.fullBio}
         </p>
+
 
         <button
           className="w-full sm:w-auto px-6 py-3 border-y-0 border-x-4 border-red text-black font-semibold text-lg hover:text-red transition-colors duration-200 whitespace-nowrap"

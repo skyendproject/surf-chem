@@ -158,23 +158,24 @@ export function Navigation() {
       </div>
 
       {/* Below */}
-      <div className="container px-1 py-8 max-w-[1600px] mx-auto flex justify-between">
-        <div className="flex items-center md:px-12 md:right-0">
-          <Link href="/" className="flex items-center space-x-6">
-            <Image
-              src="/assets/logo.png"
-              alt="Logo"
-              width={250}
-              height={250}
-              className="h-auto w-40 lg:w-64"
-            />
-          </Link>
+      <div className="w-full">
+        <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8 max-w-[1600px] mx-auto flex justify-between items-center">
+          <div className="flex items-center justify-between flex-1">
+            <Link href="/" className="flex items-center flex-shrink-0">
+              <Image
+                src="/assets/logo.png"
+                alt="Logo"
+                width={250}
+                height={250}
+                className="h-auto w-40 lg:w-64"
+              />
+            </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center justify-between space-x-2 md:space-x-0 lg:space-x-4 text-[15px] ml-16">
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-6 text-[15px] whitespace-nowrap">
             <Link
               href="/"
-              className="text-black2 font-bold hover:text-greenCustom"
+              className="text-black2 font-bold hover:text-greenCustom transition-colors whitespace-nowrap"
             >
               Home
             </Link>
@@ -185,13 +186,13 @@ export function Navigation() {
               onMouseLeave={() => setIsAboutDropdownOpen(false)}
             >
               <Link href='/company-history'>
-                <div className="block text-black2 font-bold hover:text-greenCustom cursor-pointer">
+                <div className="block text-black2 font-bold hover:text-greenCustom cursor-pointer whitespace-nowrap transition-colors">
                   About Us
                 </div>
               </Link>
 
               {isAboutDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 w-32 text-sm text-white bg-greenCustom shadow-lg z-50">
+                <div className="absolute top-full left-0 -mt-0.5 w-36 text-sm md:text-[16px] text-white bg-greenCustom shadow-lg z-50">
                   <Link
                     href="/company-history"
                     className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
@@ -215,20 +216,20 @@ export function Navigation() {
             >
               <Link
                 href="/products"
-                className="block text-black2 font-bold hover:text-greenCustom cursor-pointer"
+                className="block text-black2 font-bold hover:text-greenCustom cursor-pointer whitespace-nowrap transition-colors"
               >
                 Products
               </Link>
 
               {isProductsDropdownOpen && (
-                <div className="absolute top-full left-0 w-32 bg-greenCustom text-white shadow-lg z-50">
+                <div className="absolute top-full -mt-0.5 left-0 w-36 bg-greenCustom text-white shadow-lg z-50">
                   <div
                     className="relative"
                     onMouseEnter={() => setIsAgroChemicalDropdownOpen(true)}
                     onMouseLeave={() => setIsAgroChemicalDropdownOpen(false)}
                   >
                     <Link href='/agrochemicals'>
-                      <div className="block px-1 py-1 text-sm font-bold hover:bg-greenCustomHover cursor-pointer">
+                      <div className="block px-1 py-1 text-sm md:text-[16px] font-bold hover:bg-greenCustomHover cursor-pointer">
                         Agrochemical
                       </div>
                     </Link>
@@ -265,13 +266,13 @@ export function Navigation() {
 
                   <Link
                     href="/paints"
-                    className="block px-1 py-1 text-sm font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1 text-sm md:text-[16px] font-bold hover:bg-greenCustomHover"
                   >
                     Paints
                   </Link>
                   <Link
                     href="/trading-chemicals"
-                    className="block px-1 py-1 text-sm font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1 text-sm md:text-[16px] font-bold hover:bg-greenCustomHover"
                   >
                     Trading Chemical
                   </Link>
@@ -281,19 +282,19 @@ export function Navigation() {
 
             <Link
               href="/formulation-guides"
-              className="text-black2 font-bold hover:text-greenCustom"
+              className="text-black2 font-bold hover:text-greenCustom whitespace-nowrap transition-colors"
             >
               Formulation Guides
             </Link>
             <Link
               href="/innovation-center"
-              className="text-black2 font-bold hover:text-greenCustom"
+              className="text-black2 font-bold hover:text-greenCustom whitespace-nowrap transition-colors"
             >
               Innovation Center
             </Link>
             <Link
               href="/sustainability"
-              className="text-black2 font-bold hover:text-greenCustom"
+              className="text-black2 font-bold hover:text-greenCustom whitespace-nowrap transition-colors"
             >
               Sustainability
             </Link>
@@ -303,33 +304,35 @@ export function Navigation() {
               onMouseEnter={() => setIsResourcesDropdownOpen(true)}
               onMouseLeave={() => setIsResourcesDropdownOpen(false)}
             >
-              <div className="block text-black2 font-bold hover:text-greenCustom cursor-pointer">
-                Resources
-              </div>
+              <Link href='/resources'>
+                <div className="block text-black2 font-bold hover:text-greenCustom cursor-pointer whitespace-nowrap transition-colors">
+                  Resources
+                </div>
+              </Link>
 
               {isResourcesDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 w-32 bg-greenCustom text-white text-sm shadow-lg z-50">
+                <div className="absolute top-full left-0 -mt-0.5 w-40 md:text-[16px] bg-greenCustom text-white text-sm shadow-lg z-50">
                   <Link
                     href="/news"
-                    className="block px-1 py-1  font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
                   >
                     News
                   </Link>
                   <Link
                     href="/general-white-papers"
-                    className="block px-1 py-1  font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
                   >
                     General White Papers
                   </Link>
                   <Link
                     href="/technical-briefs"
-                    className="block px-1 py-1  font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
                   >
                     Technical Briefs
                   </Link>
                   <Link
                     href="/research-papers"
-                    className="block px-1 py-1  font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
                   >
                     Research Papers
                   </Link>
@@ -614,6 +617,7 @@ export function Navigation() {
               </div>
             </SheetContent>
           </Sheet>
+        </div>
         </div>
       </div>
     </header>
