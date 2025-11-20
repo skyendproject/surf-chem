@@ -42,8 +42,8 @@ export default async function FormulationGuideDetail({ params }: FormulationPage
             </div>
 
             {/* Sign In Form */}
-            <div className="flex flex-col w-full lg:max-w-[780px] items-end">
-              <DownloadButton href={`/formulation-guides/${id}/pdf`} />
+            <div className="flex flex-col w-full lg:max-w-[580px] items-end">
+              <DownloadButton href={`/formulation-guides/${id}/pdf`} text="Formulation Guide"/>
               <SignInForm />
             </div>
           </div>

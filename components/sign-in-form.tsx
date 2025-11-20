@@ -38,7 +38,7 @@ export function SignInForm() {
 
   return (
     <>{!isAuth &&
-      <div className="bg-white p-8 rounded-3xl shadow-lg border max-w-2xl w-full">
+      <div className="bg-white p-8 rounded-3xl shadow-lg border max-w-xl w-full">
         <h2 className="text-5xl sm:text-6xl text-center font-bold text-black2 mb-12 mt-12">Sign In</h2>
         <p className="text-black text-4xl mb-4 text-center">Sign in to view this content</p>
 

@@ -9,9 +9,9 @@ export default function page() {
     <>
       <Navigation />
       <div className="container mx-auto py-16 md:py-16 px-4 lg:px-[60px] md:px-[30px] bg-white">
-        <h1 className="text-4xl font-bold text-black mb-8">TERMS OF USE</h1>
+        <h1 className="text-4xl font-bold text-black mb-8 md:text-[66px]">TERMS OF USE</h1>
 
-        <p className="text-sm text-gray-700 mb-8 leading-relaxed">
+        <p className="text-sm text-gray-700 mb-8 leading-relaxed md:text-[16px]">
           These Terms and Conditions ("Agreement") apply to your use of the
           website of Surfactant Chemicals Company ("Surfactant Chemicals
           Company", "we", "us", or "our"). By accessing or using this website,
@@ -20,10 +20,10 @@ export default function page() {
         </p>
 
         <section className="mb-8">
-          <h2 className="text-xl font-bold text-black mb-4">
+          <h2 className="text-xl font-bold text-black mb-4 md:text-[40px]">
             1. Intellectual Property Rights
           </h2>
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <p className="text-sm text-gray-700 leading-relaxed md:text-[16px]">
             The content on this website, including but not limited to text,
             graphics, logos, images, and software, is the property of Surfactant
             Chemicals Company or its licensors and is protected by intellectual
@@ -34,13 +34,13 @@ export default function page() {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-xl font-bold text-black mb-4">
+          <h2 className="text-xl font-bold text-black mb-4 md:text-[40px]">
             2. Use of the Website
           </h2>
-          <p className="text-sm text-gray-700 mb-3 leading-relaxed">
+          <p className="text-sm text-gray-700 mb-3 leading-relaxed md:text-[16px]">
             You may use this website for lawful purposes only. You agree not to:
           </p>
-          <ul className="list-disc pl-6 text-sm text-gray-700 space-y-1">
+          <ul className="list-disc pl-6 text-sm text-gray-700 space-y-1 md:text-[16px]">
             <li>
               Use the website in any way that breaches applicable laws or
               regulations;
@@ -60,10 +60,10 @@ export default function page() {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-xl font-bold text-black mb-4">
+          <h2 className="text-xl font-bold text-black mb-4 md:text-[40px]">
             3. Limitation of Liability
           </h2>
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <p className="text-sm text-gray-700 leading-relaxed md:text-[16px]">
             To the extent permitted by law, Surfactant Chemicals Company shall
             not be liable for any direct, indirect, incidental, special, or
             consequential damages arising out of or in connection with your use
@@ -74,10 +74,10 @@ export default function page() {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-xl font-bold text-black mb-4">
+          <h2 className="text-xl font-bold text-black mb-4 md:text-[40px]">
             4. Accuracy of Information
           </h2>
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <p className="text-sm text-gray-700 leading-relaxed md:text-[16px]">
             While we strive to ensure that the information on this website is
             accurate and up-to-date, we make no representations, warranties, or
             guarantees, whether express or implied, that the content is
@@ -88,10 +88,10 @@ export default function page() {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-xl font-bold text-black mb-4">
+          <h2 className="text-xl font-bold text-black mb-4 md:text-[40px]">
             5. Third-Party Links
           </h2>
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <p className="text-sm text-gray-700 leading-relaxed md:text-[16px]">
             This website may contain links to third-party websites. These links
             are provided for your convenience, and Surfactant Chemicals Company
             has no control over the content of such websites. We accept no
@@ -101,10 +101,10 @@ export default function page() {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-xl font-bold text-black mb-4">
+          <h2 className="text-xl font-bold text-black mb-4 md:text-[40px]">
             6. Privacy Policy
           </h2>
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <p className="text-sm text-gray-700 leading-relaxed md:text-[16px]">
             Your use of this website is also governed by our{" "}
             <span className="text-teal-600">Privacy Policy</span>, which is
             incorporated by reference into these Terms and Conditions.
@@ -112,10 +112,10 @@ export default function page() {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-xl font-bold text-black mb-4">
+          <h2 className="text-xl font-bold text-black mb-4 md:text-[40px]">
             7. Governing Law
           </h2>
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <p className="text-sm text-gray-700 leading-relaxed md:text-[16px]">
             This Agreement shall be governed by and construed in accordance with
             the laws of Pakistan. Any disputes arising from or related to this
             Agreement shall be subject to the exclusive jurisdiction of the
@@ -124,10 +124,10 @@ export default function page() {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-xl font-bold text-black mb-4">
+          <h2 className="text-xl font-bold text-black mb-4 md:text-[40px]">
             8. Changes to These Terms
           </h2>
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <p className="text-sm text-gray-700 leading-relaxed md:text-[16px]">
             Surfactant Chemicals Company reserves the right to modify these
             Terms and Conditions at any time. Any changes will be posted on this
             page, and your continued use of the website after such changes
@@ -136,8 +136,8 @@ export default function page() {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-xl font-bold text-black mb-4">9. Contact Us</h2>
-          <p className="text-sm text-gray-700 mb-6 leading-relaxed">
+          <h2 className="text-xl font-bold text-black mb-4 md:text-[40px]">9. Contact Us</h2>
+          <p className="text-sm text-gray-700 mb-6 leading-relaxed md:text-[16px]">
             If you have any questions about these Terms and Conditions, please
             contact us:
           </p>
