@@ -12,8 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 export default function Resources() {
   const [news, setNews] = useState<NewsArticle[]>([])
   useEffect(() => {
-    const load = async () => setNews(await getNews())
-    load()
+    getNews().then(setNews)
     return () => { }
   }, [])
 

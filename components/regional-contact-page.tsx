@@ -1,14 +1,20 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Navigation } from "@/components/navigation";
+import { useState } from "react";
+import { Navigation } from "./navigation";
 import { RegionalContactForm } from "./regional-contact-form";
-// import { ContactModal } from "@/components/contact-modal";
-import type { RegionalContactData } from "@/types/regional-contact";
+
+export interface RegionalContact {
+  id: string,
+  title: string,
+  subtitle: string,
+  address: string,
+  email: string,
+}
 
 interface RegionalContactPageProps {
-  data: RegionalContactData;
+  data: RegionalContact;
 }
 
 export function RegionalContactPage({ data }: RegionalContactPageProps) {
@@ -26,7 +32,7 @@ export function RegionalContactPage({ data }: RegionalContactPageProps) {
             <div className="space-y-8 px-4 lg:px-[60px] md:px-[30px]">
               <div>
                 <h1 className="text-[48px] md:text-[66px] leading-[60px] md:leading-[70px] text-black2 font-bold">
-                  {data.country}
+                  {data.title}
                 </h1>
                 <h2 className="text-none md:text-[44px] font-bold text-black2 mb-8">
                   REGIONAL CONTACTS
@@ -37,21 +43,11 @@ export function RegionalContactPage({ data }: RegionalContactPageProps) {
                 <div className="mb-8">
                   {/* <h3 className="text-xl text-gray-900 mb-2">
                   </h3> */}
-                  {data.locations.map((location, index) => (
-                    <div
-                      key={index}
-                      className="text-[22px] text-black mb-6 max-w-[350px]"
-                    >
-                      <h3>{location.officeName}</h3>
-                      {location.addressLines.map((line, i) => (
-                        <p key={i}>{line}</p>
-                      ))}
-                      <p>
-                        {location.city}, {data.country}
-                      </p>
-                      <p>Tel: {location.phone || "N/A"}</p>
-                    </div>
-                  ))}
+                  <div
+                    className="text-[22px] text-black mb-6 max-w-[350px]"
+                  >
+                    <p>{data.address}</p>
+                  </div>
                 </div>
 
                 <div className="space-y-6">
@@ -59,15 +55,15 @@ export function RegionalContactPage({ data }: RegionalContactPageProps) {
                     <h4 className="text-[32px] font-bold text-black mb-3">
                       Email:
                     </h4>
-                    {data.emails.map((email, index) => (
+                    {data.email.split('\n').map((email, index) => (
                       <div className="space-y-2" key={index}>
                         <div className="flex items-center">
                           <span className="w-2 h-2 bg-black rounded-full mr-3 mt-1"></span>
                           <a
-                            href={`mailto:${email}`}
+                            href={`mailto:${email.replace('-', '').trim()}`}
                             className="text-gray-600 text-[22px]"
                           >
-                            {email}
+                            {email.replace('-', '').trim()}
                           </a>
                         </div>
                       </div>

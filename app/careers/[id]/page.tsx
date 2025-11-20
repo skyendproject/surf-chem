@@ -21,8 +21,7 @@ export default function JobDetailsPage({ params }: JobDetailsPageProps) {
   const [activeTab, setActiveTab] = useState<"overview" | "application">("overview");
 
   useEffect(() => {
-    const load = async () => setJob(await getCareer(id) as JobPosition)
-    load();
+    getCareer(id).then((e) => setJob(e as JobPosition))
     return () => { };
   }, []);
 

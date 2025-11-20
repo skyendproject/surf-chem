@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { ContactModal } from "./contact-modal";
 
 export function Footer() {
@@ -18,7 +16,7 @@ export function Footer() {
         { name: "Innovation Center", href: "innovation-center" },
         { name: "Sustainability", href: "sustainability" },
         { name: "Careers", href: "careers" },
-        { name: "Contact Us", href: "contact-us" },
+        { name: "Contact Us", href: "contact-us/EdqZlRZsDem7RUy0PxJG" },
       ],
     },
     {

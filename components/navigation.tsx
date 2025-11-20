@@ -7,6 +7,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { getRegionalContacts } from "@/lib/backend";
 import { auth } from "@/lib/firebase";
 import { Button } from "@radix-ui/themes";
 import { signOut } from "firebase/auth";
@@ -15,6 +16,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ContactModal } from "./contact-modal";
+import { RegionalContact } from "./regional-contact-page";
+
 
 export function Navigation() {
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
@@ -45,6 +48,11 @@ export function Navigation() {
     return () => unsubscribe();
   }, []);
 
+  const [regionalContacts, setRegionalContacts] = useState<RegionalContact[]>([]);
+  useEffect(() => {
+    getRegionalContacts().then(setRegionalContacts)
+    return () => { }
+  }, [])
 
   return (
     <header className="bg-white shadow-sm relative">
@@ -133,22 +141,13 @@ export function Navigation() {
               </button>
               {isRegionalDropdownOpen && (
                 <div className="absolute right-0 top-full mt-1 w-48 bg-greenCustom shadow-lg z-50">
-                  {[
-                    "Brazil",
-                    "China",
-                    "HongKong",
-                    "India",
-                    "Pakistan",
-                    "Singapore",
-                    "UAE",
-                    "Vietnam",
-                  ].map((country) => (
+                  {regionalContacts.map((country) => (
                     <Link
-                      key={country}
-                      href={`/regional-contacts/${country.toLowerCase()}`}
+                      key={country.id}
+                      href={`/regional-contacts/${country.id}`}
                       className="block px-4 py-2 font-semibold text-white hover:bg-greenCustomHover"
                     >
-                      {country}
+                      {country.title}
                     </Link>
                   ))}
                 </div>

@@ -16,8 +16,7 @@ export interface ProductClass {
 export default function TechnologyPortfolio() {
   const [classes, setClasses] = useState<ProductClass[]>([])
   useEffect(() => {
-    const load = async () => setClasses(await getProductClasses())
-    load()
+    getProductClasses().then(setClasses)
     return () => { }
   }, []);
 
