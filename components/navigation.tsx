@@ -158,8 +158,8 @@ export function Navigation() {
       </div>
 
       {/* Below */}
-      <div className="container px-1 py-8 max-w-[1600px] mx-auto">
-        <div className="flex items-center w-full md:px-12 md:right-0">
+      <div className="container px-1 py-8 max-w-[1600px] mx-auto flex justify-between">
+        <div className="flex items-center md:px-12 md:right-0">
           <Link href="/" className="flex items-center space-x-6">
             <Image
               src="/assets/logo.png"
