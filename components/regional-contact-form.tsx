@@ -75,7 +75,7 @@ export function RegionalContactForm({ id }: { id: string }) {
 
   if (isSubmitted) {
     return (
-      <div className="bg-white px-8 py-4 rounded-lg shadow-lg text-center">
+      <div className="bg-white pl-8 py-4 rounded-lg shadow-lg text-center">
         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
           <svg
             className="w-8 h-8 text-green-600"
@@ -103,22 +103,24 @@ export function RegionalContactForm({ id }: { id: string }) {
   return (
     <div
       className="
-        relative flex justify-center items-start 
+        relative flex justify-center items-start overflow-hidden
         min-h-[450px] 
         md:min-h-[650px] 
         pt-0 md:pt-4 
         pb-8 md:pb-10
       "
     >
-      {/* Red Semicircle Background */}
-      <div
-        className="absolute top-0 -right-28 h-[80%] w-full bg-no-repeat mt-10 md:mt-20"
+      {/* Red Semicircle Background - Emerging from right wall */}
+      {/* <div
+        className="absolute top-10 -right-44 h-full w-[60%] md:w-[70%] bg-no-repeat"
         style={{
+          right: -80,
           backgroundImage: "url(/assets/semicircleRed.png)",
           backgroundSize: "contain",
-          backgroundPosition: "right top",
+          backgroundPosition: "right center",
+          backgroundRepeat: "no-repeat",
         }}
-      />
+      /> */}
 
       {/* Form Box */}
       <div
@@ -127,6 +129,7 @@ export function RegionalContactForm({ id }: { id: string }) {
           px-8 py-6 
           md:px-10 md:py-8
           relative z-10
+          w-full
         "
       >
         <div className="text-center mb-6 md:mb-8">
@@ -202,7 +205,7 @@ export function RegionalContactForm({ id }: { id: string }) {
           <Button
             type="submit"
             disabled={!isFormValid || isSubmitting}
-            className="w-full h-14 text-lg font-bold bg-red-600 hover:bg-red-700 rounded-lg text-gray-800 border-2 border-gray-600"
+            className="w-full h-14 text-lg font-bold bg-greenCustom hover:bg-white text-white hover:text-greenCustom border-2 border-greenCustom rounded-xl"
           >
             {isSubmitting ? "SENDING..." : "Send Message"}
           </Button>

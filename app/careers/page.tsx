@@ -24,7 +24,7 @@ export default async function CareersPage() {
       </section>
 
       {/* Job Listings */}
-      <section className="py-12 bg-gray-50 px-4 sm:px-16">
+      <section className="py-12 bg-[#F6F7F7] px-4 sm:px-16">
         <div className="space-y-12">
           {careers.map((job) => (
             <JobCard key={job.id} job={job as JobPosition} />

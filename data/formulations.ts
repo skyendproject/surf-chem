@@ -99,11 +99,20 @@
 
 
 
+export interface FormulationProperty {
+  title: string;
+  type: string;
+  result: string;
+}
+
 export interface Formulations {
   id: string;
   title: string;
   description: string;
   fullDescription: string;
+  code?: string;
+  functions?: FormulationProperty[];
+  properties?: FormulationProperty[];
 }
 
 export const formulations: Formulations[] = [

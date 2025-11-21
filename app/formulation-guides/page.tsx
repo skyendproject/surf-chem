@@ -20,7 +20,7 @@ export default function FormulationGuidesPage() {
 
   // Filter formulations based on selected filters
   const filteredFormulations = useMemo(() => {
-    if (Object.keys(filters).length === 0) {
+    if (Object.keys(filters).length === 0 || Object.values(filters).every(v => v.length === 0)) {
       return formulations;
     }
 
@@ -28,7 +28,83 @@ export default function FormulationGuidesPage() {
       return Object.entries(filters).every(([filterKey, filterValues]) => {
         if (filterValues.length === 0) return true;
 
-        return true;
+        // Filter by formula type (check title and code)
+        if (filterKey === "formula type") {
+          const title = formulation.title?.toUpperCase() || '';
+          const code = formulation.code?.toUpperCase() || '';
+          return filterValues.some(filterValue => {
+            const upperFilter = filterValue.toUpperCase();
+            // Check for abbreviations in parentheses or in title
+            if (upperFilter.includes('SC')) return title.includes('SC') || code.includes('SC');
+            if (upperFilter.includes('EW')) return title.includes('EW') || code.includes('EW');
+            if (upperFilter.includes('SE')) return title.includes('SE') || code.includes('SE');
+            if (upperFilter.includes('OD')) return title.includes('OD') || code.includes('OD');
+            if (upperFilter.includes('WP')) return title.includes('WP') || code.includes('WP');
+            return title.includes(upperFilter) || code.includes(upperFilter);
+          });
+        }
+
+        // Filter by active ingredients
+        if (filterKey === "active") {
+          const allText = `${formulation.title} ${formulation.description} ${formulation.fullDescription}`.toUpperCase();
+          return filterValues.some(filterValue => 
+            allText.includes(filterValue.toUpperCase())
+          );
+        }
+
+        // Filter by biological ingredient
+        if (filterKey === "biological ingredient") {
+          const allText = `${formulation.title} ${formulation.description} ${formulation.fullDescription}`.toUpperCase();
+          return filterValues.some(filterValue => 
+            allText.includes(filterValue.toUpperCase())
+          );
+        }
+
+        // Map filter keys to property types (normalize the keys)
+        const filterKeyMap: Record<string, string> = {
+          'solvent': 'SOLVENT',
+          'surfactantCarrier': 'Surfactant Carrier',
+          'stabilizer': 'STABILIZER',
+          'surfactantAdjuvant': 'Surfactant Adjuvant',
+          'surfactantDispersant': 'Surfactant Dispersant',
+          'surfactantEmulsifier': 'Surfactant: Emulsifier',
+          'surfactantPolymeric': 'Surfactant: Polymeric',
+          'surfactantPolAquDis': 'Surfactant. Polymeric Aqueous Dispersant',
+          'surfactantPolDis': 'Surfactant: Polymeric Dispersant',
+          'surfactantPolNonAquDis': 'Surfactant: Polymeric Non-Aqueous Dispersant',
+          'surfactantPolWetter': 'Surfactant: Polymeric Wetter',
+          'surfactantWetter': 'Surfactant: Wetter',
+          'antifoam': 'Antifoam',
+          'antifreeze': 'Antifreeze',
+          'biocide': 'Biocide',
+          'other': 'Other',
+          'rheology modifier': 'Rheology Modifier',
+        };
+
+        // Filter by properties and functions
+        const allProperties = [
+          ...(formulation.properties || []),
+          ...(formulation.functions || [])
+        ];
+
+        // Check if any property/function matches the filter
+        return filterValues.some(filterValue => {
+          const upperFilter = filterValue.toUpperCase();
+          const mappedType = filterKeyMap[filterKey]?.toUpperCase() || filterKey.toUpperCase();
+          
+          return allProperties.some(prop => {
+            const propTitle = (prop.title || '').toUpperCase();
+            const propType = (prop.type || '').toUpperCase();
+            const propResult = (prop.result || '').toUpperCase();
+            
+            // Match by type first, then by title/result
+            // Both conditions must be true: type matches AND (title or result matches)
+            if (propType.includes(mappedType)) {
+              return propTitle.includes(upperFilter) || propResult.includes(upperFilter);
+            }
+            return false;
+          });
+        });
       });
     });
   }, [filters, formulations]);

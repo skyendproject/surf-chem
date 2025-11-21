@@ -7,9 +7,9 @@ interface JobCardProps {
 
 export default function JobCard({ job }: JobCardProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-12 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div className="bg-white rounded-3xl shadow-2xl p-12 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div className="flex-1">
-        <h2 className="text-[clamp(24px,2vw,28px)] text-black leading-[30px] font-bold mb-2">
+        <h2 className="text-[clamp(24px,2vw,28px)] text-black leading-[30px] font-bold mb-2 md:text-[28px]">
           {job.title}
         </h2>
         <p className="text-[clamp(17px,2vw,22px)] text-black leading-[30px]">

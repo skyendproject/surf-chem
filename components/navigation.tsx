@@ -15,11 +15,13 @@ import { ChevronDown, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ContactModal } from "./contact-modal";
 import { RegionalContact } from "./regional-contact-page";
 
 
 export function Navigation() {
+  const router = useRouter();
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
   const [isRegionalDropdownOpen, setIsRegionalDropdownOpen] = useState(false);
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
@@ -30,6 +32,7 @@ export function Navigation() {
     useState(false);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
@@ -53,6 +56,20 @@ export function Navigation() {
     getRegionalContacts().then(setRegionalContacts)
     return () => { }
   }, [])
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search-results?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery("");
+    }
+  };
+
+  const handleSearchKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch(e);
+    }
+  };
 
   return (
     <header className="bg-white shadow-sm relative">
@@ -84,14 +101,20 @@ export function Navigation() {
         <div className="container mx-auto flex flex-col md:flex-row md:items-center md:justify-end space-y-4 md:space-y-0">
           {/* Search bar */}
           <div className="flex-1 max-w-md mx-4 md:mx-6">
-            <div className="relative flex justify-end">
+            <form onSubmit={handleSearch} className="relative flex justify-end">
               <div className="relative w-32 focus-within:w-72 transition-[width] duration-300 ease-in-out origin-right">
                 <input
                   type="text"
                   placeholder="Search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={handleSearchKeyPress}
                   className="w-full bg-greenCustom border border-white4 text-white py-1 pl-10 pr-4 rounded-full focus:outline-none focus:ring-2 focus:ring-white4 placeholder-white"
                 />
-                <div className="absolute left-3 top-2 text-white">
+                <button
+                  type="submit"
+                  className="absolute left-3 top-2 text-white cursor-pointer"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -106,9 +129,9 @@ export function Navigation() {
                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     />
                   </svg>
-                </div>
+                </button>
               </div>
-            </div>
+            </form>
           </div>
 
           {/* Navigation links */}
@@ -172,452 +195,453 @@ export function Navigation() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-6 text-[15px] whitespace-nowrap">
-            <Link
-              href="/"
-              className="text-black2 font-bold hover:text-greenCustom transition-colors whitespace-nowrap"
-            >
-              Home
-            </Link>
-
-            <div
-              className="relative"
-              onMouseEnter={() => setIsAboutDropdownOpen(true)}
-              onMouseLeave={() => setIsAboutDropdownOpen(false)}
-            >
-              <Link href='/company-history'>
-                <div className="block text-black2 font-bold hover:text-greenCustom cursor-pointer whitespace-nowrap transition-colors">
-                  About Us
-                </div>
-              </Link>
-
-              {isAboutDropdownOpen && (
-                <div className="absolute top-full left-0 -mt-0.5 w-36 text-sm md:text-[16px] text-white bg-greenCustom shadow-lg z-50">
-                  <Link
-                    href="/company-history"
-                    className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
-                  >
-                    Company History
-                  </Link>
-                  <Link
-                    href="/board-of-directors"
-                    className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
-                  >
-                    Board of Directors
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            <div
-              className="relative"
-              onMouseEnter={() => setIsProductsDropdownOpen(true)}
-              onMouseLeave={() => setIsProductsDropdownOpen(false)}
-            >
+            <nav className="hidden md:flex items-center gap-0 md:gap-1 2xl:gap-8 space-x-6 text-[15px] whitespace-nowrap">
               <Link
-                href="/products"
-                className="block text-black2 font-bold hover:text-greenCustom cursor-pointer whitespace-nowrap transition-colors"
+                href="/"
+                className="text-black2 font-bold hover:text-greenCustom transition-colors whitespace-nowrap"
               >
-                Products
+                Home
               </Link>
 
-              {isProductsDropdownOpen && (
-                <div className="absolute top-full -mt-0.5 left-0 w-36 bg-greenCustom text-white shadow-lg z-50">
-                  <div
-                    className="relative"
-                    onMouseEnter={() => setIsAgroChemicalDropdownOpen(true)}
-                    onMouseLeave={() => setIsAgroChemicalDropdownOpen(false)}
-                  >
-                    <Link href='/agrochemicals'>
-                      <div className="block px-1 py-1 text-sm md:text-[16px] font-bold hover:bg-greenCustomHover cursor-pointer">
-                        Agrochemical
-                      </div>
+              <div
+                className="relative"
+                onMouseEnter={() => setIsAboutDropdownOpen(true)}
+                onMouseLeave={() => setIsAboutDropdownOpen(false)}
+              >
+                <Link href='/company-history'>
+                  <div className="block text-black2 font-bold hover:text-greenCustom cursor-pointer whitespace-nowrap transition-colors">
+                    About Us
+                  </div>
+                </Link>
+
+                {isAboutDropdownOpen && (
+                  <div className="absolute top-full left-0 -mt-0.5 w-36 text-sm md:text-[16px] text-white bg-greenCustom shadow-lg z-50">
+                    <Link
+                      href="/company-history"
+                      className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
+                    >
+                      Company History
+                    </Link>
+                    <Link
+                      href="/board-of-directors"
+                      className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
+                    >
+                      Board of Directors
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <div
+                className="relative"
+                onMouseEnter={() => setIsProductsDropdownOpen(true)}
+                onMouseLeave={() => setIsProductsDropdownOpen(false)}
+              >
+                <Link
+                  href="/products"
+                  className="block text-black2 font-bold hover:text-greenCustom cursor-pointer whitespace-nowrap transition-colors"
+                >
+                  Products
+                </Link>
+
+                {isProductsDropdownOpen && (
+                  <div className="absolute top-full -mt-0.5 left-0 w-36 bg-greenCustom text-white shadow-lg z-50">
+                    <div
+                      className="relative"
+                      onMouseEnter={() => setIsAgroChemicalDropdownOpen(true)}
+                      onMouseLeave={() => setIsAgroChemicalDropdownOpen(false)}
+                    >
+                      <Link href='/agrochemicals'>
+                        <div className="block px-1 py-1 text-sm md:text-[16px] font-bold hover:bg-greenCustomHover cursor-pointer">
+                          Agrochemical
+                        </div>
+                      </Link>
+
+                      {isAgroChemicalDropdownOpen && (
+                        <div className="absolute top-0 left-full w-64 bg-greenCustomHover text-white shadow-lg z-50">
+                          <Link
+                            href="/agricultural-surfactants"
+                            className="block px-1 py-1 text-sm font-bold hover:bg-greenCustom"
+                          >
+                            Agricultural Surfactants and Adjuvants
+                          </Link>
+                          <Link
+                            href="/bio-pesticides"
+                            className="block px-1 py-1 text-sm font-bold hover:bg-greenCustom"
+                          >
+                            Bio-pesticides & Bio-formulants
+                          </Link>
+                          <Link
+                            href="/ai-drones"
+                            className="block px-1 py-1 text-sm font-bold hover:bg-greenCustom"
+                          >
+                            AI Drones
+                          </Link>
+                          <Link
+                            href="/agricultural-machinery"
+                            className="block px-1 py-1 text-sm font-bold hover:bg-greenCustom"
+                          >
+                            Agricultural Machinery
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+
+                    <Link
+                      href="/paints"
+                      className="block px-1 py-1 text-sm md:text-[16px] font-bold hover:bg-greenCustomHover"
+                    >
+                      Paints
+                    </Link>
+                    <Link
+                      href="/trading-chemicals"
+                      className="block px-1 py-1 text-sm md:text-[16px] font-bold hover:bg-greenCustomHover"
+                    >
+                      Trading Chemical
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <Link
+                href="/formulation-guides"
+                className="text-black2 font-bold hover:text-greenCustom whitespace-nowrap transition-colors"
+              >
+                Formulation Guides
+              </Link>
+              <Link
+                href="/innovation-center"
+                className="text-black2 font-bold hover:text-greenCustom whitespace-nowrap transition-colors"
+              >
+                Innovation Center
+              </Link>
+              <Link
+                href="/sustainability"
+                className="text-black2 font-bold hover:text-greenCustom whitespace-nowrap transition-colors"
+              >
+                Sustainability
+              </Link>
+
+              <div
+                className="relative"
+                onMouseEnter={() => setIsResourcesDropdownOpen(true)}
+                onMouseLeave={() => setIsResourcesDropdownOpen(false)}
+              >
+                <Link href='/resources'>
+                  <div className="block text-black2 font-bold hover:text-greenCustom cursor-pointer whitespace-nowrap transition-colors">
+                    Resources
+                  </div>
+                </Link>
+
+                {isResourcesDropdownOpen && (
+                  <div className="absolute top-full left-0 -mt-0.5 w-40 md:text-[16px] bg-greenCustom text-white text-sm shadow-lg z-50">
+                    <Link
+                      href="/news"
+                      className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
+                    >
+                      News
+                    </Link>
+                    <Link
+                      href="/general-white-papers"
+                      className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
+                    >
+                      General White Papers
+                    </Link>
+                    <Link
+                      href="/technical-briefs"
+                      className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
+                    >
+                      Technical Briefs
+                    </Link>
+                    <Link
+                      href="/research-papers"
+                      className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
+                    >
+                      Research Papers
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <ContactModal triggerText="Sample Request" />
+              </div>
+            </nav>
+          </div>
+
+          <div className="flex items-center space-x-4">
+            {/* Mobile Menu Drawer */}
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <button className="lg:hidden text-black2 font-bold hover:text-greenCustom">
+                  <Menu className="h-8 w-8 text-greenCustom mr-3" />
+                </button>
+              </SheetTrigger>
+              <SheetContent
+                side="right"
+                className="w-80 sm:w-96 flex flex-col h-full"
+              >
+                <SheetHeader className="flex-shrink-0">
+                  <SheetTitle></SheetTitle>
+                </SheetHeader>
+
+                {/* Scrollable Content */}
+                <div className="flex-1 overflow-y-auto mt-6 pr-2 hide-scrollbar">
+                  <div className="space-y-1">
+                    <Link
+                      href="/"
+                      className="block py-3 text-black2 font-bold hover:text-white hover:bg-greenCustom border-b border-gray-100"
+                      onClick={closeMobileMenu}
+                    >
+                      Home
                     </Link>
 
-                    {isAgroChemicalDropdownOpen && (
-                      <div className="absolute top-0 left-full w-64 bg-greenCustomHover text-white shadow-lg z-50">
-                        <Link
-                          href="/agricultural-surfactants"
-                          className="block px-1 py-1 text-sm font-bold hover:bg-greenCustom"
-                        >
-                          Agricultural Surfactants and Adjuvants
-                        </Link>
-                        <Link
-                          href="/bio-pesticides"
-                          className="block px-1 py-1 text-sm font-bold hover:bg-greenCustom"
-                        >
-                          Bio-pesticides & Bio-formulants
-                        </Link>
-                        <Link
-                          href="/ai-drones"
-                          className="block px-1 py-1 text-sm font-bold hover:bg-greenCustom"
-                        >
-                          AI Drones
-                        </Link>
-                        <Link
-                          href="/agricultural-machinery"
-                          className="block px-1 py-1 text-sm font-bold hover:bg-greenCustom"
-                        >
-                          Agricultural Machinery
-                        </Link>
-                      </div>
-                    )}
-                  </div>
+                    <div className="py-3 border-b border-gray-100">
+                      <button
+                        className="flex items-center justify-between w-full text-black2 font-bold hover:text-white hover:bg-greenCustom "
+                        onClick={() =>
+                          setIsAboutDropdownOpen(!isAboutDropdownOpen)
+                        }
+                      >
+                        About Us
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform ${isAboutDropdownOpen ? "rotate-180" : ""
+                            }`}
+                        />
+                      </button>
 
-                  <Link
-                    href="/paints"
-                    className="block px-1 py-1 text-sm md:text-[16px] font-bold hover:bg-greenCustomHover"
-                  >
-                    Paints
-                  </Link>
-                  <Link
-                    href="/trading-chemicals"
-                    className="block px-1 py-1 text-sm md:text-[16px] font-bold hover:bg-greenCustomHover"
-                  >
-                    Trading Chemical
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            <Link
-              href="/formulation-guides"
-              className="text-black2 font-bold hover:text-greenCustom whitespace-nowrap transition-colors"
-            >
-              Formulation Guides
-            </Link>
-            <Link
-              href="/innovation-center"
-              className="text-black2 font-bold hover:text-greenCustom whitespace-nowrap transition-colors"
-            >
-              Innovation Center
-            </Link>
-            <Link
-              href="/sustainability"
-              className="text-black2 font-bold hover:text-greenCustom whitespace-nowrap transition-colors"
-            >
-              Sustainability
-            </Link>
-
-            <div
-              className="relative"
-              onMouseEnter={() => setIsResourcesDropdownOpen(true)}
-              onMouseLeave={() => setIsResourcesDropdownOpen(false)}
-            >
-              <Link href='/resources'>
-                <div className="block text-black2 font-bold hover:text-greenCustom cursor-pointer whitespace-nowrap transition-colors">
-                  Resources
-                </div>
-              </Link>
-
-              {isResourcesDropdownOpen && (
-                <div className="absolute top-full left-0 -mt-0.5 w-40 md:text-[16px] bg-greenCustom text-white text-sm shadow-lg z-50">
-                  <Link
-                    href="/news"
-                    className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
-                  >
-                    News
-                  </Link>
-                  <Link
-                    href="/general-white-papers"
-                    className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
-                  >
-                    General White Papers
-                  </Link>
-                  <Link
-                    href="/technical-briefs"
-                    className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
-                  >
-                    Technical Briefs
-                  </Link>
-                  <Link
-                    href="/research-papers"
-                    className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
-                  >
-                    Research Papers
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            <div>
-              <ContactModal triggerText="Sample Request" />
-            </div>
-          </nav>
-        </div>
-
-        <div className="flex items-center space-x-4">
-          {/* Mobile Menu Drawer */}
-          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <button className="lg:hidden text-black2 font-bold hover:text-greenCustom">
-                <Menu className="h-8 w-8 text-greenCustom mr-3" />
-              </button>
-            </SheetTrigger>
-            <SheetContent
-              side="right"
-              className="w-80 sm:w-96 flex flex-col h-full"
-            >
-              <SheetHeader className="flex-shrink-0">
-                <SheetTitle></SheetTitle>
-              </SheetHeader>
-
-              {/* Scrollable Content */}
-              <div className="flex-1 overflow-y-auto mt-6 pr-2 hide-scrollbar">
-                <div className="space-y-1">
-                  <Link
-                    href="/"
-                    className="block py-3 text-black2 font-bold hover:text-white hover:bg-greenCustom border-b border-gray-100"
-                    onClick={closeMobileMenu}
-                  >
-                    Home
-                  </Link>
-
-                  <div className="py-3 border-b border-gray-100">
-                    <button
-                      className="flex items-center justify-between w-full text-black2 font-bold hover:text-white hover:bg-greenCustom "
-                      onClick={() =>
-                        setIsAboutDropdownOpen(!isAboutDropdownOpen)
-                      }
-                    >
-                      About Us
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform ${isAboutDropdownOpen ? "rotate-180" : ""
-                          }`}
-                      />
-                    </button>
-
-                    {isAboutDropdownOpen && (
-                      <div className="pl-4 mt-3 space-y-2">
-                        <Link
-                          href="/company-history"
-                          className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                          onClick={closeMobileMenu}
-                        >
-                          Company History
-                        </Link>
-                        <Link
-                          href="/board-of-directors"
-                          className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                          onClick={closeMobileMenu}
-                        >
-                          Board of Directors
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="py-3 border-b border-gray-100">
-                    <button
-                      className="flex items-center justify-between w-full text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                      onClick={() =>
-                        setIsProductsDropdownOpen(!isProductsDropdownOpen)
-                      }
-                    >
-                      Products
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform ${isProductsDropdownOpen ? "rotate-180" : ""
-                          }`}
-                      />
-                    </button>
-
-                    {isProductsDropdownOpen && (
-                      <div className="pl-4 mt-3 space-y-2">
-                        <div>
-                          <button
-                            className="flex items-center justify-between w-full text-black2 font-bold hover:text-white hover:bg-greenCustom py-2"
-                            onClick={() =>
-                              setIsAgroChemicalDropdownOpen(
-                                !isAgroChemicalDropdownOpen
-                              )
-                            }
-                          >
-                            AgroChemical
-                            <ChevronDown
-                              className={`w-4 h-4 transition-transform ${isAgroChemicalDropdownOpen ? "rotate-180" : ""
-                                }`}
-                            />
-                          </button>
-
-                          {isAgroChemicalDropdownOpen && (
-                            <div className="pl-4 mt-2 space-y-2">
-                              <Link
-                                href="/agricultural-surfactants"
-                                className="block py-2 text-sm text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                                onClick={closeMobileMenu}
-                              >
-                                Agricultural Surfactants and Adjuvants
-                              </Link>
-                              <Link
-                                href="/bio-pesticides"
-                                className="block py-2 text-sm text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                                onClick={closeMobileMenu}
-                              >
-                                Bio-pesticides & Bio-formulants
-                              </Link>
-                              <Link
-                                href="/ai-drones"
-                                className="block py-2 text-sm text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                                onClick={closeMobileMenu}
-                              >
-                                AI Drones
-                              </Link>
-                              <Link
-                                href="/agricultural-machinery"
-                                className="block py-2 text-sm text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                                onClick={closeMobileMenu}
-                              >
-                                Agricultural Machinery
-                              </Link>
-                            </div>
-                          )}
-                        </div>
-
-                        <Link
-                          href="/paints"
-                          className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                          onClick={closeMobileMenu}
-                        >
-                          Paints
-                        </Link>
-                        <Link
-                          href="/trading-chemicals"
-                          className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                          onClick={closeMobileMenu}
-                        >
-                          Trading Chemical
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-
-                  <Link
-                    href="/formulation-guides"
-                    className="block py-3 text-black2 font-bold hover:text-white hover:bg-greenCustom border-b border-gray-100"
-                    onClick={closeMobileMenu}
-                  >
-                    Formulation Guides
-                  </Link>
-                  <Link
-                    href="/innovation-center"
-                    className="block py-3 text-black2 font-bold hover:text-white hover:bg-greenCustom border-b border-gray-100"
-                    onClick={closeMobileMenu}
-                  >
-                    Innovation Center
-                  </Link>
-                  <Link
-                    href="/sustainability"
-                    className="block py-3 text-black2 font-bold hover:text-white hover:bg-greenCustom border-b border-gray-100"
-                    onClick={closeMobileMenu}
-                  >
-                    Sustainability
-                  </Link>
-
-                  <div className="py-3 border-b border-gray-100">
-                    <button
-                      className="flex items-center justify-between w-full text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                      onClick={() =>
-                        setIsResourcesDropdownOpen(!isResourcesDropdownOpen)
-                      }
-                    >
-                      Resources
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform ${isResourcesDropdownOpen ? "rotate-180" : ""
-                          }`}
-                      />
-                    </button>
-
-                    {isResourcesDropdownOpen && (
-                      <div className="pl-4 mt-3 space-y-2">
-                        <Link
-                          href="/news"
-                          className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                          onClick={closeMobileMenu}
-                        >
-                          News
-                        </Link>
-                        <Link
-                          href="/general-white-papers"
-                          className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                          onClick={closeMobileMenu}
-                        >
-                          General White Papers
-                        </Link>
-                        <Link
-                          href="/technical-briefs"
-                          className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                          onClick={closeMobileMenu}
-                        >
-                          Technical Briefs
-                        </Link>
-                        <Link
-                          href="/research-papers"
-                          className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                          onClick={closeMobileMenu}
-                        >
-                          Research Papers
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-
-                  <Link
-                    href="/careers"
-                    className="block py-3 text-black2 font-bold hover:text-white hover:bg-greenCustom border-b border-gray-100"
-                    onClick={closeMobileMenu}
-                  >
-                    Careers
-                  </Link>
-                  <Link
-                    href="/auth-form"
-                    className="block py-3 text-black2 font-bold hover:text-white hover:bg-greenCustom border-b border-gray-100"
-                    onClick={closeMobileMenu}
-                  >
-                    Sign In
-                  </Link>
-
-                  <div className="py-3 border-b border-gray-100">
-                    <button
-                      className="flex items-center justify-between w-full text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                      onClick={() =>
-                        setIsRegionalContactsDropdownOpen(
-                          !isRegionalContactsDropdownOpen
-                        )
-                      }
-                    >
-                      Regional Contacts
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform ${isRegionalContactsDropdownOpen ? "rotate-180" : ""
-                          }`}
-                      />
-                    </button>
-
-                    {isRegionalDropdownOpen && (
-                      <div className="absolute right-0 top-full mt-1 w-48 bg-greenCustom shadow-lg z-50">
-                        {regionalContacts.map((country) => (
+                      {isAboutDropdownOpen && (
+                        <div className="pl-4 mt-3 space-y-2">
                           <Link
-                            key={country.id}
-                            href={`/contact-us/${country.id}`}
-                            className="block px-4 py-2 font-semibold text-white hover:bg-greenCustomHover"
+                            href="/company-history"
+                            className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                            onClick={closeMobileMenu}
                           >
-                            {country.title}
+                            Company History
                           </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                          <Link
+                            href="/board-of-directors"
+                            className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                            onClick={closeMobileMenu}
+                          >
+                            Board of Directors
+                          </Link>
+                        </div>
+                      )}
+                    </div>
 
-                  <div className="fixed bottom-0 pt-4 pb-2 bg-white">
-                    <ContactModal
-                      triggerText="Sample Request"
-                      triggerClassName="w-full px-20 py-2"
-                    />
+                    <div className="py-3 border-b border-gray-100">
+                      <button
+                        className="flex items-center justify-between w-full text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                        onClick={() =>
+                          setIsProductsDropdownOpen(!isProductsDropdownOpen)
+                        }
+                      >
+                        Products
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform ${isProductsDropdownOpen ? "rotate-180" : ""
+                            }`}
+                        />
+                      </button>
+
+                      {isProductsDropdownOpen && (
+                        <div className="pl-4 mt-3 space-y-2">
+                          <div>
+                            <button
+                              className="flex items-center justify-between w-full text-black2 font-bold hover:text-white hover:bg-greenCustom py-2"
+                              onClick={() =>
+                                setIsAgroChemicalDropdownOpen(
+                                  !isAgroChemicalDropdownOpen
+                                )
+                              }
+                            >
+                              AgroChemical
+                              <ChevronDown
+                                className={`w-4 h-4 transition-transform ${isAgroChemicalDropdownOpen ? "rotate-180" : ""
+                                  }`}
+                              />
+                            </button>
+
+                            {isAgroChemicalDropdownOpen && (
+                              <div className="pl-4 mt-2 space-y-2">
+                                <Link
+                                  href="/agricultural-surfactants"
+                                  className="block py-2 text-sm text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                                  onClick={closeMobileMenu}
+                                >
+                                  Agricultural Surfactants and Adjuvants
+                                </Link>
+                                <Link
+                                  href="/bio-pesticides"
+                                  className="block py-2 text-sm text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                                  onClick={closeMobileMenu}
+                                >
+                                  Bio-pesticides & Bio-formulants
+                                </Link>
+                                <Link
+                                  href="/ai-drones"
+                                  className="block py-2 text-sm text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                                  onClick={closeMobileMenu}
+                                >
+                                  AI Drones
+                                </Link>
+                                <Link
+                                  href="/agricultural-machinery"
+                                  className="block py-2 text-sm text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                                  onClick={closeMobileMenu}
+                                >
+                                  Agricultural Machinery
+                                </Link>
+                              </div>
+                            )}
+                          </div>
+
+                          <Link
+                            href="/paints"
+                            className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                            onClick={closeMobileMenu}
+                          >
+                            Paints
+                          </Link>
+                          <Link
+                            href="/trading-chemicals"
+                            className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                            onClick={closeMobileMenu}
+                          >
+                            Trading Chemical
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+
+                    <Link
+                      href="/formulation-guides"
+                      className="block py-3 text-black2 font-bold hover:text-white hover:bg-greenCustom border-b border-gray-100"
+                      onClick={closeMobileMenu}
+                    >
+                      Formulation Guides
+                    </Link>
+                    <Link
+                      href="/innovation-center"
+                      className="block py-3 text-black2 font-bold hover:text-white hover:bg-greenCustom border-b border-gray-100"
+                      onClick={closeMobileMenu}
+                    >
+                      Innovation Center
+                    </Link>
+                    <Link
+                      href="/sustainability"
+                      className="block py-3 text-black2 font-bold hover:text-white hover:bg-greenCustom border-b border-gray-100"
+                      onClick={closeMobileMenu}
+                    >
+                      Sustainability
+                    </Link>
+
+                    <div className="py-3 border-b border-gray-100">
+                      <button
+                        className="flex items-center justify-between w-full text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                        onClick={() =>
+                          setIsResourcesDropdownOpen(!isResourcesDropdownOpen)
+                        }
+                      >
+                        Resources
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform ${isResourcesDropdownOpen ? "rotate-180" : ""
+                            }`}
+                        />
+                      </button>
+
+                      {isResourcesDropdownOpen && (
+                        <div className="pl-4 mt-3 space-y-2">
+                          <Link
+                            href="/news"
+                            className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                            onClick={closeMobileMenu}
+                          >
+                            News
+                          </Link>
+                          <Link
+                            href="/general-white-papers"
+                            className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                            onClick={closeMobileMenu}
+                          >
+                            General White Papers
+                          </Link>
+                          <Link
+                            href="/technical-briefs"
+                            className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                            onClick={closeMobileMenu}
+                          >
+                            Technical Briefs
+                          </Link>
+                          <Link
+                            href="/research-papers"
+                            className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                            onClick={closeMobileMenu}
+                          >
+                            Research Papers
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+
+                    <Link
+                      href="/careers"
+                      className="block py-3 text-black2 font-bold hover:text-white hover:bg-greenCustom border-b border-gray-100"
+                      onClick={closeMobileMenu}
+                    >
+                      Careers
+                    </Link>
+                    <Link
+                      href="/auth-form"
+                      className="block py-3 text-black2 font-bold hover:text-white hover:bg-greenCustom border-b border-gray-100"
+                      onClick={closeMobileMenu}
+                    >
+                      Sign In
+                    </Link>
+
+                    <div className="py-3 border-b border-gray-100">
+                      <button
+                        className="flex items-center justify-between w-full text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                        onClick={() =>
+                          setIsRegionalContactsDropdownOpen(
+                            !isRegionalContactsDropdownOpen
+                          )
+                        }
+                      >
+                        Regional Contacts
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform ${isRegionalContactsDropdownOpen ? "rotate-180" : ""
+                            }`}
+                        />
+                      </button>
+
+                      {isRegionalContactsDropdownOpen && (
+                        <div className="pl-4 mt-3 space-y-2">
+                          {regionalContacts.map((country) => (
+                            <Link
+                              key={country.id}
+                              href={`/contact-us/${country.id}`}
+                              className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
+                              onClick={closeMobileMenu}
+                            >
+                              {country.title}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="fixed bottom-0 pt-4 pb-2 bg-white">
+                      <ContactModal
+                        triggerText="Sample Request"
+                        triggerClassName="w-full px-20 py-2"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>
