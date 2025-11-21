@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { createDocument } from "@/lib/common";
 import { ReactNode, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function ContactModal({
   triggerText = "Let's Talk",
@@ -21,6 +22,7 @@ export function ContactModal({
   children?: ReactNode;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (data: FormData) => {
     if (data.get("check") != "SURFCHEM") {
@@ -35,6 +37,7 @@ export function ContactModal({
       description: data.get("description"),
     })
     setIsOpen(false)
+    router.push('/inquiry-confirmation')
   };
 
   return (
