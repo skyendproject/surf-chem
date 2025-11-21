@@ -19,40 +19,23 @@ export default function LandingPage() {
       {/* Header */}
       <Navigation />
 
-      {/* Hero Section */}
       <section className="bg-white py-16 md:py-16 px-4 lg:px-[60px] md:px-[30px]">
         <div className="container mx-auto">
-          <div className="flex flex-col lg:flex-row items-start gap-2 lg:gap-4">
+          <div className="flex flex-row items-start gap-4">
 
-            {/* Image */}
-            <div className="order-1 lg:order-2 flex justify-center">
-              <Image
-                src="/assets/hero-img.png"
-                alt="Drone spraying crops"
-                width={394}
-                height={382}
-                className="
-      rounded-[30px]
-      shadow-lg
-      object-cover
-      w-[390px]
-      h-[320px]
-      md:w-[382px]
-      md:h-[394px]
-      transform
-      md:translate-x-2
-      lg:translate-x-4
-    "
-              />
-            </div>
-
-
-            {/* Text */}
-            <div className="order-2 lg:order-1 flex-1 space-y-6 md:py-[10px]">
+            {/* Text Column - 70/30 on md, 60/40 on lg */}
+            <div className="
+        flex-1 
+        md:basis-[70%]
+        lg:basis-[60%]
+        space-y-6 
+        md:py-[10px]
+      ">
               <h1 className="text-[53px] font-bold text-black2 leading-[59px]">
                 Advanced, eco-friendly surfactants that enhance agrochemical
                 efficacy and reduce costs.
               </h1>
+
               <p className="text-black1 text-[clamp(17px,2vw,22px)] leading-[31px]">
                 Agrochemical manufacturers struggling with high costs and
                 inefficiencies turn to Surfactant Chemicals Company for
@@ -66,9 +49,44 @@ export default function LandingPage() {
               </p>
             </div>
 
+            {/* Image Column - 30/70 on md, 40/60 on lg */}
+            <div
+              className="
+    md:basis-[30%]
+    lg:basis-[40%]
+    flex justify-center lg:justify-end
+  "
+            >
+              <Image
+                src="/assets/hero-img.png"
+                alt="Drone spraying crops"
+                width={394}
+                height={382}
+                className="
+      rounded-[30px]
+      shadow-lg
+      object-cover
+
+      w-[390px]          /* default width */
+      h-[390px]
+
+      md:w-full          /* take full width on md */
+      md:h-auto
+
+      lg:w-full          /* stretch to full width of column on lg */
+      lg:h-auto
+
+      transform
+      md:translate-x-2
+      lg:translate-x-4
+    "
+              />
+            </div>
+
           </div>
         </div>
       </section>
+
 
       {/* WHO WE HELP Section */}
       <section className="bg-black2 pt-16 pb-28">

@@ -115,24 +115,52 @@ export function ProductsTable({ products, formulationTypes }: { products: Produc
               key={index}
               className="odd:bg-[#F6F7F7] even:bg-white text-[16px]"
             >
-              <td className="border-2 border-[#CCCCCC] px-0.5 py-0 text-greenCustom font-medium max-w-[120px] whitespace-normal break-words">
+              <td className="
+  border-2 border-[#CCCCCC] 
+  px-0.5 py-0 
+  text-greenCustom font-medium 
+  min-w-[140px] md:min-w-[120px] 
+  max-w-[220px]
+  w-auto 
+  whitespace-normal break-words
+">
                 <Link className="underline" href={`/agricultural-surfactants/${product.id}`}>
                   {product.name}
                 </Link>
               </td>
-              <td className="border-2 border-[#CCCCCC] px-0.5 py-0 text-greenCustom font-medium max-w-[120px] whitespace-normal break-words">
+
+              <td className="
+  border-2 border-[#CCCCCC] 
+  px-0.5 py-0 
+  text-greenCustom font-medium 
+  min-w-[140px] md:min-w-[120px] 
+  max-w-[240px]
+  w-auto 
+  whitespace-normal break-words
+">
                 <Link className="underline" href={`/agricultural-surfactants/${product.id}`}>
                   {product.series}
                 </Link>
               </td>
-              <td className="text-center border-2 border-[#CCCCCC] px-0.5 py-0 text-black font-semibold max-w-[100px] whitespace-normal break-words leading-tight">
+
+              <td className="
+  border-2 border-[#CCCCCC] 
+  px-0.5 py-0 
+  text-black font-semibold 
+  min-w-[180px] md:min-w-[130px]
+  max-w-[240px]
+  w-auto 
+  text-center
+  whitespace-normal break-words leading-tight
+">
                 {product.category}
               </td>
+
 
               {formulationTypes.map((type) => (
                 <td
                   key={type}
-                  className="border-2 border-[#CCCCCC] px-0.5 py-0 text-center text-sm"
+                  className="border-2 border-[#CCCCCC] py-0 text-center text-sm"
                 >
                   {product.formulations.includes(type) ? (
                     <span className="text-black font-bold text-lg">
