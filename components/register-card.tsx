@@ -10,9 +10,11 @@ import { serverTimestamp } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { CountryDropdown } from "react-country-region-selector";
+import { useRouter } from "next/navigation";
+
 
 export function RegisterCard() {
-
+  const router = useRouter();
   const [isAuth, setAuth] = useState<boolean>(false);
   const [selectedCountry, setSelectedCountry] = useState("");
 
@@ -49,6 +51,8 @@ export function RegisterCard() {
       }, creds.user.uid);
 
       await signOut(auth);
+      router.push('/account-activation')
+      router
     } catch (error) {
       console.error(error)
       alert(error)
