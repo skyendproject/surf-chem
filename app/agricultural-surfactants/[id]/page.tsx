@@ -74,7 +74,7 @@ export default async function ProductDetail({ params }: ProductPageProps) {
                     </tr>
                     <tr className={'border-t border-gray-200'}>
                       <td className="text-xl py-5 font-semibold">Dtd.</td>
-                      <td className="text-xl py-5">{product.created_at}</td>
+                      <td className="text-xl py-5">{product.manufactured_at}</td>
                     </tr>
                     <tr className={'border-t border-gray-200'}>
                       <td className="text-xl py-5 font-semibold">CAS Number</td>
