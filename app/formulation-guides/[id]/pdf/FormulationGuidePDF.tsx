@@ -11,7 +11,7 @@ export default function FormulationGuidePDF({ formulation }: { formulation: Form
     // )
 
 
-    const logoUrl = 'https://www.surfchem.co.uk/assets/image/logo/logo.png'
+    const logoUrl = 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/surfactant-chemicals-admin-c4s3ys/assets/7w2j9vjhm651/logo.png'
 
     return (
         <Document>
