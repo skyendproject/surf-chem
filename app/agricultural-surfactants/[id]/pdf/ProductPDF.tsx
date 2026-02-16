@@ -1,7 +1,7 @@
 import { Product } from '@/data/technologies/agriculturalSurfactants';
 import { Document, Image, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
 
-export default function ProductPDF({ product }: { product: Product }) {
+export default function ProductPDF({ product, formulationTypes }: { product: Product, formulationTypes: string[] }) {
     // return (
     //     <Document>
     //         <Page size="A4" style={styles.page}>
@@ -10,7 +10,7 @@ export default function ProductPDF({ product }: { product: Product }) {
     //     </Document>
     // )
 
-    const logoUrl = 'https://www.surfchem.co.uk/assets/image/logo/logo.png'
+    const logoUrl = 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/surfactant-chemicals-admin-c4s3ys/assets/7w2j9vjhm651/logo.png'
 
     return (
         <Document>
@@ -64,18 +64,25 @@ export default function ProductPDF({ product }: { product: Product }) {
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>2. Application & Use</Text>
                     <Text style={styles.bodyText}>{product.application_md}</Text>
+                </View>
+
+                <View style={styles.section}>
                     <div style={styles.sectionDivider} />
                     <View style={styles.infoRow}>
-                        <Text style={styles.value}>Ionicity:</Text>
-                        <Text style={[styles.value, { flex: 2 }]}>Function:</Text>
+                        <Text style={[styles.value, styles.valueItalic]}>Ionicity:</Text>
+                        <Text style={[styles.value, styles.valueItalic, { flex: 2 }]}>Function:</Text>
                     </View>
                     <View style={styles.infoRow}>
                         <Text style={styles.value}>{product.ionicity}</Text>
                         <Text style={[styles.value, { flex: 2 }]}>{product.function}</Text>
                     </View>
+                    <View style={styles.emptyRow} />
                     <View style={styles.infoRow}>
-                        <Text style={styles.value}>Applicable Formulation Types:</Text>
-                        <Text style={[styles.value, { flex: 2 }]}>{product.formulation_types.join(' | ')}</Text>
+                        <Text style={[styles.value, styles.valueItalic]}>Applicable Formulation Types:</Text>
+                        <div style={{ flex: 2, flexDirection: 'column' }} >
+                            <Text style={[styles.value, { flex: 2, paddingBottom: 10 }]}>{formulationTypes.join('   ')}</Text>
+                            <Text style={[styles.value, { flex: 2 }]}>{formulationTypes.map(f => product.formulation_types.includes(f) ? f : '').join('   ')}</Text>
+                        </div>
                     </View>
                     <div style={styles.sectionDivider} />
                 </View>
@@ -176,7 +183,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 24,
+        marginBottom: 12,
     },
     headerLeft: {
         flexDirection: 'row',
@@ -192,7 +199,7 @@ const styles = StyleSheet.create({
         maxWidth: '45%',
     },
     recommendedLabel: {
-        fontSize: 14,
+        fontSize: 16,
         letterSpacing: 0.5,
         fontWeight: 'medium',
     },
@@ -209,13 +216,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     section: {
-        marginBottom: 18,
+        marginBottom: 12,
     },
     sectionTitle: {
         fontSize: 11,
         fontWeight: 'bold',
-        color: '#0070C0',
-        marginBottom: 8,
+        color: '#000',
+        marginBottom: 4,
     },
     bodyText: {
         fontSize: 9,
@@ -232,7 +239,7 @@ const styles = StyleSheet.create({
         minHeight: 16,
     },
     tableHeaderRow: {
-        backgroundColor: '#5DE2E7',
+        backgroundColor: '#95DCF7',
     },
     tableHeaderCell: {
         fontSize: 9,
@@ -258,12 +265,14 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#000000', // black line
+        opacity: 0.5,
     },
     sectionDivider: {
         marginBottom: 6,
         marginTop: 6,
         borderBottomWidth: 0.5,
         borderBottomColor: '#000000', // black line
+        opacity: 0.5,
     },
     infoRow: {
         flexDirection: "row",
@@ -280,5 +289,13 @@ const styles = StyleSheet.create({
         lineHeight: 1.4,
         color: 'black',
         fontWeight: 'bold'
+    },
+    valueItalic: {
+        fontStyle: 'italic'
+    },
+    emptyRow: {
+        height: "20px",
+        backgroundColor: '#95DCF7',
+        marginVertical: 4,
     },
 });
