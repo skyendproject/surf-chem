@@ -11,10 +11,10 @@ export async function GET(
     { params }: { params: { id: string } },
 ) {
     const { id } = await params
-    await getFormulationTypes()
+    const formulationTypes = await getFormulationTypes()
     const product = await getProduct(id) as Product;
     const stream = await renderToStream(
-        <ProductPDF product={product} />,
+        <ProductPDF product={product} formulationTypes={formulationTypes} />,
     );
     const filename = (product.name || product.chemical_name).replace(/[^\x00-\x7F]/g, "");
     return new NextResponse(stream as unknown as ReadableStream, {
