@@ -6,12 +6,15 @@ import { FormulationFilters } from "@/components/formulation-filters";
 import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Formulations } from "@/data/formulations";
-import { getFormulations } from "@/lib/backend";
+import { getFormulations, getFormulationTypes } from "@/lib/backend";
 import { Filter } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 export default function FormulationGuidesPage() {
   const [formulations, setFormulations] = useState<Formulations[]>([])
+  const [formulationTypes, setFormulationTypes] = useState<string[]>([])
+  const [formulationFunctions, setFormulationFunctions] = useState<Record<string, string>[]>([])
+
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [filters, setFilters] = useState<Record<string, string[]>>({});
@@ -25,23 +28,6 @@ export default function FormulationGuidesPage() {
     }
 
     return formulations.filter((formulation) => {
-      // Build a comprehensive searchable text from all formulation fields
-      const allProperties = [
-        ...(formulation.properties || []),
-        ...(formulation.functions || [])
-      ];
-
-      // Create a searchable text string from all fields
-      const searchableText = [
-        formulation.title || '',
-        formulation.description || '',
-        formulation.fullDescription || '',
-        formulation.code || '',
-        ...allProperties.map(prop => prop.title || ''),
-        ...allProperties.map(prop => prop.type || ''),
-        ...allProperties.map(prop => prop.result || ''),
-      ].join(' ').toUpperCase();
-
       // For each filter category, check if at least one value matches
       return Object.entries(filters).every(([filterKey, filterValues]) => {
         // Skip empty filter categories
@@ -50,30 +36,32 @@ export default function FormulationGuidesPage() {
         // Check if any of the selected filter values appear in the searchable text
         return filterValues.some(filterValue => {
           const upperFilter = filterValue.toUpperCase().trim();
-          
-          // Special handling for formula type abbreviations
-          if (filterKey === "formula type") {
-            // Extract abbreviation from filter value (e.g., "Suspension Concentrates (SC)" -> "SC")
-            const abbreviationMatch = upperFilter.match(/\(([A-Z]+)\)/);
-            if (abbreviationMatch) {
-              const abbreviation = abbreviationMatch[1];
-              if (searchableText.includes(abbreviation)) {
-                return true;
-              }
-            }
-            // Also check if the full filter text appears
+
+          if (filterKey === "formulationType") {
+            const searchableText = [
+              formulation.title || '',
+              formulation.description || '',
+              formulation.type || '',
+              formulation.fullDescription || ''
+            ].join(' ').toUpperCase();
             return searchableText.includes(upperFilter);
           }
 
-          // Handle comma-separated values (e.g., "METHANOL, XYLENE")
-          if (upperFilter.includes(',')) {
-            const parts = upperFilter.split(',').map(p => p.trim()).filter(p => p.length > 0);
-            // If any part matches, consider it a match
-            return parts.some(part => searchableText.includes(part));
+          if (filterKey === "formulationFunctionTitle") {
+            const searchableText = [
+              ...formulation.functions?.map(f => f.title || '') || [],
+            ].join(' ').toUpperCase();
+            return searchableText.includes(upperFilter);
           }
 
-          // For all other filters, simply check if the filter value text appears anywhere
-          return searchableText.includes(upperFilter);
+          if (filterKey === "formulationFunctionType") {
+            const searchableText = [
+              ...formulation.functions?.map(f => f.type || '') || [],
+            ].join(' ').toUpperCase();
+            return searchableText.includes(upperFilter);
+          }
+
+          return true;
         });
       });
     });
@@ -93,7 +81,14 @@ export default function FormulationGuidesPage() {
   };
 
   useEffect(() => {
-    getFormulations().then(setFormulations)
+    getFormulationTypes().then(async (types) => {
+      const formulations = await getFormulations();
+      const functions = Array.from(formulations.flatMap(f => f.functions || []))
+
+      setFormulations(formulations)
+      setFormulationTypes(Array.from(new Set(types)));
+      setFormulationFunctions(Array.from(new Set(functions)));
+    })
     return () => { };
   }, []);
 
@@ -180,7 +175,11 @@ export default function FormulationGuidesPage() {
               className={`lg:w-72 ${isMobileFilterOpen ? "block" : "hidden lg:block"
                 }`}
             >
-              <FormulationFilters onFilterChange={handleFilterChange} />
+              <FormulationFilters
+                formulationTypes={formulationTypes}
+                formulationFunctions={formulationFunctions}
+                onFilterChange={handleFilterChange}
+              />
             </div>
 
             {/* Product Grid */}
