@@ -10,66 +10,80 @@ export default function FormulationGuidePDF({ formulation }: { formulation: Form
     //     </Document>
     // )
 
-
     const logoUrl = 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/surfactant-chemicals-admin-c4s3ys/assets/7w2j9vjhm651/logo.png'
 
     return (
         <Document>
             <Page size="A4" style={styles.page}>
-                <View style={styles.header}>
-                    <View style={styles.headerLeft}>
-                        <Image src={logoUrl} style={styles.logo} />
-                    </View>
-
-                    <View style={styles.headerRight}>
-                        <Text style={styles.recommendedLabel}>RECOMMENDED FORMULATION</Text>
-                        <Text style={styles.productTitleRed}>{formulation.title}</Text>
-                        <Text style={styles.productCodeGreen}>
-                            RECOMMENDED FORMULATION CODE: {formulation.code}
-                        </Text>
-                    </View>
-                </View>
-
-                <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>1. Short Description</Text>
-                    <Text style={styles.bodyText}>{formulation.description}</Text>
-                </View>
-
-                <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>2. Development & Recommended Formulation</Text>
-                    <Text style={styles.bodyText}>{formulation.detailedDescription}</Text>
-                </View>
-
-                <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>3. Guide Formulation</Text>
-                    <View style={styles.table}>
-                        <View style={[styles.tableRow, styles.tableHeaderRow]}>
-                            <Text style={[styles.tableHeaderCell, { flex: 2 }]}>
-                                {formulation.title}
+                <View style={styles.headerWrapper} fixed>
+                    <View style={styles.header}>
+                        <View style={styles.headerLeft}>
+                            <Image src={logoUrl} style={styles.logo} />
+                        </View>
+                        <View style={styles.headerRight}>
+                            <Text style={styles.recommendedLabel}>RECOMMENDED FORMULATION</Text>
+                            <Text style={styles.productTitleRed}>{formulation.title}</Text>
+                            <Text style={styles.productCodeGreen}>
+                                RECOMMENDED FORMULATION CODE: {formulation.code}
                             </Text>
-                            <Text style={[styles.tableCell, { flex: 2 }]}> </Text>
-                            <Text style={[styles.tableHeaderCell, { flex: 1 }]}>
+                        </View>
+                    </View>
+                    <div style={styles.emptySpace} />
+                    <div style={styles.emptySpace} />
+                    <div style={styles.divider} />
+                </View>
+                <View style={styles.body}>
+                    <View style={styles.section}>
+                        <Text style={styles.sectionTitle}>1. Short Description</Text>
+                        <Text style={styles.bodyText}>{formulation.description}</Text>
+                    </View>
+
+                    <View style={styles.section}>
+                        <Text style={styles.sectionTitle}>2. Development & Recommended Formulation</Text>
+                        <Text style={styles.bodyText}>{formulation.detailedDescription}</Text>
+                    </View>
+
+                    <div style={styles.emptySpace} />
+
+                    <View style={styles.section}>
+                        <Text style={styles.sectionTitle}>3. Guide Formulation</Text>
+                        <View style={styles.table}>
+
+                            <View style={[styles.tableRow, styles.bgNormal]}>
+                                <View style={[styles.tableHeaderCell, styles.flexEnd, styles.cellText]}><Text>{formulation.title}</Text></View>
+                                <View style={[styles.tableHeaderCell, styles.flexFixed, styles.valueItalic, styles.cellText, { fontWeight: 'normal' }]}><Text> {formulation.unit}</Text></View>
+                            </View>
+
+                            <View style={styles.tableRow}>
+                                <View style={[styles.tableCell, styles.flexEnd, styles.cellText, styles.bgNormal]}></View>
+                                <View style={[styles.tableCell, styles.flexEnd, styles.cellText, styles.bgDark]}><Text>Formulation traceability code</Text></View>
+                                <View style={[styles.tableCell, styles.flexFixed, styles.cellText, styles.bgDark]}><Text> {formulation.code}</Text></View>
+                            </View>
+
+                            {formulation.functions.map((row, idx) => (
+                                <View key={idx} style={styles.tableRow}>
+                                    <View key={idx} style={[styles.tableCell, styles.flexEnd, styles.cellText, styles.bgNormal]}><Text> {row.title}</Text></View>
+                                    <View key={idx} style={[styles.tableCell, styles.flexEnd, styles.cellText, idx % 2 == 1 ? styles.bgDark : styles.bgDarkest]}><Text> {row.type}</Text></View>
+                                    <View key={idx} style={[styles.tableCell, styles.flexFixed, styles.cellText, idx % 2 == 1 ? styles.bgDark : styles.bgDarkest]}><Text> {row.result}</Text></View>
+                                </View>
+                            ))}
+                        </View>
+                    </View>
+
+                    <View style={[styles.table, styles.section]}>
+                        <View style={styles.tableRow}>
+                            <Text style={[styles.tableCell, { flex: 2 }]}>
+                                Xanthan gum stock solution
+                            </Text>
+                            <Text style={[styles.tableCell, { flex: 1 }]}>
                                 {formulation.unit}
                             </Text>
                         </View>
 
-                        <View style={styles.tableRow}>
-                            <Text style={[styles.tableCell, { flex: 2 }]}> </Text>
-                            <Text style={[styles.tableCell, { flex: 2 }]}>
-                                Formulation traceability code
-                            </Text>
-                            <Text style={[styles.tableCell, { flex: 1 }]}>
-                                {formulation.code}
-                            </Text>
-                        </View>
-
-                        {formulation.functions.map((row, idx) => (
+                        {formulation.properties.filter(p => !p.type).map((row, idx) => (
                             <View key={idx} style={styles.tableRow}>
                                 <Text style={[styles.tableCell, { flex: 2 }]}>
                                     {row.title}
-                                </Text>
-                                <Text style={[styles.tableCell, { flex: 2 }]}>
-                                    {row.type}
                                 </Text>
                                 <Text style={[styles.tableCell, { flex: 1 }]}>
                                     {row.result}
@@ -77,70 +91,52 @@ export default function FormulationGuidePDF({ formulation }: { formulation: Form
                             </View>
                         ))}
                     </View>
-                </View>
 
-                <View style={[styles.table, styles.section]}>
-                    <View style={styles.tableRow}>
-                        <Text style={[styles.tableCell, { flex: 2 }]}>
-                            Xanthan gum stock solution
-                        </Text>
-                        <Text style={[styles.tableCell, { flex: 1 }]}>
-                            {formulation.unit}
-                        </Text>
+                    <View style={[styles.table, styles.section]}>
+                        <View style={styles.tableRow}>
+                            <Text style={[styles.tableCell, { flex: 2 }]}>Process parameters</Text>
+                            <Text style={[styles.tableCell, { flex: 1 }]}></Text>
+                        </View>
+
+                        {formulation.properties.filter(p => p.type).map((row, idx) => (
+                            <View key={idx} style={styles.tableRow}>
+                                <Text style={[styles.tableCell, { flex: 2 }]}>{row.title}</Text>
+                                <Text style={[styles.tableCell, { flex: 1 }]}>{row.result}</Text>
+                            </View>
+                        ))}
                     </View>
 
-                    {formulation.properties.filter(p => !p.type).map((row, idx) => (
-                        <View key={idx} style={styles.tableRow}>
-                            <Text style={[styles.tableCell, { flex: 2 }]}>
-                                {row.title}
-                            </Text>
-                            <Text style={[styles.tableCell, { flex: 1 }]}>
-                                {row.result}
-                            </Text>
-                        </View>
-                    ))}
-                </View>
+                    <div style={styles.emptySpace} />
 
-                <View style={[styles.table, styles.section]}>
-                    <View style={styles.tableRow}>
-                        <Text style={[styles.tableCell, { flex: 2 }]}>
-                            Process parameters
-                        </Text>
-                        <Text style={[styles.tableCell, { flex: 1 }]}></Text>
+                    <View style={styles.section}>
+                        <Text style={styles.sectionTitle}>4. Formulation Procedure</Text>
+                        <Text style={styles.bodyText}>{formulation.formulationProcedure}</Text>
                     </View>
 
-                    {formulation.properties.filter(p => p.type).map((row, idx) => (
-                        <View key={idx} style={styles.tableRow}>
-                            <Text style={[styles.tableCell, { flex: 2 }]}>
-                                {row.title}
-                            </Text>
-                            <Text style={[styles.tableCell, { flex: 1 }]}>
-                                {row.result}
-                            </Text>
-                        </View>
-                    ))}
-                </View>
+                    <div style={styles.emptySpace} />
 
-                <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>4. Formulation Procedure</Text>
-                    <Text style={styles.bodyText}>{formulation.formulationProcedure}</Text>
-                </View>
+                    <View style={[styles.section, { paddingLeft: 24 }]}>
+                        <Text style={[styles.sectionTitle, styles.valueItalic]}>5. Critical to watch</Text>
+                        <Text style={styles.bodyText}>{formulation.criticalInfo}</Text>
+                    </View>
 
-                <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>5. Critical to watch</Text>
-                    <Text style={styles.bodyText}>{formulation.criticalInfo}</Text>
+                    <View style={styles.divider} />
+                    <Text style={styles.bodyText}>
+                        The information in this publication is believed to be accurate and is given in good faith but no representation
+                        or warranty as to its completeness or accuracy is made. Suggestions for uses or applications are only
+                        opinions. Users are responsible for determining the suitability of these products for their own particular
+                        purpose. No representation or warranty, express or implied, is made with respect to information or products
+                        including without limitation warranties of merchantability or fitness for a particular purpose or non
+                        infringement of any third-party patent or other intellectual property rights including without limit copyright,
+                        trademark, and designs.
+                    </Text>
                 </View>
-
-                <View style={styles.divider} />
-                <Text style={styles.bodyText}>
-                    The information in this publication is believed to be accurate and is given in good faith but no representation
-                    or warranty as to its completeness or accuracy is made. Suggestions for uses or applications are only
-                    opinions. Users are responsible for determining the suitability of these products for their own particular
-                    purpose. No representation or warranty, express or implied, is made with respect to information or products
-                    including without limitation warranties of merchantability or fitness for a particular purpose or non
-                    infringement of any third-party patent or other intellectual property rights including without limit copyright,
-                    trademark, and designs.
-                </Text>
+                <View style={styles.footer} fixed>
+                    <View style={styles.header}>
+                        <View />
+                        <Text render={({ pageNumber, totalPages }) => `Page ${pageNumber} of ${totalPages}`} />
+                    </View>
+                </View>
             </Page>
         </Document>
     );
@@ -148,18 +144,27 @@ export default function FormulationGuidePDF({ formulation }: { formulation: Form
 
 const styles = StyleSheet.create({
     page: {
-        padding: 32,
+        flexDirection: 'column',
         fontFamily: 'Helvetica',
+    },
+    headerWrapper: {
+        padding: 14,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
     },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 24,
+    },
+    body: {
+        flex: 1,
+        paddingHorizontal: 32,
+        paddingVertical: 0,
     },
     headerLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        maxWidth: '55%',
+        maxWidth: '35%',
     },
     logo: {
         height: 50,
@@ -167,10 +172,10 @@ const styles = StyleSheet.create({
     },
     headerRight: {
         alignItems: 'flex-end',
-        maxWidth: '45%',
+        maxWidth: '65%',
     },
     recommendedLabel: {
-        fontSize: 14,
+        fontSize: 16,
         letterSpacing: 0.5,
         fontWeight: 'medium',
     },
@@ -187,45 +192,58 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     section: {
-        marginBottom: 18,
+        marginBottom: 6,
     },
     sectionTitle: {
         fontSize: 11,
         fontWeight: 'bold',
         color: '#0070C0',
-        marginBottom: 8,
+        marginBottom: 4,
     },
     bodyText: {
         fontSize: 9,
-        lineHeight: 1.4,
+        lineHeight: 1.2,
+        marginBottom: 6,
         color: '#333333',
     },
     table: {
         marginTop: 4,
         borderWidth: 0.5,
         borderColor: 'black',
+        borderBottomWidth: 0,
+        borderRightWidth: 0,
     },
     tableRow: {
         flexDirection: 'row',
-        minHeight: 16,
     },
-    tableHeaderRow: {
-        backgroundColor: '#3B8E22',
+    flexEnd: {
+        flex: 1,
+        justifyContent: 'flex-end',
+    },
+    flexFixed: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        maxWidth: "100px",
     },
     tableHeaderCell: {
         fontSize: 9,
         fontWeight: 'bold',
-        color: '#FFFFFF',
-        paddingVertical: 4,
+        color: 'black',
+        paddingVertical: 2,
         paddingHorizontal: 6,
         borderRightWidth: 0.5,
         borderRightColor: 'black',
         borderBottomWidth: 0.5,
         borderBottomColor: 'black',
     },
+    cellText: {
+        fontSize: 9,
+        color: 'black',
+    },
     tableCell: {
         fontSize: 9,
-        paddingVertical: 4,
+        paddingVertical: 2,
+        color: 'black',
         paddingHorizontal: 6,
         borderRightWidth: 0.5,
         borderRightColor: 'black',
@@ -233,8 +251,36 @@ const styles = StyleSheet.create({
         borderBottomColor: 'black',
     },
     divider: {
-        marginBottom: 10,
+        margin: 0,
         borderBottomWidth: 1,
-        borderBottomColor: '#000000', // black line
-    }
+        borderBottomColor: '#000000',
+        opacity: 0.5,
+    },
+    valueItalic: {
+        fontStyle: 'italic'
+    },
+    emptySpace: {
+        height: "10px",
+    },
+    footer: {
+        margin: 14,
+        paddingHorizontal: 32,
+        paddingTop: 12,
+        paddingVertical: 12,
+        borderTopWidth: 1,
+        borderTopColor: 'black',
+        fontSize: 9,
+        color: '#666666',
+    },
+    bgNormal: {
+        backgroundColor: '#51c81e',
+    },
+    bgDark: {
+        backgroundColor: '#025f00',
+        color: "#fff",
+    },
+    bgDarkest: {
+        backgroundColor: '#1f4500',
+        color: "#fff",
+    },
 });
