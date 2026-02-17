@@ -36,7 +36,7 @@ export function FormulationFilters({
 
   const filterSections: FilterSection[] = [
     {
-      title: "Formulation Type",
+      title: "Formulation Types",
       items: formulationTypes,
       key: "formulationType",
     },

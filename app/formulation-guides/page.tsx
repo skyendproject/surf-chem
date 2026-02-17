@@ -40,6 +40,7 @@ export default function FormulationGuidesPage() {
           if (filterKey === "formulationType") {
             const searchableText = [
               formulation.type || '',
+              formulation.title || ''
             ].join(' ').toUpperCase();
             return searchableText.includes(upperFilter);
           }
