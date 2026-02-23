@@ -85,8 +85,18 @@ export default function ProductPDF({ product, formulationTypes }: { product: Pro
                         <View style={styles.infoRow}>
                             <Text style={[styles.value, styles.valueItalic]}>Applicable Formulation Types:</Text>
                             <div style={{ flex: 2, flexDirection: 'column' }} >
-                                <Text style={[styles.value, { paddingBottom: 12 }]}>{formulationTypes.join('   ')}</Text>
-                                <Text style={[styles.value]}>{formulationTypes.map(f => product.formulation_types.includes(f) ? f : '').join('   ')}</Text>
+                                <div style={{ flexDirection: 'row' }} >{
+                                    formulationTypes.map(f =>
+                                        <Text style={[styles.tableCellCompressed, { borderBottomWidth: 0 }]}>{f}</Text>
+                                    )
+                                }</div>
+                                <div style={{ flexDirection: 'row' }} >{
+                                    formulationTypes.map(f =>
+                                        <Text style={[styles.tableCellCompressed]}>{
+                                            product.formulation_types.includes(f) ? 'X' : ''
+                                        }</Text>
+                                    )
+                                }</div>
                             </div>
                         </View>
                     </View>
@@ -184,7 +194,7 @@ export default function ProductPDF({ product, formulationTypes }: { product: Pro
                     <View style={styles.header}>
                         <View style={[{ flexDirection: 'column' }]}>
                             <Text>{"Revision #: " + product.rev_no}</Text>
-                            <Text>{"Revision Date: " + product.manufactured_at}</Text>
+                            <Text>{"Revision Date: " + product.manufactured_at.split(',')[0]}</Text>
                         </View>
                         <Text render={({ pageNumber, totalPages }) => `Page ${pageNumber} of ${totalPages}`} />
                     </View>
@@ -273,7 +283,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     tableAltRow: {
-        backgroundColor: '#95DCF7',
+        backgroundColor: '#95DDF6',
     },
     tableHeaderCell: {
         fontSize: 9,
@@ -303,6 +313,15 @@ const styles = StyleSheet.create({
         borderRightColor: 'black',
         borderBottomWidth: 0.5,
         borderBottomColor: 'black',
+    },
+    tableCellCompressed: {
+        fontSize: 9,
+        color: 'black',
+        borderWidth: 0.5,
+        borderColor: 'black',
+        paddingVertical: 2,
+        paddingHorizontal: 6,
+        width: '50px',
     },
     divider: {
         margin: 0,
@@ -337,7 +356,7 @@ const styles = StyleSheet.create({
     },
     emptyRow: {
         height: "20px",
-        backgroundColor: '#95DCF7',
+        backgroundColor: '#95DDF6',
         marginVertical: 4,
     },
     emptySpace: {

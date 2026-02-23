@@ -110,10 +110,8 @@ export default function FormulationGuidePDF({ formulation }: { formulation: Form
 
                     <View style={styles.section}>
                         <Text style={styles.sectionTitle}>4. Formulation Procedure</Text>
-                        <Text style={styles.bodyText}>{formulation.formulationProcedure}</Text>
+                        <Text style={styles.bodyText}>{formulation.formulationProcedure?.toString().replaceAll('\n', '\n\n')}</Text>
                     </View>
-
-                    <div style={styles.emptySpace} />
 
                     <View style={[styles.section, { paddingLeft: 24 }]}>
                         <Text style={[styles.sectionTitle, styles.valueItalic]}>5. Critical to watch</Text>
@@ -133,7 +131,10 @@ export default function FormulationGuidePDF({ formulation }: { formulation: Form
                 </View>
                 <View style={styles.footer} fixed>
                     <View style={styles.header}>
-                        <View />
+                        <View style={[{ flexDirection: 'column' }]}>
+                            <Text>{"Revision #: " + formulation.issue_no}</Text>
+                            <Text>{"Revision Date: " + formulation.issued_at.split(',')[0]}</Text>
+                        </View>
                         <Text render={({ pageNumber, totalPages }) => `Page ${pageNumber} of ${totalPages}`} />
                     </View>
                 </View>
@@ -273,14 +274,14 @@ const styles = StyleSheet.create({
         color: '#666666',
     },
     bgNormal: {
-        backgroundColor: '#51c81e',
+        backgroundColor: '#D9F3D0',
     },
     bgDark: {
-        backgroundColor: '#025f00',
+        backgroundColor: '#B3E5A1',
         color: "#fff",
     },
     bgDarkest: {
-        backgroundColor: '#1f4500',
+        backgroundColor: '#4EA72E',
         color: "#fff",
     },
 });
