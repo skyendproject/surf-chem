@@ -7,18 +7,23 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { getRegionalContacts } from "@/lib/backend";
+import { getEventBar, getRegionalContacts } from "@/lib/backend";
 import { auth } from "@/lib/firebase";
 import { Button } from "@radix-ui/themes";
 import { signOut } from "firebase/auth";
 import { ChevronDown, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { ContactModal } from "./contact-modal";
 import { RegionalContact } from "./regional-contact-page";
 
+export interface EventBar {
+  title: string,
+  highlights: string[],
+  redirects: string[],
+}
 
 export function Navigation() {
   const router = useRouter();
@@ -57,6 +62,16 @@ export function Navigation() {
     return () => { }
   }, [])
 
+  const [eventBar, setEventBar] = useState<EventBar>({
+    title: '',
+    highlights: [],
+    redirects: []
+  });
+  useEffect(() => {
+    getEventBar().then(setEventBar)
+    return () => { }
+  }, [])
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
@@ -74,25 +89,18 @@ export function Navigation() {
   return (
     <header className="bg-white shadow-sm relative">
       <div className="bg-gray-100">
-        <p className="text-center font-bold text-[18px] py-4 px-4">
-          We will be attending
-          <a
-            href="/news/10kgmPfYmVMiO9uZX474"
-            className="text-greenCustom"
-          >
-            {" "}
-            CAC2025{" "}
-          </a>
-          in Shanghai March 17-19.{" "}
-          <a
-            href="mailto:AtifKhalid@surfchem.co.uk?subject=Meeting%20at%20CAC%20Shanghai"
-            className="text-greenCustom"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Schedule a Meeting
-          </a>{" "}
-          or visit us at Booth #72F07
+        <p className="text-center font-bold text-[18px] py-4 px-4">{
+          eventBar.title.split(' ').map(word => {
+            if (eventBar.highlights.includes(word)) {
+              const tag = ` ${word}`
+              return <a
+                href={eventBar.redirects[eventBar.highlights.indexOf(word)] || ""}
+                className="text-greenCustom"
+              >{tag}</a>
+            }
+            return ` ${word}`
+          })
+        }
         </p>
       </div>
 

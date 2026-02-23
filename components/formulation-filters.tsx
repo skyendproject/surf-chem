@@ -22,12 +22,9 @@ export function FormulationFilters({
   const [expandedSections, setExpandedSections] = useState<
     Record<string, boolean>
   >({
-    solvent: true,
-    surfactantCarrier: true,
-    stabilizer: true,
-    surfactantAdjuvant: true,
-    surfactantDispersant: true,
-    active: true,
+    formulationType: true,
+    formulationFunctionTitle: true,
+    formulationFunctionType: true,
   });
 
   const [selectedFilters, setSelectedFilters] = useState<
