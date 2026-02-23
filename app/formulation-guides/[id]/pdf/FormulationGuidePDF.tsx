@@ -50,21 +50,21 @@ export default function FormulationGuidePDF({ formulation }: { formulation: Form
                         <View style={styles.table}>
 
                             <View style={[styles.tableRow, styles.bgDarkest]}>
-                                <View style={[styles.tableHeaderCell, styles.flexEnd, styles.cellText]}><Text>{formulation.title}</Text></View>
-                                <View style={[styles.tableHeaderCell, styles.flexFixed, styles.valueItalic, styles.cellText, { fontWeight: 'normal' }]}><Text> {formulation.unit}</Text></View>
+                                <View style={[styles.tableHeaderCell, styles.flexEnd]}><Text>{formulation.title}</Text></View>
+                                <View style={[styles.tableHeaderCell, styles.flexFixed, styles.valueItalic, { fontWeight: 'normal' }]}><Text> {formulation.unit}</Text></View>
                             </View>
 
                             <View style={styles.tableRow}>
-                                <View style={[styles.tableCell, styles.flexEnd, styles.cellText, styles.bgDarkest]}></View>
-                                <View style={[styles.tableCell, styles.flexEnd, styles.cellText, styles.bgDark]}><Text>Formulation traceability code</Text></View>
-                                <View style={[styles.tableCell, styles.flexFixed, styles.cellText, styles.bgDark]}><Text> {formulation.code}</Text></View>
+                                <View style={[styles.tableCell, styles.flexEnd, styles.bgDarkest]}></View>
+                                <View style={[styles.tableCell, styles.flexEnd, styles.bgDark]}><Text>Formulation traceability code</Text></View>
+                                <View style={[styles.tableCell, styles.flexFixed, styles.bgDark]}><Text> {formulation.code}</Text></View>
                             </View>
 
                             {formulation.functions.map((row, idx) => (
                                 <View key={idx} style={styles.tableRow}>
-                                    <View key={idx} style={[styles.tableCell, styles.flexEnd, styles.cellText, styles.bgDarkest]}><Text> {row.title}</Text></View>
-                                    <View key={idx} style={[styles.tableCell, styles.flexEnd, styles.cellText, idx % 2 == 1 ? styles.bgDark : styles.bgNormal]}><Text> {row.type}</Text></View>
-                                    <View key={idx} style={[styles.tableCell, styles.flexFixed, styles.cellText, idx % 2 == 1 ? styles.bgDark : styles.bgNormal]}><Text> {row.result}</Text></View>
+                                    <View key={idx} style={[styles.tableCell, styles.flexEnd, styles.bgDarkest]}><Text> {row.title}</Text></View>
+                                    <View key={idx} style={[styles.tableCell, styles.flexEnd, idx % 2 == 1 ? styles.bgDark : styles.bgNormal]}><Text> {row.type}</Text></View>
+                                    <View key={idx} style={[styles.tableCell, styles.flexFixed, idx % 2 == 1 ? styles.bgDark : styles.bgNormal]}><Text> {row.result}</Text></View>
                                 </View>
                             ))}
                         </View>
@@ -229,17 +229,13 @@ const styles = StyleSheet.create({
     tableHeaderCell: {
         fontSize: 9,
         fontWeight: 'bold',
-        color: 'black',
+        color: '#ffffff',
         paddingVertical: 2,
         paddingHorizontal: 6,
         borderRightWidth: 0.5,
         borderRightColor: 'black',
         borderBottomWidth: 0.5,
         borderBottomColor: 'black',
-    },
-    cellText: {
-        fontSize: 9,
-        color: 'black',
     },
     tableCell: {
         fontSize: 9,
