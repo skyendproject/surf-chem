@@ -63,12 +63,12 @@ export default function ProductPDF({ product, formulationTypes }: { product: Pro
 
                     <View style={styles.section}>
                         <Text style={styles.sectionTitle}>1. Introduction</Text>
-                        <Text style={styles.bodyText}>{product.introduction_md}</Text>
+                        <Text style={styles.bodyText}>{product.introduction_md.trim()}</Text>
                     </View>
 
                     <View style={styles.section}>
                         <Text style={styles.sectionTitle}>2. Application & Use</Text>
-                        <Text style={styles.bodyText}>{product.application_md}</Text>
+                        <Text style={styles.bodyText}>{product.application_md.trim()}</Text>
                     </View>
 
                     <div style={styles.sectionDivider} />
@@ -169,8 +169,8 @@ export default function ProductPDF({ product, formulationTypes }: { product: Pro
 
                     <View style={styles.section}>
                         <Text style={styles.sectionTitle}>5. Handling and storage</Text>
-                        <Text style={styles.bodyText}>{product.storage_1_md}</Text>
-                        <Text style={styles.bodyText}>{product.storage_2_md}</Text>
+                        <Text style={styles.bodyText}>{product.storage_1_md.trim()}</Text>
+                        <Text style={styles.bodyText}>{product.storage_2_md.trim()}</Text>
                     </View>
 
                     <View style={styles.section}>

@@ -35,12 +35,12 @@ export default function FormulationGuidePDF({ formulation }: { formulation: Form
                 <View style={styles.body}>
                     <View style={styles.section}>
                         <Text style={styles.sectionTitle}>1. Short Description</Text>
-                        <Text style={styles.bodyText}>{formulation.description}</Text>
+                        <Text style={styles.bodyText}>{formulation.description.trim()}</Text>
                     </View>
 
                     <View style={styles.section}>
                         <Text style={styles.sectionTitle}>2. Development & Recommended Formulation</Text>
-                        <Text style={styles.bodyText}>{formulation.detailedDescription}</Text>
+                        <Text style={styles.bodyText}>{formulation.detailedDescription.trim()}</Text>
                     </View>
 
                     <div style={styles.emptySpace} />
@@ -110,14 +110,14 @@ export default function FormulationGuidePDF({ formulation }: { formulation: Form
 
                     <View style={styles.section}>
                         <Text style={styles.sectionTitle}>4. Formulation Procedure</Text>
-                        <Text style={styles.bodyText}>{formulation.formulationProcedure?.toString().replaceAll('\n', '\n\n')}</Text>
+                        <Text style={styles.bodyText}>{formulation.formulationProcedure?.trim().replaceAll('\n', '\n\n')}</Text>
                     </View>
 
                     <div style={styles.emptySpace} />
 
                     <View style={[styles.section, { paddingLeft: 24 }]}>
                         <Text style={[styles.sectionTitle, styles.valueItalic]}>5. Critical to watch</Text>
-                        <Text style={styles.bodyText}>{formulation.criticalInfo}</Text>
+                        <Text style={styles.bodyText}>{formulation.criticalInfo?.trim()}</Text>
                     </View>
 
                     <View style={styles.divider} />
