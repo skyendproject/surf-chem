@@ -80,7 +80,7 @@ export default function FormulationGuidePDF({ formulation }: { formulation: Form
                             </Text>
                         </View>
 
-                        {formulation.properties.filter(p => !p.type).map((row, idx) => (
+                        {formulation.properties.map((row, idx) => (
                             <View key={idx} style={styles.tableRow}>
                                 <Text style={[styles.tableCell, { flex: 2 }]}>
                                     {row.title}
@@ -98,7 +98,7 @@ export default function FormulationGuidePDF({ formulation }: { formulation: Form
                             <Text style={[styles.tableCell, { flex: 1 }]}></Text>
                         </View>
 
-                        {formulation.properties.filter(p => p.type).map((row, idx) => (
+                        {formulation.parameters.map((row, idx) => (
                             <View key={idx} style={styles.tableRow}>
                                 <Text style={[styles.tableCell, { flex: 2 }]}>{row.title}</Text>
                                 <Text style={[styles.tableCell, { flex: 1 }]}>{row.result}</Text>
@@ -112,6 +112,8 @@ export default function FormulationGuidePDF({ formulation }: { formulation: Form
                         <Text style={styles.sectionTitle}>4. Formulation Procedure</Text>
                         <Text style={styles.bodyText}>{formulation.formulationProcedure?.toString().replaceAll('\n', '\n\n')}</Text>
                     </View>
+
+                    <div style={styles.emptySpace} />
 
                     <View style={[styles.section, { paddingLeft: 24 }]}>
                         <Text style={[styles.sectionTitle, styles.valueItalic]}>5. Critical to watch</Text>

@@ -22,6 +22,7 @@ export interface Formulation {
   tags: string[];
   functions: FormulationProperty[],
   properties: FormulationProperty[],
+  parameters: FormulationProperty[],
   issue_no: string;
   issued_at: string;
 }
