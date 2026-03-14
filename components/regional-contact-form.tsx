@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { createDocumentInSubCol } from "@/lib/common";
+import { sendContactFormNotification } from "@/lib/emailer";
 import { useState } from "react";
 
 export function RegionalContactForm({ id }: { id: string }) {
@@ -48,6 +49,12 @@ export function RegionalContactForm({ id }: { id: string }) {
       regional_name: formData.name,
       description: formData.project,
     });
+    sendContactFormNotification({
+      name: formData.name,
+      email: formData.email,
+      company: formData.company,
+      message: formData.project,
+    })
 
     setIsSubmitted(true);
     setIsSubmitting(false);
@@ -104,9 +111,9 @@ export function RegionalContactForm({ id }: { id: string }) {
     <div
       className="
         relative flex justify-center items-start overflow-hidden
-        min-h-[450px] 
-        md:min-h-[650px] 
-        pt-0 md:pt-4 
+        min-h-[450px]
+        md:min-h-[650px]
+        pt-0 md:pt-4
         pb-8 md:pb-10
       "
     >
@@ -125,8 +132,8 @@ export function RegionalContactForm({ id }: { id: string }) {
       {/* Form Box */}
       <div
         className="
-          bg-white rounded-2xl shadow-xl 
-          px-8 py-6 
+          bg-white rounded-2xl shadow-xl
+          px-8 py-6
           md:px-10 md:py-8
           relative z-10
           w-full

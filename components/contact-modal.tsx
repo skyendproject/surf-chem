@@ -9,9 +9,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { createDocument } from "@/lib/common";
-import { ReactNode, useState } from "react";
+import { sendLetsTalkNotification, sendProductInquiry } from '@/lib/emailer';
 import { useRouter } from "next/navigation";
-
+import { ReactNode, useState } from "react";
 export function ContactModal({
   triggerText = "Let's Talk",
   triggerClassName = "",
@@ -36,6 +36,21 @@ export function ContactModal({
       email: data.get("email"),
       description: data.get("description"),
     })
+
+    if (triggerText == "Let's Talk") {
+      sendLetsTalkNotification({
+        name: data.get("first_name") + ' ' + data.get("last_name"),
+        email: data.get("email"),
+        message: data.get("description"),
+      });
+    } else {
+      sendProductInquiry({
+        name: data.get("first_name") + ' ' + data.get("last_name"),
+        email: data.get("email"),
+        message: data.get("description"),
+      })
+    }
+
     setIsOpen(false)
     router.push('/inquiry-confirmation')
   };

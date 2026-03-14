@@ -72,7 +72,7 @@ export default function JobDetailsPage({ params }: JobDetailsPageProps) {
               className="prose max-w-none"
               dangerouslySetInnerHTML={{ __html: job?.jobSummary || '' }}
             /> :
-            <ApplicationForm id={id} />
+            <ApplicationForm id={id} title={job?.title ?? ''} />
           }
         </div>
       </div>

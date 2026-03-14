@@ -1,12 +1,12 @@
 "use client";
 
 import { createDocumentInSubCol, uploadFile } from "@/lib/common";
-import { redirect } from "next/navigation";
+import { sendCareerApplication } from "@/lib/emailer";
 import { useRouter } from "next/navigation";
 import type React from "react";
 import { useState } from "react";
 
-export default function ApplicationForm({ id }: { id: string }) {
+export default function ApplicationForm({ id, title }: { id: string, title: string }) {
   const router = useRouter();
   const [formData, setFormData] = useState({
     fullName: "",
@@ -61,6 +61,13 @@ export default function ApplicationForm({ id }: { id: string }) {
         eligilble_in_us: formData.eligibleToWork,
         reason_to_apply: formData.whyApplying,
         resume_pdf: await uploadFile(formData.cv!),
+      })
+
+      sendCareerApplication({
+        name: formData.fullName,
+        email: formData.email,
+        position: title,
+        message: formData.whyApplying,
       })
       router.push("/thank-you");
       // redirect('/thank-you')

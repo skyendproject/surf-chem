@@ -4,13 +4,14 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { createDocument } from "@/lib/common";
+import { sendActivationPendingEmail, sendAdminRegistrationNotification } from "@/lib/emailer";
 import { auth } from "@/lib/firebase";
 import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { serverTimestamp } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
-import { CountryDropdown } from "react-country-region-selector";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { CountryDropdown } from "react-country-region-selector";
+import { Button } from "./ui/button";
 
 
 export function RegisterCard() {
@@ -49,6 +50,15 @@ export function RegisterCard() {
         is_approved: false,
         created_time: serverTimestamp(),
       }, creds.user.uid);
+
+      sendActivationPendingEmail(data.get("email"), data.get("first_name"))
+      sendAdminRegistrationNotification({
+        firstName: data.get("first_name"),
+        lastName: data.get("last_name"),
+        email: data.get("email"),
+        company: data.get("company"),
+        country: selectedCountry,
+      })
 
       await signOut(auth);
       router.push('/account-activation')
