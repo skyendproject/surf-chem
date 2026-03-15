@@ -1,33 +1,60 @@
 import sgMail from '@sendgrid/mail';
 import { NextResponse } from 'next/server';
 
-// Initialize SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+const allowedOrigins = [
+    'https://www.surfchem.co.uk',
+    'https://surfchem-admin.flutterflow.app',
+];
+
+export function OPTIONS(request) {
+    const origin = request.headers.get('origin');
+    const isAllowed = allowedOrigins.includes(origin);
+
+    return NextResponse.json(null, {
+        status: 204,
+        headers: {
+            ...(isAllowed && { 'Access-Control-Allow-Origin': origin }),
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        },
+    });
+}
+
 export async function POST(request) {
+    const origin = request.headers.get('origin');
+    const isAllowed = allowedOrigins.includes(origin);
 
     try {
-        // Parse the JSON body from the request
         const body = await request.json();
         const { to, subject, content } = body;
 
-        const msg = {
-            to: to,
-            from: 'notifications@surfchem.co.uk', // Must be verified in SendGrid
-            subject: subject,
+        await sgMail.send({
+            to,
+            from: 'notifications@surfchem.co.uk',
+            subject,
             html: content,
-        };
+        });
 
-        await sgMail.send(msg);
-
-        return NextResponse.json({ message: 'Email sent successfully' }, { status: 200 });
+        return NextResponse.json(
+            { message: 'Email sent successfully' },
+            {
+                status: 200,
+                headers: isAllowed
+                    ? { 'Access-Control-Allow-Origin': origin }
+                    : {},
+            }
+        );
     } catch (error) {
-        console.error('SendGrid Error:', error);
-        console.log(error.response);
-        console.log(error.response.body.errors);
         return NextResponse.json(
             { error: 'Failed to send email', details: error.message },
-            { status: 500 }
+            {
+                status: 500,
+                headers: isAllowed
+                    ? { 'Access-Control-Allow-Origin': origin }
+                    : {},
+            }
         );
     }
 }
