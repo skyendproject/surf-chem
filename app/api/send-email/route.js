@@ -12,7 +12,7 @@ export function OPTIONS(request) {
     const origin = request.headers.get('origin');
     const isAllowed = allowedOrigins.includes(origin);
 
-    return NextResponse.json(null, {
+    return new NextResponse(null, {
         status: 204,
         headers: {
             ...(isAllowed && { 'Access-Control-Allow-Origin': origin }),
