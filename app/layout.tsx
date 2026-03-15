@@ -1,11 +1,30 @@
+import ScrollToTop from '@/components/ScrollToTop'
 import type { Metadata } from 'next'
 import './globals.css'
-import ScrollToTop from '@/components/ScrollToTop'
 
 export const metadata: Metadata = {
   title: 'Surfactant Chemicals',
   description: 'Innovative Surface Chemistry',
   generator: 'v0.dev',
+  openGraph: {
+    title: 'Surfactant Chemicals',
+    description: 'Innovative Surface Chemistry',
+    url: "https://surfchem.co.uk/",
+    siteName: "surfchem.co.uk",
+    images: [
+      {
+        url: "public/assets/logo.png",
+        width: 255,
+        height: 88,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: 'Surfactant Chemicals',
+    description: 'Innovative Surface Chemistry',
+    images: ["public/assets/logo.png"],
+  },
 }
 
 
