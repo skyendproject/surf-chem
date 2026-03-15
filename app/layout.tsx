@@ -4,7 +4,7 @@ import ScrollToTop from '@/components/ScrollToTop'
 
 export const metadata: Metadata = {
   title: 'Surfactant Chemicals',
-  description: 'Created with v0',
+  description: 'Innovative Surface Chemistry',
   generator: 'v0.dev',
 }
 
