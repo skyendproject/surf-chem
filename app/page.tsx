@@ -185,7 +185,7 @@ export default function LandingPage() {
               <div className="w-full aspect-video">
   <iframe
     className="w-full h-full"
-    src="https://youtu.be/FTRIfP282gI?si=BtyRrdWpw5wNF-A1"
+    src="https://m.youtube.com/watch?v=FTRIfP282gI&pp=iggCQAE%3D"
     title="YouTube video"
     frameBorder="0"
     allow="autoplay; encrypted-media"
