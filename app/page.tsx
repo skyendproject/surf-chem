@@ -183,14 +183,14 @@ export default function LandingPage() {
             {/* Video modal content */}
             <div className="w-full aspect-video overflow-hidden shadow-lg bg-black">
               <div className="w-full aspect-video">
-  <iframe
-    className="w-full h-full"
-    src="https://m.youtube.com/watch?v=FTRIfP282gI&pp=iggCQAE%3D"
-    title="YouTube video"
-    frameBorder="0"
-    allow="autoplay; encrypted-media"
-    allowFullScreen
-  />
+<iframe
+  className="w-full h-full"
+  src="https://www.youtube.com/embed/FTRIfP282gI"
+  title="YouTube video"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+/>
 </div>
             </div>
           </div>
