@@ -193,7 +193,7 @@ export default function LandingPage() {
                 preload="metadata"
                 playsInline
               >
-                <source src="/assets/BigBuckBunny.mp4" type="video/mp4" />
+                <source src="https://youtu.be/FTRIfP282gI?si=BtyRrdWpw5wNF-A1" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
