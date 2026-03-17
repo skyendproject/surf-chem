@@ -182,20 +182,16 @@ export default function LandingPage() {
 
             {/* Video modal content */}
             <div className="w-full aspect-video overflow-hidden shadow-lg bg-black">
-              <video
-                // controls
-                // className="w-full h-full object-cover"
-                // preload="metadata"
-
-                className="w-full h-auto max-h-[60vh] sm:max-h-[70vh] md:max-h-[80vh] object-contain"
-                controls
-                autoPlay
-                preload="metadata"
-                playsInline
-              >
-                <source src="https://youtu.be/FTRIfP282gI?si=BtyRrdWpw5wNF-A1" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              <div className="w-full aspect-video">
+  <iframe
+    className="w-full h-full"
+    src="https://youtu.be/FTRIfP282gI?si=BtyRrdWpw5wNF-A1"
+    title="YouTube video"
+    frameBorder="0"
+    allow="autoplay; encrypted-media"
+    allowFullScreen
+  />
+</div>
             </div>
           </div>
         </div>
