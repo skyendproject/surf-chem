@@ -92,6 +92,14 @@ export default async function ProductDetail({ params }: ProductPageProps) {
                       <td className="text-xl py-5 font-semibold">Function</td>
                       <td className="text-xl py-5">{product.function}</td>
                     </tr>
+                    {product.physical_properties.map((p) => (
+                      <tr className={'border-t border-gray-200'}>
+                        <td className="text-xl py-5 font-semibold">
+                          {p.title + ' - ' + p.unit + ' (' + p.method + ')'}
+                        </td>
+                        <td className="text-xl py-5">{p.result}</td>
+                      </tr>
+                    ))}
                     <tr className={'border-t border-gray-200'}>
                       <td className="text-xl py-5 font-semibold">Typical Usage (%)</td>
                       <td className="text-xl py-5">{product.usage}</td>
@@ -128,14 +136,6 @@ export default async function ProductDetail({ params }: ProductPageProps) {
                       <td className="text-xl py-5 font-semibold">EPA 40 CFR Listing (Status)</td>
                       <td className="text-xl py-5">{product.cfr_listing}</td>
                     </tr>
-                    {product.physical_properties.map((p) => (
-                      <tr className={'border-t border-gray-200'}>
-                        <td className="text-xl py-5 font-semibold">
-                          {p.title + ' - ' + p.unit + ' (' + p.method + ')'}
-                        </td>
-                        <td className="text-xl py-5">{p.result}</td>
-                      </tr>
-                    ))}
                   </tbody>
                 </table>
               </div>
