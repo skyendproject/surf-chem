@@ -7,6 +7,8 @@ import { readDocument } from "@/lib/common";
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { FormEvent, useEffect, useState } from "react";
+import Link from "next/link";
+
 
 export function SignInForm() {
   const [username, setUsername] = useState("");
@@ -84,6 +86,16 @@ export function SignInForm() {
               Submit
             </Button>
           </div>
+
+                    <p className="text-center text-sm text-gray-600">
+            No account?{" "}
+            <Link
+              href="/auth-form"
+              className="text-red font-semibold hover:underline"
+            >
+              Sign Up
+            </Link>
+          </p>
         </form>
       </div>
     }</>
